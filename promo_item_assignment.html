@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aptaris Ad Events</title>
+</head>
+<body>
+
+  <h1>Add Item to a Promotion</h1>
+  <hr />
+
+    <h2>Search for an item:</h2>
+
+    <form action='search_promo_item.php' method='post'>
+      <table border="1">
+        <tr>
+          <td>Department:</td>
+          <td><input type="text" name="itemDepartment"></input></td>
+        </tr>
+        <tr>
+          <td>Item Number:</td>
+          <td><input type="text" name="itemNumber"></input></td>
+        </tr>
+        <tr>
+          <td>Description:</td>
+          <td><input type="text" name="itemDescription"></input></td>
+        </tr>
+      </table>
+
+    <h2>Search for a promotion to add the item to:</h2>
+
+
+      <table border="1">
+        <tr>
+          <td>Promotion Code:</td>
+          <td><input type="text" name="promoCode"></input></td>
+        </tr>
+        <tr>
+          <td>Name:</td>
+          <td><input type="text" name="promoName"></input></td>
+        </tr>
+        <tr>
+          <td>Description:</td>
+          <td><input type="text" name="promoDescription"></input></td>
+        </tr>
+      </table>
+
+      <p>
+        <button type="submit" name="submit" value="Submit" accesskey="S">
+          <u>S</u>ubmit</button>
+        <button type="reset" name="reset" accesskey="R">
+          <u>R</u>eset</button>
+      </p>
+
+
+    </form>
+
+
+</body>
+
+
+</html>
