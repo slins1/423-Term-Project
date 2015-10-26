@@ -41,13 +41,11 @@ function get_items_and_promotions()
   //Test whether the queries were successful
   if (!$itemResult)
   {
-     echo "The retrieval of items was unsuccessful: ".mysql_error();
-     exit;
+     $item_search_message = "The retrieval of items was unsuccessful: ".mysql_error();
   }
 	if (!$promotionResult)
   {
-     echo "The retrieval of promotions was unsuccessful: ".mysql_error();
-     exit;
+     $promotion_search_message = "The retrieval of promotions was unsuccessful: ".mysql_error();
   }
 
   $number_item_rows = mysql_num_rows($itemResult);
