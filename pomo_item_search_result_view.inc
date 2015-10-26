@@ -4,31 +4,42 @@ function display_items_promotions($itemMessage, $itemResult, $promoMessage, $pro
 {
   //----------------------------------------------------------
   // Start the html page
-  echo "<HTML>";
-  echo "<HEAD>";
-  echo "</HEAD>";
-  echo "<BODY>";
+  echo "<html>";
+  echo "<head>";
+  echo "</head>";
+  echo "<body>";
 
-  // If the message is non-null and not an empty string print it
-  // message contains the lastname and firstname
+  // If the error messages are non-null and not an empty string print it
 
   if ($itemMessage)
   {
     if ($itemMessage != "")
        {
-	 echo '<center><font color="blue">'.$itemMessage.'</font></center><br />';
+	 echo $itemMessage;
+   exit;
        }
   }
-  echo '<table border="1" align="center" width="98%">';
-  echo '<th width="20%">Item Department</th>';
-  echo '<th width="20%">Item Number</th>';
-  echo '<th width="10%">Item Description</th>';
+
+  if ($promoMessage)
+  {
+    if ($promoMessage != "")
+       {
+  echo $promoMessage;
+  exit;
+       }
+  }
+  echo '<form action='assign_promo_item.php' method='post'>'
+  echo '<table border="1">';
+  echo '<th>Selection</th>';
+  echo '<th>Item Department</th>';
+  echo '<th>Item Number</th>';
+  echo '<th>Item Description</th>';
   echo '<thead>';
   echo '</thead>';
   echo '<tbody>';
 
 
-   //While there are more rows in the $result, get the next row
+   //While there are more rows in the result, get the next row
    //as an associative array
    while ($itemRow = mysql_fetch_assoc($itemResult))
    {
@@ -36,38 +47,30 @@ function display_items_promotions($itemMessage, $itemResult, $promoMessage, $pro
      $itemNumber = $itemRow['itemNumber'];
      $itemDescription = $itemRow['itemDescription'];
 
-      //Put these in a table row. The htmlentities function converts any
-      //special chars in the string to a html-displayable form.
+     //Put results in table rows. The htmlentities function converts any
+     //special chars in the string to a html-displayable form.
       echo '<tr>';
-      echo '<TD><SPAN ALIGN=CENTER>'.htmlentities($itemDepartment).'</SPAN></TD>';
-      echo '<TD><SPAN ALIGN=CENTER>'.htmlentities($itemNumber).'</SPAN></TD>';
-      echo '<TD><SPAN ALIGN=CENTER>'.htmlentities($itemDescription).'</SPAN></TD>';
+      echo '<td><input type="radio" name="item" value='.$itemNumber.'></td>';
+      echo '<td>'.htmlentities($itemDepartment).'</td>';
+      echo '<td>'.htmlentities($itemNumber).'</td>';
+      echo '<td>'.htmlentities($itemDescription).'</td>';
       echo '</tr>';
    }
 
-   echo '</TBODY>';
+   echo '</tbody>';
    echo '</table>';
 
-	 // If the message is non-null and not an empty string print it
-	 // message contains the lastname and firstname
-
-	 if ($promoMessage)
-	 {
-		 if ($promoMessage != "")
-				{
-	 echo '<center><font color="blue">'.$promoMessage.'</font></center><br />';
-				}
-	 }
-	 echo '<table border="1" align="center" width="98%">';
-	 echo '<th width="20%">Promo Code</th>';
-	 echo '<th width="20%">Promo Name</th>';
-	 echo '<th width="10%">Promo Description</th>';
+	 echo '<table border="1">';
+   echo '<th>Selection</th>';
+	 echo '<th>Promo Code</th>';
+	 echo '<th>Promo Name</th>';
+	 echo '<th>Promo Description</th>';
 	 echo '<thead>';
 	 echo '</thead>';
 	 echo '<tbody>';
 
 
-		//While there are more rows in the $result, get the next row
+		//While there are more rows in the result, get the next row
 		//as an associative array
 		while ($promoRow = mysql_fetch_assoc($promoResult))
 		{
@@ -75,30 +78,31 @@ function display_items_promotions($itemMessage, $itemResult, $promoMessage, $pro
 			$promoName = $promoRow['promoName'];
 			$promoDescription = $promoRow['promoDescription'];
 
-			 //Put these in a table row. The htmlentities function converts any
+			 //Put results in table rows. The htmlentities function converts any
 			 //special chars in the string to a html-displayable form.
 			 echo '<tr>';
-			 echo '<TD><SPAN ALIGN=CENTER>'.htmlentities($promoCode).'</SPAN></TD>';
-			 echo '<TD><SPAN ALIGN=CENTER>'.htmlentities($promoName).'</SPAN></TD>';
-			 echo '<TD><SPAN ALIGN=CENTER>'.htmlentities($promoDescription).'</SPAN></TD>';
+       echo '<td><input type="radio" name="promotion" value='.$promoCode.'></td>';
+			 echo '<td>'.htmlentities($promoCode).'</td>';
+			 echo '<td>'.htmlentities($promoName).'</td>';
+			 echo '<td>'.htmlentities($promoDescription).'</td>';
 			 echo '</tr>';
 		}
 
-		echo '</TBODY>';
+		echo '</tbody>';
 		echo '</table>';
+    echo '</form>';
 
-
-//finish up the html code, and put the return button to go back to main menu
   echo <<<UPTOEND
-  <BR/><BR/>
-  <center>
-  <input type="button" value="Return to Main Menu"
-	onClick="window.location='promo_item_assignment.html'"/>
-  </center>
+  <p>
+    <button type="submit" name="submit" value="Submit" accesskey="S">
+      <u>S</u>ubmit</button>
+    <button type="reset" name="reset" accesskey="R">
+      <u>R</u>eset</button>
+  </p>
 UPTOEND;
 
-  echo "</BODY>";
-  echo "</HTML>";
+  echo "</body>";
+  echo "</html>";
 }
 
 ?>
