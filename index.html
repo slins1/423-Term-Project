@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="main.css">
+        <link rel="stylesheet" type="text/css" href="_main.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-        <script src="script.js"></script>        
-        <title>Advertising Console</title>
+        <script src="_script.js"></script>        
+        <title>Promotion System</title>
     </head>
     
     <body>
-        <button>Add Item</button>
-        <button>Add Promotion</button>
-        <button>Add New Add Event button</button>
+        <h1>Promotion System</h1>
+        <div id="accordion">
+            <h3>Promotion</h3>
+                <div>
+                    <a href="insert_promotion_view.html"><h4>Insert Promotion</h4></a>
+                    <a href="assign_promotion_item_view.html"><h4>Assign Item to Promotion</h4></a>
+                </div>   
+            <h3>Event</h3>
+                <div>
+                    <a href="insert_ad_event_view.html"><h4>Insert Ad Event</h4></a>
+                </div>
+            <h3>Item</h3>
+                <div>
+                    <a href="insert_item_view.html"><h4>Insert Item</h4></a>
+                </div>
+        </div>
     </body>
 </html>
