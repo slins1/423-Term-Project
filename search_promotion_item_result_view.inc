@@ -15,8 +15,8 @@ function display_items_promotions($itemMessage, $itemResult, $promoMessage, $pro
   {
     if ($itemMessage != "")
        {
-	 echo $itemMessage;
-   exit;
+      	 echo $itemMessage;
+         exit;
        }
   }
 
@@ -24,8 +24,8 @@ function display_items_promotions($itemMessage, $itemResult, $promoMessage, $pro
   {
     if ($promoMessage != "")
        {
-  echo $promoMessage;
-  exit;
+          echo $promoMessage;
+          exit;
        }
   }
   echo '<form action='assign_promo_item.php' method='post'>'
