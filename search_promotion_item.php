@@ -41,13 +41,11 @@ function get_items_and_promotions()
   //Test whether the queries were successful
   if (!$itemResult)
   {
-     echo "The retrieval of items was unsuccessful: ".mysql_error();
-     exit;
+     $item_search_message = "The retrieval of items was unsuccessful: ".mysql_error();
   }
 	if (!$promotionResult)
   {
-     echo "The retrieval of promotions was unsuccessful: ".mysql_error();
-     exit;
+     $promotion_search_message = "The retrieval of promotions was unsuccessful: ".mysql_error();
   }
 
   $number_item_rows = mysql_num_rows($itemResult);
@@ -70,24 +68,24 @@ function get_items_and_promotions()
   mysql_free_result($itemResult);
 	mysql_free_result($promotionResult);
 
-}
+  function connect_and_select_db($server, $username, $pwd, $dbname)
+  {
+  	// Connect to db server
+  	$conn = mysql_connect($server, $username, $pwd);
 
-function connect_and_select_db($server, $username, $pwd, $dbname)
-{
-	// Connect to db server
-	$conn = mysql_connect($server, $username, $pwd);
+  	if (!$conn) {
+  	    echo "Unable to connect to DB: " . mysql_error();
+      	    exit;
+  	}
 
-	if (!$conn) {
-	    echo "Unable to connect to DB: " . mysql_error();
-    	    exit;
-	}
+  	// Select the database
+  	$dbh = mysql_select_db($dbname);
+  	if (!$dbh){
+      		echo "Unable to select ".$dbname.": " . mysql_error();
+  		exit;
+  	}
+  }
 
-	// Select the database
-	$dbh = mysql_select_db($dbname);
-	if (!$dbh){
-    		echo "Unable to select ".$dbname.": " . mysql_error();
-		exit;
-	}
 }
 
 ?>
