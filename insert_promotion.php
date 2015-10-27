@@ -1,6 +1,6 @@
 <?php
 
-require('promotion_cn.inc');
+require('db_connect.inc');
 
 //require('promotion_insert_result_ui.inc');
 
@@ -9,16 +9,11 @@ insert_promotion();
 function insert_promotion(){
 
 	connect_and_select_db(DB_SERVER, DB_UN, DB_PWD,DB_NAME);
-
-
-	
 	
 	$name = $_POST['name'];
 	$description = $_POST['description'];
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
-	
-	
 	
 	$insertStmt = "INSERT INTO Promotion (Name, Description, AmountOff, 
 		       PromoType) values ( '$name', '$description',
@@ -29,14 +24,10 @@ function insert_promotion(){
 
 	$message = "";
 
-	if (!$result) 
-	{
+	if (!$result) {
   	  $message = "Error in inserting Promotion: $name , $description: ";
-	}
-	else
-	{
+	} else {
 	  $message = "The Promotion $name was inserted successfully.";
-	  
 	}
 
 	ui_show_promotion_insert_result($message, $name, $description, 
@@ -44,15 +35,14 @@ function insert_promotion(){
 			   
 }
 
-function connect_and_select_db($server, $username, $pwd, $dbname)
-{
-	//echo "inside connect!";
+function connect_and_select_db($server, $username, $pwd, $dbname) {
+
 	// Connect to db server
 	$conn = mysql_connect($server, $username, $pwd);
 
 	if (!$conn) {
 	    echo "Unable to connect to DB: ";
-    	    exit;
+    	exit;
 	}
 
 	// Select the database	
@@ -64,9 +54,8 @@ function connect_and_select_db($server, $username, $pwd, $dbname)
 }
 
 function ui_show_promotion_insert_result($message, $name, $description, 
-		$amountOff, $promoType)
-{
-  //----------------------------------------------------------
+		$amountOff, $promoType) {
+
   // Start the html page
   $head = <<<EOD 
             <html>
@@ -75,31 +64,33 @@ function ui_show_promotion_insert_result($message, $name, $description,
                 <body>
 EOD;
 
-echo($head);
+echo $head;
+
   // If the message is non-null and not an empty string print it
   // message contains the lastname and firstname
-  if ($message)
-  {
-    if ($message != "")
-       {
-	 echo '<center><font color="blue">'.$message.'</font></center><br />';
-       }
-	else{
-		echo 'error';
-	}
+  if ($message) {
+    if ($message != "") {
+			echo '<center><font color="blue">'.$message.'</font></center><br />';
+    } else {
+			echo 'error';
+		}
   }
 
 //finish up the html code, and put the return button to go back to main menu
 
-echo  '<br/>';
-echo '<br/>';
-echo  '<center>';
-echo  '<a href="index.html"><input type="button" value="Return to Main Menu"/></a>';
-echo  '</center>';
+$foot = <<<EOD
+	<br/>
+	<br/>
+	<center>
+	<a href="index.html"><input type="button" value="Return to Main Menu"/></a>
+</center>
 
+</body>
+</html>
 
- echo '</body>';
- echo '</html>';
+EOD;
+
+echo $foot;
 }
 
 ?>
