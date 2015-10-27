@@ -1,6 +1,6 @@
 <?php
 require('all_items_ui.inc');
-require('database_info.inc');
+require('db_connect.inc');
 get_all_items();
 
 //-------------------------------------------------------------

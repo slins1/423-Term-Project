@@ -1,6 +1,6 @@
 <?php
 
-require('database_info.inc');
+require('db_connect.inc');
 
 require('item_update_result_ui.php');
 
