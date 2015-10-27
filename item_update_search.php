@@ -1,5 +1,5 @@
 <?php
-require('all_items_ui.inc');
+require('item_update_selection_view.php');
 require('db_connect.inc');
 get_all_items();
 

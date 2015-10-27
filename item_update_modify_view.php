@@ -11,7 +11,7 @@ $part1 = <<<EOD
 	</head>
 	<body>
 		<h2>Modify an Item</h2>
-		<form action="update_item.php" method="post" name="updateitem" id="updateitem">
+		<form action="update_item_modify.php" method="post" name="updateitem" id="updateitem">
 			<table>
 				<tr>
 					<td>Item Number</td>

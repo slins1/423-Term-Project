@@ -1,7 +1,3 @@
-
-<!--
-This will display the results of all_teaching_assignments retrieval
--->
 <?php
 
 function display_all_items($message, $result)
@@ -15,7 +11,7 @@ function display_all_items($message, $result)
 
   // If the message is non-null and not an empty string print it
   // message contains the lastname and firstname
-  echo '<form action="ItemModify.php" method="post" name="modifyitem" id="modifyitem"'
+  echo '<form action="item_update_modify.php" method="post" name="modifyitem" id="modifyitem"'
   if ($message)
   {
     if ($message != "")

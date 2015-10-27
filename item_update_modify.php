@@ -2,7 +2,7 @@
 
 require('db_connect.inc');
 
-require('item_update_result_ui.php');
+require('item_update_result_view.php');
 
 update_item();
 
