@@ -68,11 +68,14 @@ function ui_show_promotion_insert_result($message, $name, $description,
 {
   //----------------------------------------------------------
   // Start the html page
-  echo '<HTML>';
-  echo '<HEAD>';
-  echo '</HEAD>';
-  echo '<BODY>';
+  $head = <<<EOD 
+            <html>
+                <head>
+                </head>
+                <body>
+EOD;
 
+echo($head);
   // If the message is non-null and not an empty string print it
   // message contains the lastname and firstname
   if ($message)
@@ -88,15 +91,15 @@ function ui_show_promotion_insert_result($message, $name, $description,
 
 //finish up the html code, and put the return button to go back to main menu
 
-echo  '<BR/>';
-echo '<BR/>';
+echo  '<br/>';
+echo '<br/>';
 echo  '<center>';
 echo  '<a href="index.html"><input type="button" value="Return to Main Menu"/></a>';
 echo  '</center>';
 
 
- echo '</BODY>';
- echo '</HTML>';
+ echo '</body>';
+ echo '</html>';
 }
 
 ?>

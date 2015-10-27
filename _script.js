@@ -1,4 +1,8 @@
 function hello() {
     $("#main").html("Hello jQuery");
 }
-$(document).ready(hello);
+$(document).ready(function() {
+    $(function() {
+    $( "#accordion" ).accordion();
+  });
+});
