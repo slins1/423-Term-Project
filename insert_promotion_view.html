@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Insert a Promotion - Aptaris Promotion System</title>
+</head>
+<body>
+    <a href="index.html"><h1>Insert a Promotion</h1></a>
+    <hr/>
+    <form action="insert_promotion.php" method="post">
+        <table border="1">
+            <tr>
+                <td align="left">Promotion Name:</td>
+                <td align="left"><input type="text" name="name" id="name" maxlength=25 size=20></td>
+            </tr>
+            <tr>
+                <td align="left">Description:</td>
+                <td align="left"><input type="text" name="description" id="description" maxlength=100 size=35></td>
+            </tr>
+            <tr>
+                <td align="left">Amount Off:</td>
+                <td align="left"><input type="text" name="amountOff" id="amountOff" maxlength=10 size=5></td>
+            </tr>
+            <tr>
+                <td align="left">Promo Type:</td>
+                <td align="left"><input type="text" name="promoType" id="promoType" maxlength=10 size=5></td>
+            </tr>
+        </table>
+        
+        <p>
+            <button type="submit" name="submit" value="Submit" accesskey="S">Submit</button>
+            <button type="reset" name="reset" accesskey="R">Reset</button>
+        </p>
+    </form>
+    
+</body>
+</html>
