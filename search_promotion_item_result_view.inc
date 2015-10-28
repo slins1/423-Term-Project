@@ -28,7 +28,7 @@ function display_items_promotions($itemMessage, $itemResult, $promoMessage, $pro
           exit;
        }
   }
-  echo '<form action='assign_promo_item.php' method='post'>'
+  echo '<form action='insert_promotion_item.php' method='post'>'
   echo '<table border="1">';
   echo '<th>Selection</th>';
   echo '<th>Item Department</th>';
@@ -43,14 +43,15 @@ function display_items_promotions($itemMessage, $itemResult, $promoMessage, $pro
    //as an associative array
    while ($itemRow = mysql_fetch_assoc($itemResult))
    {
-     $itemDepartment = $itemRow['itemDepartment'];
-     $itemNumber = $itemRow['itemNumber'];
-     $itemDescription = $itemRow['itemDescription'];
+     $itemDepartment = $itemRow['DepartmentName'];
+     $itemNumber = $itemRow['ItemNumber'];
+     $itemDescription = $itemRow['ItemDescription'];
+     $itemPurchaseCost = $itemRow['PurchaseCost'];
 
      //Put results in table rows. The htmlentities function converts any
      //special chars in the string to a html-displayable form.
       echo '<tr>';
-      echo '<td><input type="radio" name="item" value='.$itemNumber.'></td>';
+      echo '<td><input type="radio" name="itemId" value='.$itemNumber.'></td>';
       echo '<td>'.htmlentities($itemDepartment).'</td>';
       echo '<td>'.htmlentities($itemNumber).'</td>';
       echo '<td>'.htmlentities($itemDescription).'</td>';
@@ -74,14 +75,16 @@ function display_items_promotions($itemMessage, $itemResult, $promoMessage, $pro
 		//as an associative array
 		while ($promoRow = mysql_fetch_assoc($promoResult))
 		{
-			$promoCode = $promoRow['promoCode'];
-			$promoName = $promoRow['promoName'];
-			$promoDescription = $promoRow['promoDescription'];
+			$promoCode = $promoRow['PromoCode'];
+			$promoName = $promoRow['Name'];
+			$promoDescription = $promoRow['Description'];
+      $promoAmountOff = $promoRow['AmountOff'];
+      $promoType = $promoRox['PromoTpye'];
 
 			 //Put results in table rows. The htmlentities function converts any
 			 //special chars in the string to a html-displayable form.
 			 echo '<tr>';
-       echo '<td><input type="radio" name="promotion" value='.$promoCode.'></td>';
+       echo '<td><input type="radio" name="promotionId" value='.$promoCode.'></td>';
 			 echo '<td>'.htmlentities($promoCode).'</td>';
 			 echo '<td>'.htmlentities($promoName).'</td>';
 			 echo '<td>'.htmlentities($promoDescription).'</td>';
@@ -91,6 +94,15 @@ function display_items_promotions($itemMessage, $itemResult, $promoMessage, $pro
 		echo '</tbody>';
 		echo '</table>';
     echo '</form>';
+
+    if($promoType == "Dollar"){
+      $salePrice = $itemPurchaseCost - $promoAmountOff;
+    }
+    else{
+      $salePrice = $itemPurchaseCost * ($promoAmountOff / 100);
+    }
+
+    echo '<input type="hidden" name="salePrice" value='.$salePrice.'>';
 
   echo <<<UPTOEND
   <p>
