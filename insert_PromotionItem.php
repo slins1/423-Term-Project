@@ -5,25 +5,14 @@ insert_promotionItem();
 
 function insert_promotionItem(){
 
-$promoCode = $_POST['promoCode'];
-$amountOff = $_POST['amountOff'];
-$promoType = $_POST['promoType'];
-
 connect_and_select_db(DB_SERVER, DB_UN, DB_PWD, DB_NAME);
 
-//echo "<b>In the beginning</b><br/>";
-//$username = $_POST['username'];
-//echo "<span>username = $username</span><br/>";
+if (isset($_POST['items'])){
 
-if (isset($_POST['saleItems'])){
-
-  //echo "Jeff Mitchell was here";
-  $itemArray = $_POST['saleItems'];
+  $itemArray = $_POST['items'];
   $arraySize = count($itemArray);
 
-   //echo 'Array size = '.$arraySize.'';
-
-        for ($k = 0; $k < $arraySize; $k++){
+        for ($k = 0; $k < $arraysize; $k++){
 
         	$current_item = $itemArray[$k];
 
@@ -50,39 +39,37 @@ if (isset($_POST['saleItems'])){
 	$itemNumber = $row['ItemNumber'];
 	$fullRetailPrice = $row['FullRetailPrice'];
 
-        	//$promoCode = $_SESSION['promoCode'];
-        	//$amountOff = $_SESSION['amountOff'];
-        	//$promoType = $_SESSION['promoType'];
-        	//echo"This is the promoCode: $promoCode";
+        	$promoCode = $_SESSION['promoCode'];
+        	$amountOff = $_SESSION['amountOff'];
+        	$promoType = $_SESSION['promoType'];
 
         	if($promoType == "Dollar"){
         		$salePrice = $fullRetailPrice - $amountOff;
         	}
-        	else if($promoType == "Percent"){
+        	else if($promoType == "percent"){
         		$salePrice = $fullRetailPrice * $amountOff;
         	}
         	$insertStatement = "INSERT INTO PromotionItem (PromoCode,
-        		ItemNumber, SalePrice) VALUES ('".$promoCode."','".
-        		$itemNumber."', '".$salePrice."')";
-
-			//echo "$insertStatement";
-
-			
-			$result = mysql_query($insertStatement);
-
-			if (!$result) {
-  			$message = "Error in inserting Promotion: $name , $description";
-			} else {
-	  		$message = "The Promotion $name was inserted successfully";
-			} 
-			//echo "Ryan is the greatest";
+        		ItemNumber, SalePrice) values ('$promoCode', 
+        		'$itemNumber', 'salePrice')";
         }
 
 
 }
-//echo "<b> Ryan messed up</b>";
+
 echo "<html>";
-echo "$message";
+  echo "<head>";
+  echo	"<link rel='stylesheet' type='text/css' href='_main.css'>";
+  echo  "<link rel='logo_favicon.jpg' href='/favicon.ico' />";
+  echo  "</head>";
+  echo  "<body>";
+  echo  "<div class='header'><a href='index.html'>";
+	echo	"<img src='logo_100.jpg' alt='logo' />";
+	echo	"<h1>Promotion System - Add Item to a Promotion</h1></a><br/><hr />";
+	echo "</div>";
+
+
+echo "Inserted Items into ItemPromotion Successfully";
 $footer = <<<EOD
 			<br/>
 		<br/>
@@ -92,7 +79,7 @@ $footer = <<<EOD
 EOD;
 
 	echo $footer;
-	//session_destroy();
+	session_destroy();
 
 }
 function connect_and_select_db($server, $username, $pwd, $dbname)
