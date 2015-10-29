@@ -14,8 +14,10 @@ function display_items_promotions($itemMessage, $itemResult)
 
   // If the error messages are non-null and not an empty string print it
 
-  $row = mysql_fetch_assoc($itemResult);
 
+    
+
+while ($row = mysql_fetch_assoc($itemResult)){
 
     $itemNumber = $row['ItemNumber'];
     $itemDescription = $row['ItemDescription'];
@@ -23,9 +25,6 @@ function display_items_promotions($itemMessage, $itemResult)
     $departmentName = $row['DepartmentName'];
     $purchaseCost = $row['PurchaseCost'];
     $fullRetailPrice = $row['FullRetailPrice'];
-
-while ($row = mysql_fetch_assoc($itemResult)){
-
       echo '<tr>';
                 echo '<td>';
                 echo "<input type='checkbox' name='items[]' value=$itemNumber>";
