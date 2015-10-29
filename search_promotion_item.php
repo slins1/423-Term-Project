@@ -1,73 +1,50 @@
 <?php
 require('db_connect.inc');
-require('promo_item_added_result_view.inc');
+//session_start();
 
 // Main control logic
 get_items_and_promotions();
 
-
 //------------------------------------------------------
 function get_items_and_promotions()
 {
+
   // Connect to db
   connect_and_select_db(DB_SERVER, DB_UN, DB_PWD, DB_NAME);
 
-	$itemDepartment = $_POST['itemDepartment'];
-	$itemNumber = $_POST['itemNumber'];
-	$itemDescription = $_POST['itemDescription'];
 	$promoCode = $_POST['promoCode'];
 	$promoName = $_POST['promoName'];
-	$promoDescription = $_POST['promoDescription'];
-
 
   //Construct SQL statements
-  $item_search_sql = "SELECT DepartmentName, ItemNumber, ItemDescription,
-			FROM Item
-			WHERE DepartmentName = '$itemDepartment'
-			AND   ItemNumber = '$itemNumber'
-			AND	 ItemDescription = '$itemDescription'";
-
-
-		$promotion_search_sql = "SELECT PromoCode, Name, Description
+		$promotion_search_sql = "SELECT PromoCode, Name, Description, AmountOff, PromoType
 			FROM Promotion
 			WHERE PromoCode = '$promoCode'
-			AND	 Name = '$promoName'
-			AND   Description = '$promoDescription'";
+			AND	 Name = '$promoName'";
 
   //Execute the queries
-  $itemResult =   mysql_query($item_search_sql);
 	$promotionResult = mysql_query($promotion_search_sql);
 
   //Test whether the queries were successful
-  if (!$itemResult)
-  {
-     $item_search_message = "The retrieval of items was unsuccessful: ".mysql_error();
-  }
 	if (!$promotionResult)
   {
      $promotion_search_message = "The retrieval of promotions was unsuccessful: ".mysql_error();
   }
 
-  $number_item_rows = mysql_num_rows($itemResult);
 	$number_promotion_rows = mysql_num_rows($promotionResult);
 
 
   // Check if results turned out empty
-	$item_search_message = "";
-	if ($number_item_rows == 0)
-		$item_search_message = "No items found in database";
 
 	$promotion_search_message = "";
 	if ($number_promotion_rows == 0)
 	  $promotion_search_message = "No promotions found in database";
 
   //Display the results
-  show_items_promotions($item_search_message, $itemResult, $promotion_search_message, $promotionResult);
+  display_items_promotions($promotion_search_message, $promotionResult);
 
   //Free the result sets
-  mysql_free_result($itemResult);
 	mysql_free_result($promotionResult);
-
+}
   function connect_and_select_db($server, $username, $pwd, $dbname)
   {
   	// Connect to db server
@@ -86,6 +63,66 @@ function get_items_and_promotions()
   	}
   }
 
+function display_items_promotions($promoMessage, $promoResult)
+{
+  //----------------------------------------------------------
+  // Start the html page
+  echo "<html>";
+  echo "<head>";
+  echo "</head>";
+  echo "<body>";
+  echo "<form action='item_search.php' method='post'>";
+  echo "<h2>Please Click submit to confirm the Promotion Or Click back to go back</h2>";
+  echo "<table>";
+  // If the error messages are non-null and not an empty string print it
+
+  $row = mysql_fetch_assoc($promoResult);
+
+
+    $promoCode = $row['PromoCode'];
+    $name = $row['Name'];
+    $description = $row['Description'];
+    $amountOff = $row['AmountOff'];
+    $promoType = $row['PromoType'];
+    echo '<input type="hidden" name="promoCode" value="'.$promoCode.'" >';
+    echo '<input type="hidden" name="amountOff" value="'.$amountOff.'" >';
+    echo '<input type="hidden" name="promoType" value="'.$promoType.'" >';
+    //$_SESSION['promoCode'] = $promoCode;
+    //$_SESSION['amountOff'] = $amountOff;
+    //$_SESSION['promoType'] = $promoType;
+
+      echo '<tr>';
+                echo '<td>';
+                echo "<input type='checkbox' name='promo' value=$promoCode>";
+                echo '</td>';
+                echo '<td>';
+                echo "NAME: $name";
+                echo '</td>';
+                echo '<td>';
+                echo "DESCRIPTION: $description";
+                echo '</td>';
+                echo '<td>';
+                echo "AMOUNT OFF: $amountOff";
+                echo '</td>';
+                echo '<td>';
+                echo "PROMO TYPE: $promoType";
+                echo '</td>';
+                echo "</tr>"; 
+  
+echo "</table>";
+
+  echo <<<UPTOEND
+  <p>
+    <button type="submit" name="submit" value="Submit" accesskey="S">
+      <u>S</u>ubmit</button>
+    <button type="reset" name="reset" accesskey="R">
+      <u>R</u>eset</button>
+  </p>
+UPTOEND;
+echo "</form>";
+  echo "</body>";
+  echo "</html>";
 }
+
 
 ?>
