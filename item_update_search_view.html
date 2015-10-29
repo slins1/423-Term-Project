@@ -1,0 +1,113 @@
+<html>
+<head>
+</head>
+<body>
+Item Modify
+<br/>
+Search for an existing item by item number, category, department, or description
+<form action="retreive_all_items.php" method="post" name="addItem" id="addItem">
+			<table>
+				<tr>
+					<td>Item Number</td>
+					<td>: <input type="text" name="itemNum" id="itemNum" size="7"/></td>
+				</tr>
+				<tr>
+					<td>Item Description</td>
+					<td>: <textarea maxlength="50" rows="3" cols="10" name="description" id="description">(Maximum 50 characters)</textarea></td>
+				</tr> 
+				<tr>
+					<td>Category</td>
+					<td>:
+						<select name="category" id="category">
+							<option>ACCESSORIES/FOOTWEAR</option>
+							<option>BASIC APPAREL</option>
+							<option>CHILDRENS APPAREL</option>
+							<option>ELECTRONICS/PREPAID</option>
+							<option>FOOD CONVENIENCE</option>
+							<option>FOOD GROCERY</option>
+							<option>HEALTH/BEAUTY</option>
+							<option>HOME DECOR</option>
+							<option>HOUSEHOLD PRODUCTS</option>
+							<option>HOUSEWARES</option>
+							<option>MENS APPAREL</option>
+							<option>MISCELLANEOUS</option>
+							<option>OFFICE/PARTY</option>
+							<option>SEASONAL MERCHANDISE</option>
+							<option>SOFT HOME</option>
+							<option>SUPPLIES</option>
+							<option>TOYS</option>
+							<option>WOMENS APPAREL</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Department Name</td>
+					<td>:
+						<select name="deptName" id="deptName">
+							<option>ACCESSORIES</option>
+							<option>FOOTWEAR</option>
+							<option>CHILDRENS BASICS</option>
+							<option>LADIES BASICS</option>
+							<option>MENS BASICS</option>
+							<option>BOYS APPAREL</option>
+							<option>GIRLS APPAREL</option>
+							<option>NEWBORN INF TODDLR</option>
+							<option>ELECTRONICS</option>
+							<option>PPD PRODUCT/SERVICE</option>
+							<option>ADULT BEVERAGE</option>
+							<option>BREAD</option>
+							<option>CANDY</option>
+							<option>REFRIGERATED</option>
+							<option>TOBACCO</option>
+							<option>COOKIES/CRACKERS</option>
+							<option>GROCERY</option>
+							<option>PREPARED FOOD</option>
+							<option>READY TO DRINK BEV</option>
+							<option>SALTY SNACKS</option>
+							<option>WAREHOUSE BEVERAGES</option>
+							<option>ACUTE HEALTH CARE</option>
+							<option>BABY CARE</option>
+							<option>BATH/BODY</option>
+							<option>BEAUTY CARE</option>
+							<option>CHRONIC HEALTH CARE</option>
+							<option>HAIR CARE</option>
+							<option>ORAL CARE</option>
+							<option>PERSONAL CARE</option>
+							<option>ROUTINE HEALTH</option>
+							<option>HOME DECOR</option>
+							<option>AUTOMOTIVES</option>
+							<option>DISP BAG/WRAP/TABLE</option>
+							<option>HARDWARE</option>
+							<option>HOUSEHOLD CLEANING</option>
+							<option>HOUSEHOLD PAPER</option>
+							<option>LAUNDRY CARE</option>
+							<option>PET</option>
+							<option>HOUSEWARES</option>
+							<option>MENS APPAREL</option>
+							<option>MISCELLANEOUS</option>
+							<option>PARTY/CARD SHOP</option>
+							<option>SCHOOL/OFFICE SUPPLY</option>
+							<option>LAWN AND GDN/PATIO</option>
+							<option>SEASONAL</option>
+							<option>BATH</option>
+							<option>BEDDING</option>
+							<option>FLOORING</option>
+							<option>KITCHEN</option>
+							<option>WINDOW</option>
+							<option>SUPPLIES</option>
+							<option>TOYS</option>
+							<option>LADIES BOTTOMS</option>
+							<option>LADIES TOPS</option>
+							<option>PLUS BOTTOMS</option>
+							<option>PLUS TOPS</option>
+							<option>SLEEPWEAR/SCRUBS</option>
+						</select>
+					</td>
+				</tr> 
+<tr><td><button type="submit" id="submit">Submit</button></td><td><button id="back">Back</button></td></tr>
+</table>
+</form>
+</body>
+</html>
+
+
