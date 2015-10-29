@@ -6,21 +6,41 @@ echo <<<UPTOEND
 <html>
 <head>
     <title>Add Item to a Promotion - Aptaris Promotion System</title>
-    <script src="validate.js"></script>
 </head>
 <body>
     
     <a href="index.html"><h1>Add Item to a Promotion</h1></a>
     <hr/>
     
-    <form action='search_promotion_item2.php' method='post'>
+    <form action='search_promotion_item2.php' method='post'
+    onsubmit="return validateCategory(this)">
         
         <h2>Search for a Item to add the promotion to:</h2>
        
         <table border="1">
             <tr>
                 <td>Category:</td>
-                <td><input type="text" name="category"></input></td>
+                <td> <select name="category" id="category">
+                        <option>ACCESSORIES/FOOTWEAR</option>
+                        <option>BASIC APPAREL</option>
+                        <option>CHILDRENS APPAREL</option>
+                        <option>ELECTRONICS/PREPAID</option>
+                        <option>FOOD CONVENIENCE</option>
+                        <option>FOOD GROCERY</option>
+                        <option>HEALTH/BEAUTY</option>
+                        <option>HOME DECOR</option>
+                        <option>HOUSEHOLD PRODUCTS</option>
+                        <option>HOUSEWARES</option>
+                        <option>MENS APPAREL</option>
+                        <option>MISCELLANEOUS</option>
+                        <option>OFFICE/PARTY</option>
+                        <option>SEASONAL MERCHANDISE</option>
+                        <option>SOFT HOME</option>
+                        <option>SUPPLIES</option>
+                        <option>TOYS</option>
+                        <option>WOMENS APPAREL</option>
+                    </select>
+</td>
             </tr>
                    </table>
 UPTOEND;
