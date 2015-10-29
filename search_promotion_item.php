@@ -1,14 +1,14 @@
 <?php
 require('db_connect.inc');
-require('promo_item_added_result_view.inc');
+require('search_promotion_item_result_view.inc');
 
 // Main control logic
 get_items_and_promotions();
 
-
 //------------------------------------------------------
 function get_items_and_promotions()
 {
+
   // Connect to db
   connect_and_select_db(DB_SERVER, DB_UN, DB_PWD, DB_NAME);
 
@@ -19,16 +19,15 @@ function get_items_and_promotions()
 	$promoName = $_POST['promoName'];
 	$promoDescription = $_POST['promoDescription'];
 
-
   //Construct SQL statements
-  $item_search_sql = "SELECT DepartmentName, ItemNumber, ItemDescription,
+  $item_search_sql = "SELECT DepartmentName, ItemNumber, ItemDescription, PurchaseCost
 			FROM Item
 			WHERE DepartmentName = '$itemDepartment'
 			AND   ItemNumber = '$itemNumber'
 			AND	 ItemDescription = '$itemDescription'";
 
 
-		$promotion_search_sql = "SELECT PromoCode, Name, Description
+		$promotion_search_sql = "SELECT PromoCode, Name, Description, AmountOff, PromoType
 			FROM Promotion
 			WHERE PromoCode = '$promoCode'
 			AND	 Name = '$promoName'
@@ -62,7 +61,7 @@ function get_items_and_promotions()
 	  $promotion_search_message = "No promotions found in database";
 
   //Display the results
-  show_items_promotions($item_search_message, $itemResult, $promotion_search_message, $promotionResult);
+  display_items_promotions($item_search_message, $itemResult, $promotion_search_message, $promotionResult);
 
   //Free the result sets
   mysql_free_result($itemResult);
