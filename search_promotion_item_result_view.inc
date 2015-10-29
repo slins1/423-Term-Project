@@ -1,5 +1,6 @@
 <?php
 
+
 function display_items_promotions($promoMessage, $promoResult)
 {
   //----------------------------------------------------------
@@ -22,6 +23,9 @@ function display_items_promotions($promoMessage, $promoResult)
     $description = $row['Description'];
     $amountOff = $row['AmountOff'];
     $promoType = $row['PromoType'];
+    $_SESSION['promoCode'] = $promoCode;
+    $_SESSION['amountOff'] = $amountOff;
+    $_SESSION['promoType'] = $promoType;
 
       echo '<tr>';
                 echo '<td>';
@@ -45,7 +49,7 @@ echo "</table>";
 echo "</form>";
   echo <<<UPTOEND
   <p>
-    <button type="submit" name="submit" value="Submit" accesskey="S" onclick="item_search.html">
+    <button type="submit" name="submit" value="Submit" accesskey="S">
       <u>S</u>ubmit</button>
     <button type="reset" name="reset" accesskey="R">
       <u>R</u>eset</button>

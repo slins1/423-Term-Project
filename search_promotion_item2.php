@@ -12,14 +12,12 @@ function get_items_and_promotions()
   // Connect to db
   connect_and_select_db(DB_SERVER, DB_UN, DB_PWD, DB_NAME);
 
-	$itemNumber = $_POST['itemNumber'];
 	$category = $_POST['category'];
 
   //Construct SQL statements
 		$item_search_sql = "SELECT ItemNumber, ItemDescription, Category, DepartmentName, PurchaseCost, FullRetailPrice
 			FROM Item
-			WHERE ItemNumber = '$itemNumber'
-			AND	 Category = '$category'";
+			WHERE Category = '$category'";
 
   //Execute the queries
 	$itemResult = mysql_query($item_search_sql);

@@ -9,7 +9,7 @@ function display_items_promotions($itemMessage, $itemResult)
   echo "</head>";
   echo "<body>";
   echo "<table>";
-  echo "<form action='index.html' method='post'>";
+  echo "<form action='insert_PromotionItem.php' method='post'>";
   echo "<h2>Please Click submit to confirm the adds of all items to the promotion</h2>";
 
   // If the error messages are non-null and not an empty string print it
@@ -23,6 +23,8 @@ function display_items_promotions($itemMessage, $itemResult)
     $departmentName = $row['DepartmentName'];
     $purchaseCost = $row['PurchaseCost'];
     $fullRetailPrice = $row['FullRetailPrice'];
+
+while ($row = mysql_fetch_assoc($itemResult)){
 
       echo '<tr>';
                 echo '<td>';
@@ -44,9 +46,10 @@ function display_items_promotions($itemMessage, $itemResult)
                 echo "FULL RETAIL PRICE: $fullRetailPrice";
                 echo '</td>';
                 echo "</tr>"; 
+}
   
 echo "</table>";
-echo "</form>";
+
   echo <<<UPTOEND
   <p>
     <button type="submit" name="submit" value="Submit" accesskey="S">
@@ -56,6 +59,7 @@ echo "</form>";
   </p>
 UPTOEND;
 
+  echo "</form>";
   echo "</body>";
   echo "</html>";
 }
