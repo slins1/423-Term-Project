@@ -5,14 +5,25 @@ insert_promotionItem();
 
 function insert_promotionItem(){
 
+$promoCode = $_POST['promoCode'];
+$amountOff = $_POST['amountOff'];
+$promoType = $_POST['promoType'];
+
 connect_and_select_db(DB_SERVER, DB_UN, DB_PWD, DB_NAME);
 
-if (isset($_POST['items'])){
+//echo "<b>In the beginning</b><br/>";
+//$username = $_POST['username'];
+//echo "<span>username = $username</span><br/>";
 
-  $itemArray = $_POST['items'];
+if (isset($_POST['saleItems'])){
+
+  //echo "Jeff Mitchell was here";
+  $itemArray = $_POST['saleItems'];
   $arraySize = count($itemArray);
 
-        for ($k = 0; $k < $arraysize; $k++){
+   //echo 'Array size = '.$arraySize.'';
+
+        for ($k = 0; $k < $arraySize; $k++){
 
         	$current_item = $itemArray[$k];
 
@@ -39,37 +50,39 @@ if (isset($_POST['items'])){
 	$itemNumber = $row['ItemNumber'];
 	$fullRetailPrice = $row['FullRetailPrice'];
 
-        	$promoCode = $_SESSION['promoCode'];
-        	$amountOff = $_SESSION['amountOff'];
-        	$promoType = $_SESSION['promoType'];
+        	//$promoCode = $_SESSION['promoCode'];
+        	//$amountOff = $_SESSION['amountOff'];
+        	//$promoType = $_SESSION['promoType'];
+        	//echo"This is the promoCode: $promoCode";
 
         	if($promoType == "Dollar"){
         		$salePrice = $fullRetailPrice - $amountOff;
         	}
-        	else if($promoType == "percent"){
+        	else if($promoType == "Percent"){
         		$salePrice = $fullRetailPrice * $amountOff;
         	}
         	$insertStatement = "INSERT INTO PromotionItem (PromoCode,
-        		ItemNumber, SalePrice) values ('$promoCode', 
-        		'$itemNumber', 'salePrice')";
+        		ItemNumber, SalePrice) VALUES ('".$promoCode."','".
+        		$itemNumber."', '".$salePrice."')";
+
+			//echo "$insertStatement";
+
+			
+			$result = mysql_query($insertStatement);
+
+			if (!$result) {
+  			$message = "Error in inserting Promotion: $name , $description";
+			} else {
+	  		$message = "The Promotion $name was inserted successfully";
+			} 
+			//echo "Ryan is the greatest";
         }
 
 
 }
-
+//echo "<b> Ryan messed up</b>";
 echo "<html>";
-  echo "<head>";
-  echo	"<link rel='stylesheet' type='text/css' href='_main.css'>";
-  echo  "<link rel='logo_favicon.jpg' href='/favicon.ico' />";
-  echo  "</head>";
-  echo  "<body>";
-  echo  "<div class='header'><a href='index.html'>";
-	echo	"<img src='logo_100.jpg' alt='logo' />";
-	echo	"<h1>Promotion System - Add Item to a Promotion</h1></a><br/><hr />";
-	echo "</div>";
-
-
-echo "Inserted Items into ItemPromotion Successfully";
+echo "$message";
 $footer = <<<EOD
 			<br/>
 		<br/>
@@ -79,7 +92,7 @@ $footer = <<<EOD
 EOD;
 
 	echo $footer;
-	session_destroy();
+	//session_destroy();
 
 }
 function connect_and_select_db($server, $username, $pwd, $dbname)

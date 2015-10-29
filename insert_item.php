@@ -31,15 +31,6 @@ function insertItem() {
 function showItemInsertResult($message, $itemNum, $description, $category, $deptName, $purchaseCost, $retailPrice) {
 	// Start the html page
   echo "<html>";
-  echo "<head>";
-  echo	"<link rel='stylesheet' type='text/css' href='_main.css'>";
-  echo  "<link rel='logo_favicon.jpg' href='/favicon.ico' />";
-  echo  "</head>";
-  echo  "<body>";
-  echo  "<div class='header'><a href='index.html'>";
-	echo	"<img src='logo_100.jpg' alt='logo' />";
-	echo	"<h1>Promotion System - Add an Item</h1></a><br/><hr />";
-	echo "</div>";
 
   // If the message is non-null and not an empty string print it
   // message contains the lastname and firstname

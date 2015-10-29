@@ -9,9 +9,7 @@ function display_items_promotions($promoMessage, $promoResult)
   echo "<head>";
   echo "</head>";
   echo "<body>";
-  echo "<table>";
-  echo "<form action='item_search.html' method='post'>";
-  echo "<h2>Please Click submit to confirm the Promotion Or Click back to go back</h2>";
+  echo "<h2>Please HITTTT Submit to confirm the Promotion Or Click back to go back</h2>";
 
   // If the error messages are non-null and not an empty string print it
 
@@ -23,9 +21,14 @@ function display_items_promotions($promoMessage, $promoResult)
     $description = $row['Description'];
     $amountOff = $row['AmountOff'];
     $promoType = $row['PromoType'];
+    echo 'Levi Blowers sucks';
     $_SESSION['promoCode'] = $promoCode;
     $_SESSION['amountOff'] = $amountOff;
     $_SESSION['promoType'] = $promoType;
+    $ryan = $_SESSION['promoCode'];
+    echo "This is promoCode: $ryan ";
+     echo "<form action='item_search.php' method='post'>";
+    echo "<table>";
 
       echo '<tr>';
                 echo '<td>';
@@ -46,7 +49,8 @@ function display_items_promotions($promoMessage, $promoResult)
                 echo "</tr>"; 
   
 echo "</table>";
-echo "</form>";
+echo '<input type="hidden" name="promoCode" value="'.$promoCode.'" />';
+
   echo <<<UPTOEND
   <p>
     <button type="submit" name="submit" value="Submit" accesskey="S">
@@ -55,7 +59,7 @@ echo "</form>";
       <u>R</u>eset</button>
   </p>
 UPTOEND;
-
+  echo "</form>";
   echo "</body>";
   echo "</html>";
 }

@@ -1,6 +1,6 @@
 <?php
 require('db_connect.inc');
-session_start();
+//session_start();
 
 // Main control logic
 get_items_and_promotions();
@@ -69,18 +69,11 @@ function display_items_promotions($promoMessage, $promoResult)
   // Start the html page
   echo "<html>";
   echo "<head>";
-  echo	"<link rel='stylesheet' type='text/css' href='_main.css'>";
-  echo  "<link rel='logo_favicon.jpg' href='/favicon.ico' />";
-  echo  "</head>";
-  echo  "<body>";
-  echo  "<div class='header'><a href='index.html'>";
-	echo	"<img src='logo_100.jpg' alt='logo' />";
-	echo	"<h1>Promotion System - Add Item to a Promotion</h1></a><br/><hr />";
-	echo "</div>";
-  echo "<table>";
-  echo "<form action='item_search.html' method='post'>";
+  echo "</head>";
+  echo "<body>";
+  echo "<form action='item_search.php' method='post'>";
   echo "<h2>Please Click submit to confirm the Promotion Or Click back to go back</h2>";
-
+  echo "<table>";
   // If the error messages are non-null and not an empty string print it
 
   $row = mysql_fetch_assoc($promoResult);
@@ -91,6 +84,12 @@ function display_items_promotions($promoMessage, $promoResult)
     $description = $row['Description'];
     $amountOff = $row['AmountOff'];
     $promoType = $row['PromoType'];
+    echo '<input type="hidden" name="promoCode" value="'.$promoCode.'" >';
+    echo '<input type="hidden" name="amountOff" value="'.$amountOff.'" >';
+    echo '<input type="hidden" name="promoType" value="'.$promoType.'" >';
+    //$_SESSION['promoCode'] = $promoCode;
+    //$_SESSION['amountOff'] = $amountOff;
+    //$_SESSION['promoType'] = $promoType;
 
       echo '<tr>';
                 echo '<td>';

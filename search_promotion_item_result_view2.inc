@@ -1,27 +1,29 @@
 <?php
 
-function display_items_promotions($itemMessage, $itemResult)
+function display_items_promotions($itemMessage, $itemResult, $promoCode,
+    $amountOff, $promoType)
 {
   //----------------------------------------------------------
   // Start the html page
   echo "<html>";
   echo "<head>";
-  echo	"<link rel='stylesheet' type='text/css' href='_main.css'>";
-  echo  "<link rel='logo_favicon.jpg' href='/favicon.ico' />";
-  echo  "</head>";
-  echo  "<body>";
-  echo  "<div class='header'><a href='index.html'>";
-	echo	"<img src='logo_100.jpg' alt='logo' />";
-	echo	"<h1>Promotion System - Add Item to a Promotion</h1></a><br/><hr />";
-	echo "</div>";
-  echo "<table>";
+  echo "</head>";
+  echo "<body>";
   echo "<form action='insert_PromotionItem.php' method='post'>";
   echo "<h2>Please Click submit to confirm the adds of all items to the promotion</h2>";
+  //$u = "Ryan";
+  //echo '<input type="hidden" name="username" value="'.$u.'" />';
+  echo '<input type="hidden" name="promoCode" value="'.$promoCode.'" >';
+  echo '<input type="hidden" name="amountOff" value="'.$amountOff.'" >';
+  echo '<input type="hidden" name="promoType" value="'.$promoType.'" >';
+  echo "<table>";
 
   // If the error messages are non-null and not an empty string print it
 
-  $row = mysql_fetch_assoc($itemResult);
 
+    
+
+while ($row = mysql_fetch_assoc($itemResult)){
 
     $itemNumber = $row['ItemNumber'];
     $itemDescription = $row['ItemDescription'];
@@ -29,12 +31,10 @@ function display_items_promotions($itemMessage, $itemResult)
     $departmentName = $row['DepartmentName'];
     $purchaseCost = $row['PurchaseCost'];
     $fullRetailPrice = $row['FullRetailPrice'];
-
-while ($row = mysql_fetch_assoc($itemResult)){
-
       echo '<tr>';
                 echo '<td>';
-                echo "<input type='checkbox' name='items[]' value=$itemNumber>";
+                echo '<input type="checkbox" name="saleItems[]" 
+                       value="'.$itemNumber.'">';
                 echo '</td>';
                 echo '<td>';
                 echo "ITEM DESCRIPTION: $itemDescription";
