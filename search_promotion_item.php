@@ -1,6 +1,6 @@
 <?php
 require('db_connect.inc');
-session_start();
+//session_start();
 
 // Main control logic
 get_items_and_promotions();
@@ -71,10 +71,9 @@ function display_items_promotions($promoMessage, $promoResult)
   echo "<head>";
   echo "</head>";
   echo "<body>";
-  echo "<table>";
   echo "<form action='item_search.html' method='post'>";
   echo "<h2>Please Click submit to confirm the Promotion Or Click back to go back</h2>";
-
+  echo "<table>";
   // If the error messages are non-null and not an empty string print it
 
   $row = mysql_fetch_assoc($promoResult);
@@ -85,6 +84,10 @@ function display_items_promotions($promoMessage, $promoResult)
     $description = $row['Description'];
     $amountOff = $row['AmountOff'];
     $promoType = $row['PromoType'];
+    echo '<input type="hidden" name="promoCode" value="'.$promoCode.'" >';
+    $_SESSION['promoCode'] = $promoCode;
+    $_SESSION['amountOff'] = $amountOff;
+    $_SESSION['promoType'] = $promoType;
 
       echo '<tr>';
                 echo '<td>';

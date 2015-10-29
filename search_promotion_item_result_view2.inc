@@ -8,9 +8,11 @@ function display_items_promotions($itemMessage, $itemResult)
   echo "<head>";
   echo "</head>";
   echo "<body>";
-  echo "<table>";
   echo "<form action='insert_PromotionItem.php' method='post'>";
   echo "<h2>Please Click submit to confirm the adds of all items to the promotion</h2>";
+  $u = "Ryan";
+  echo '<input type="hidden" name="username" value="'.$u.'" />';
+  echo "<table>";
 
   // If the error messages are non-null and not an empty string print it
 
@@ -27,7 +29,8 @@ while ($row = mysql_fetch_assoc($itemResult)){
     $fullRetailPrice = $row['FullRetailPrice'];
       echo '<tr>';
                 echo '<td>';
-                echo "<input type='checkbox' name='items[]' value=$itemNumber>";
+                echo '<input type="checkbox" name="saleItems[]" 
+                       value="'.$itemNumber.'">';
                 echo '</td>';
                 echo '<td>';
                 echo "ITEM DESCRIPTION: $itemDescription";
