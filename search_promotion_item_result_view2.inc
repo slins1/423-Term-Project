@@ -6,14 +6,8 @@ function display_items_promotions($itemMessage, $itemResult)
   // Start the html page
   echo "<html>";
   echo "<head>";
-  echo	"<link rel='stylesheet' type='text/css' href='_main.css'>";
-  echo  "<link rel='logo_favicon.jpg' href='/favicon.ico' />";
-  echo  "</head>";
-  echo  "<body>";
-  echo  "<div class='header'><a href='index.html'>";
-	echo	"<img src='logo_100.jpg' alt='logo' />";
-	echo	"<h1>Promotion System - Add Item to a Promotion</h1></a><br/><hr />";
-	echo "</div>";
+  echo "</head>";
+  echo "<body>";
   echo "<table>";
   echo "<form action='insert_PromotionItem.php' method='post'>";
   echo "<h2>Please Click submit to confirm the adds of all items to the promotion</h2>";

@@ -54,16 +54,14 @@ function ui_show_promotion_insert_result($message, $promotionId, $itemId,
 		$salePrice) {
 
   // Start the html page
-echo "<html>";
-  echo "<head>";
-  echo	"<link rel='stylesheet' type='text/css' href='_main.css'>";
-  echo  "<link rel='logo_favicon.jpg' href='/favicon.ico' />";
-  echo  "</head>";
-  echo  "<body>";
-  echo  "<div class='header'><a href='index.html'>";
-	echo	"<img src='logo_100.jpg' alt='logo' />";
-	echo	"<h1>Promotion System - Add an Item a Promotion</h1></a><br/><hr />";
-	echo "</div>";
+  $head = <<<EOD
+            <html>
+                <head>
+                </head>
+                <body>
+EOD;
+
+echo $head;
 
   // If the message is non-null and not an empty string print it
   // message contains the lastname and firstname

@@ -56,19 +56,7 @@ if (isset($_POST['items'])){
 
 
 }
-
 echo "<html>";
-  echo "<head>";
-  echo	"<link rel='stylesheet' type='text/css' href='_main.css'>";
-  echo  "<link rel='logo_favicon.jpg' href='/favicon.ico' />";
-  echo  "</head>";
-  echo  "<body>";
-  echo  "<div class='header'><a href='index.html'>";
-	echo	"<img src='logo_100.jpg' alt='logo' />";
-	echo	"<h1>Promotion System - Add Item to a Promotion</h1></a><br/><hr />";
-	echo "</div>";
-
-
 echo "Inserted Items into ItemPromotion Successfully";
 $footer = <<<EOD
 			<br/>
