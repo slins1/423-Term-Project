@@ -9,12 +9,12 @@ function display_items_promotions($promoMessage, $promoResult)
   echo "</head>";
   echo "<body>";
   echo "<table>";
-  echo "<form>";
-  echo "<h2>Please select the Promotion you would like to add items to</h2>";
+  echo "<form action='item_search.html' method='post'>";
+  echo "<h2>Please Click submit to confirm the Promotion Or Click back to go back</h2>";
 
   // If the error messages are non-null and not an empty string print it
 
-  while ($row = mysql_fetch_assoc($promoResult)){
+  $row = mysql_fetch_assoc($promoResult);
 
 
     $promoCode = $row['PromoCode'];
@@ -25,7 +25,7 @@ function display_items_promotions($promoMessage, $promoResult)
 
       echo '<tr>';
                 echo '<td>';
-                echo "<input type='checkbox' name='promos[]' value=$promoCode>";
+                echo "<input type='checkbox' name='promo' value=$promoCode>";
                 echo '</td>';
                 echo '<td>';
                 echo "NAME: $name";
@@ -40,12 +40,12 @@ function display_items_promotions($promoMessage, $promoResult)
                 echo "PROMO TYPE: $promoType";
                 echo '</td>';
                 echo "</tr>"; 
-  }
+  
 echo "</table>";
 echo "</form>";
   echo <<<UPTOEND
   <p>
-    <button type="submit" name="submit" value="Submit" accesskey="S">
+    <button type="submit" name="submit" value="Submit" accesskey="S" onclick="item_search.html">
       <u>S</u>ubmit</button>
     <button type="reset" name="reset" accesskey="R">
       <u>R</u>eset</button>
