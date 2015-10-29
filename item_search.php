@@ -1,9 +1,12 @@
 <?php
 $promoCode = $_POST['promoCode'];
+$amountOff = $_POST['amountOff'];
+$promoType = $_POST['promoType'];
 echo <<<UPTOEND
 <html>
 <head>
     <title>Add Item to a Promotion - Aptaris Promotion System</title>
+    <script src="validate.js"></script>
 </head>
 <body>
     
@@ -22,6 +25,8 @@ echo <<<UPTOEND
                    </table>
 UPTOEND;
     echo '<input type="hidden" name="promoCode" value="'.$promoCode.'" >';
+    echo '<input type="hidden" name="amountOff" value="'.$amountOff.'" >';
+    echo '<input type="hidden" name="promoType" value="'.$promoType.'" >';
 echo <<<UPTOEND1
         <p>
             <button type="submit" name="submit" value="Submit" accesskey="S">Submit</button>

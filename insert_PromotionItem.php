@@ -5,11 +5,15 @@ insert_promotionItem();
 
 function insert_promotionItem(){
 
+$promoCode = $_POST['promoCode'];
+$amountOff = $_POST['amountOff'];
+$promoType = $_POST['promoType'];
+
 connect_and_select_db(DB_SERVER, DB_UN, DB_PWD, DB_NAME);
 
-echo "<b>In the beginning</b><br/>";
-$username = $_POST['username'];
-echo "<span>username = $username</span><br/>";
+//echo "<b>In the beginning</b><br/>";
+//$username = $_POST['username'];
+//echo "<span>username = $username</span><br/>";
 
 if (isset($_POST['saleItems'])){
 
@@ -17,7 +21,7 @@ if (isset($_POST['saleItems'])){
   $itemArray = $_POST['saleItems'];
   $arraySize = count($itemArray);
 
-   echo 'Array size = '.$arraySize.'';
+   //echo 'Array size = '.$arraySize.'';
 
         for ($k = 0; $k < $arraySize; $k++){
 
@@ -46,10 +50,10 @@ if (isset($_POST['saleItems'])){
 	$itemNumber = $row['ItemNumber'];
 	$fullRetailPrice = $row['FullRetailPrice'];
 
-        	$promoCode = $_SESSION['promoCode'];
-        	$amountOff = $_SESSION['amountOff'];
-        	$promoType = $_SESSION['promoType'];
-        	echo"This is the promoCode: $promoCode";
+        	//$promoCode = $_SESSION['promoCode'];
+        	//$amountOff = $_SESSION['amountOff'];
+        	//$promoType = $_SESSION['promoType'];
+        	//echo"This is the promoCode: $promoCode";
 
         	if($promoType == "Dollar"){
         		$salePrice = $fullRetailPrice - $amountOff;
@@ -61,22 +65,22 @@ if (isset($_POST['saleItems'])){
         		ItemNumber, SalePrice) VALUES ('".$promoCode."','".
         		$itemNumber."', '".$salePrice."')";
 
-			echo "$insertStatement";
+			//echo "$insertStatement";
 
-			/*
+			
 			$result = mysql_query($insertStatement);
 
 			if (!$result) {
   			$message = "Error in inserting Promotion: $name , $description";
 			} else {
 	  		$message = "The Promotion $name was inserted successfully";
-			} */
-			echo "Ryan is the greatest";
+			} 
+			//echo "Ryan is the greatest";
         }
 
 
 }
-echo "<b> Ryan messed up</b>";
+//echo "<b> Ryan messed up</b>";
 echo "<html>";
 echo "$message";
 $footer = <<<EOD

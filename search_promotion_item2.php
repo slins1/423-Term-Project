@@ -2,13 +2,16 @@
 require('db_connect.inc');
 require('search_promotion_item_result_view2.inc');
 
+
 // Main control logic
 get_items_and_promotions();
 
 //------------------------------------------------------
 function get_items_and_promotions()
 {
-
+$promoCode = $_POST['promoCode'];
+$amountOff = $_POST['amountOff'];
+$promoType = $_POST['promoType'];
   // Connect to db
   connect_and_select_db(DB_SERVER, DB_UN, DB_PWD, DB_NAME);
 
@@ -38,7 +41,8 @@ function get_items_and_promotions()
 	  $item_search_message = "No items found in database";
 
   //Display the results
-  display_items_promotions($item_search_message, $itemResult);
+  display_items_promotions($item_search_message, $itemResult, $promoCode,
+    $amountOff, $promoType);
 
   //Free the result sets
 	mysql_free_result($itemResult);

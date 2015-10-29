@@ -1,6 +1,7 @@
 <?php
 
-function display_items_promotions($itemMessage, $itemResult)
+function display_items_promotions($itemMessage, $itemResult, $promoCode,
+    $amountOff, $promoType)
 {
   //----------------------------------------------------------
   // Start the html page
@@ -10,8 +11,11 @@ function display_items_promotions($itemMessage, $itemResult)
   echo "<body>";
   echo "<form action='insert_PromotionItem.php' method='post'>";
   echo "<h2>Please Click submit to confirm the adds of all items to the promotion</h2>";
-  $u = "Ryan";
-  echo '<input type="hidden" name="username" value="'.$u.'" />';
+  //$u = "Ryan";
+  //echo '<input type="hidden" name="username" value="'.$u.'" />';
+  echo '<input type="hidden" name="promoCode" value="'.$promoCode.'" >';
+  echo '<input type="hidden" name="amountOff" value="'.$amountOff.'" >';
+  echo '<input type="hidden" name="promoType" value="'.$promoType.'" >';
   echo "<table>";
 
   // If the error messages are non-null and not an empty string print it

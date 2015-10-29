@@ -71,7 +71,7 @@ function display_items_promotions($promoMessage, $promoResult)
   echo "<head>";
   echo "</head>";
   echo "<body>";
-  echo "<form action='item_search.html' method='post'>";
+  echo "<form action='item_search.php' method='post'>";
   echo "<h2>Please Click submit to confirm the Promotion Or Click back to go back</h2>";
   echo "<table>";
   // If the error messages are non-null and not an empty string print it
@@ -85,9 +85,11 @@ function display_items_promotions($promoMessage, $promoResult)
     $amountOff = $row['AmountOff'];
     $promoType = $row['PromoType'];
     echo '<input type="hidden" name="promoCode" value="'.$promoCode.'" >';
-    $_SESSION['promoCode'] = $promoCode;
-    $_SESSION['amountOff'] = $amountOff;
-    $_SESSION['promoType'] = $promoType;
+    echo '<input type="hidden" name="amountOff" value="'.$amountOff.'" >';
+    echo '<input type="hidden" name="promoType" value="'.$promoType.'" >';
+    //$_SESSION['promoCode'] = $promoCode;
+    //$_SESSION['amountOff'] = $amountOff;
+    //$_SESSION['promoType'] = $promoType;
 
       echo '<tr>';
                 echo '<td>';
