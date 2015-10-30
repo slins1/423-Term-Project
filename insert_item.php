@@ -1,8 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <link rel="stylesheet" href="jquery-ui.css">
+			<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+			<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+      <script src="_script.js"></script>
+      <link rel="stylesheet" type="text/css" href="_main.css">
+      <link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+      <title>Aptaris - Advertisement Event System</title>
+      
+      <div class="header"><a href="index.html">
+			<img src="logo_100.jpg" alt="logo" />
+			<h1>Advertisement Event System - Insert an Item</h1></a>
+			<br/><hr/>
+		</div>
+  </head>
+  
+<body>
+	<center>
 <?php
 require ('db_connect.inc');
-
-//Connect to the database
-connect(DB_SERVER, DB_UN, DB_PWD,DB_NAME);
+connect();
 //Insert item into the database
 insertItem();
 
@@ -29,38 +47,22 @@ function insertItem() {
 }
 
 function showItemInsertResult($message, $itemNum, $description, $category, $deptName, $purchaseCost, $retailPrice) {
-	// Start the html page
-  echo "<html>";
-  echo "<head>";
-  echo	"<link rel='stylesheet' type='text/css' href='_main.css'>";
-  echo  "<link rel='logo_favicon.jpg' href='/favicon.ico' />";
-  echo  "</head>";
-  echo  "<body>";
-  echo  "<div class='header'><a href='index.html'>";
-	echo	"<img src='logo_100.jpg' alt='logo' />";
-	echo	"<h1>Promotion System - Add an Item</h1></a><br/><hr />";
-	echo "</div>";
 
   // If the message is non-null and not an empty string print it
   // message contains the lastname and firstname
   if ($message) {
     if ($message != "") {
-      echo "<center><font color='blue'>$message</font></center><br />";
+      echo "<h2>$message</h2><br />";
     } else {
 			echo "<p>Error</p>";
 		}
   }
-  
-	//finish up the html code, and put the return button to go back to main menu
-	$footer = <<<EOD
-			<br/>
-		<br/>
-    <a href="index.html"><input type="button" value="Return to Main Menu"/></a>
-    </body>
-	</html>
-EOD;
-
-	echo $footer;
 }
-
 ?>
+<p>
+	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
+	<a href="insert_item_view.html"><button name="insert"  accesskey="S" class="button">Insert another item</button></a>
+</p>
+</center>
+</body>
+</html>
