@@ -1,3 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="_script.js"></script>
+	<link rel="stylesheet" type="text/css" href="_main.css">
+	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+	<title>Aptaris - Advertisement Event System</title>
+	
+	<div class="header"><a href="index.html">
+		<img src="logo_100.jpg" alt="logo" />
+		<h1>Advertisement Event System - Assign Promotion to an Item</h1></a><br/><hr/>
+	</div>
+</head>
+
 <?php
 require('db_connect.inc');
 insert_promotionItem();
@@ -56,7 +73,7 @@ if (isset($_POST['saleItems'])){
         }
 }
 //echo "<b> Ryan messed up</b>";
-echo "<html>";
+
 echo "A message $message";
 $footer = <<<EOD
 			<br/>
@@ -69,90 +86,3 @@ EOD;
 	//session_destroy();
 }
 ?>
-
-<!--<!DOCTYPE html>
-<html>
-<head>
-	<link rel="stylesheet" href="jquery-ui.css">
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<script src="_script.js"></script>
-	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
-	<title>Aptaris - Advertisement Event System</title>
-	
-	<div class="header"><a href="index.html">
-		<img src="logo_100.jpg" alt="logo" />
-		<h1>Advertisement Event System - Assign Promotion to an Item</h1></a><br/><hr/>
-	</div>
-</head>
-
-<?php
-require('db_connect.inc');
-
-connect(DB_SERVER, DB_UN, DB_PWD, DB_NAME);
-
-if (isset($_POST['items'])) {
-    
-  $itemArray = $_POST['items'];
-  $arraySize = count($itemArray);
-  
-  $message = "";
-  for ($k = 0; $k < $arraysize; $k++) { 
-    $current_item = $itemArray[$k];
-    $itemSearchStatement = "SELECT ItemNumber, FullRetailPrice FROM Item WHERE ItemNumber = '$current_item'";
-    $itemResult = mysql_query($itemSearchStatement);
-    
-    if (!$itemResult) {
-      $message = "The retrieval of items was unsuccessful";
-    }
-    
-    $numRows = mysql_num_rows($itemResult);
-    
-    // Check if results turned out empty
-    $message = "";
-    if ($numRows == 0) {
-        $message = "No items found in database";
-    }
-    
-    $row = mysql_fetch_assoc($itemResult);
-    $itemNumber = $row['ItemNumber'];
-    $fullRetailPrice = $row['FullRetailPrice'];
-    
-    $promoCode = $_SESSION['promoCode'];
-    $amountOff = $_SESSION['amountOff'];
-    $promoType = $_SESSION['promoType'];
-    
-    if($promoType == "Dollar") {
-        $salePrice = $fullRetailPrice - $amountOff;
-    } else if($promoType == "percent") {
-        $salePrice = $fullRetailPrice * $amountOff;
-    }
-      
-    $insertStatement = "INSERT INTO PromotionItem (PromoCode, ItemNumber, SalePrice) values ('$promoCode', '$itemNumber', 'salePrice')";
-    
-    $result = mysql_query($insertStatement);
-		if (!$result) {
-  		$message = "Error in inserting Promotion: $name , $description";
-		} else {
-	  	$message = "The Promotion $name was inserted successfully";
-		}
-	}
-
-	if ($message != "") {
-			echo <<<EOD
-			<h2 class='text-center'>$message</h2>
-			<p class='text-center'>Description:</p>
-EOD;
-  }
-}
-
-session_destroy();
-?>
-
-	<p>			
-		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
-		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
-	</p>
-</body>
-</html>-->

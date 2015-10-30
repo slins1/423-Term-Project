@@ -1,3 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="_script.js"></script>
+	<link rel="stylesheet" type="text/css" href="_main.css">
+	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+	<title>Aptaris - Advertisement Event System</title>
+	
+	<div class="header"><a href="index.html">
+		<img src="logo_100.jpg" alt="logo" />
+		<h1>Advertisement Event System - Assign Promotion to an Item</h1></a><br/><hr/>
+	</div>
+</head>
 <?php
 require('db_connect.inc');
 
@@ -30,18 +46,6 @@ function insertAdEvent() {
 }
   
 function showAdEventInsertResult($message, $eventCode, $name, $startDate, $endDate, $description, $type) {
-	// Start the html page
-  echo "<html>";
-  echo "<head>";
-  echo	"<link rel='stylesheet' type='text/css' href='_main.css'>";
-  echo  "<link rel='logo_favicon.jpg' href='/favicon.ico' />";
-  echo  "</head>";
-  echo  "<body>";
-  echo  "<div class='header'><a href='index.html'>";
-	echo	"<img src='logo_100.jpg' alt='logo' />";
-	echo	"<h1>Promotion System - Insert an Ad Event</h1></a><br/><hr />";
-	echo "</div>";
-
   // If the message is non-null and not an empty string print it
   // message contains the lastname and firstname
   if ($message) {
