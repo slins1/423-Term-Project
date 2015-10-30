@@ -17,72 +17,62 @@
 
 <?php
 require('db_connect.inc');
+connect();
+
 insert_promotionItem();
-function insert_promotionItem(){
-$promoCode = $_POST['promoCode'];
-$amountOff = $_POST['amountOff'];
-$promoType = $_POST['promoType'];
-connect(DB_SERVER, DB_UN, DB_PWD, DB_NAME);
-//echo "<b>In the beginning</b><br/>";
-//$username = $_POST['username'];
-//echo "<span>username = $username</span><br/>";
-if (isset($_POST['saleItems'])){
-  //echo "Jeff Mitchell was here";
-  $itemArray = $_POST['saleItems'];
-  $arraySize = count($itemArray);
-   //echo 'Array size = '.$arraySize.'';
-        for ($k = 0; $k < $arraySize; $k++){
-        	$current_item = $itemArray[$k];
-        	$item_search_sql ="SELECT ItemNumber, FullRetailPrice FROM Item WHERE ItemNumber = '$current_item'";
-        	$itemResult = mysql_query($item_search_sql);
-        	if (!$itemResult)
-  			{
-     			$item_search_message = "The retrieval of items was unsuccessful";
-  			}
+
+function insert_promotionItem() {
+	$promoCode = $_POST['promoCode'];
+	$amountOff = $_POST['amountOff'];
+	$promoType = $_POST['promoType'];
+	
+	if (isset($_POST['saleItems'])) {
+
+	  $itemArray = $_POST['saleItems'];
+	  $arraySize = count($itemArray);
+
+    for ($k = 0; $k < $arraySize; $k++) {
+    	$current_item = $itemArray[$k];
+    	$item_search_sql ="SELECT ItemNumber, FullRetailPrice FROM Item WHERE ItemNumber = '$current_item'";
+    	$itemResult = mysql_query($item_search_sql);
+      if (!$itemResult) {
+     		$item_search_message = "The retrieval of items was unsuccessful";
+  		}
+		
 			$number_item_rows = mysql_num_rows($itemResult);
-  // Check if results turned out empty
-	$item_search_message = "";
-	if ($number_item_rows == 0)
-	  $item_search_message = "No items found in database";
+  
+			// Check if results turned out empty
+			$item_search_message = "";
+			if ($number_item_rows == 0) {
+				$item_search_message = "No items found in database";
+	  	}
         	
-	$row = mysql_fetch_assoc($itemResult);
-	$itemNumber = $row['ItemNumber'];
-	$fullRetailPrice = $row['FullRetailPrice'];
-        	//$promoCode = $_SESSION['promoCode'];
-        	//$amountOff = $_SESSION['amountOff'];
-        	//$promoType = $_SESSION['promoType'];
-        	//echo"This is the promoCode: $promoCode";
-        	if($promoType == "Dollar"){
-        		$salePrice = $fullRetailPrice - $amountOff;
-        	}
-        	else if($promoType == "Percent"){
-        		$salePrice = $fullRetailPrice * $amountOff;
-        	}
-        	$insertStatement = "INSERT INTO PromotionItem (PromoCode,
-        		ItemNumber, SalePrice) VALUES ('".$promoCode."','".
-        		$itemNumber."', '".$salePrice."')";
-			//echo "$insertStatement";
+			$row = mysql_fetch_assoc($itemResult);
+			$itemNumber = $row['ItemNumber'];
+			$fullRetailPrice = $row['FullRetailPrice'];
+      if ($promoType == "Dollar") {
+        $salePrice = $fullRetailPrice - $amountOff;
+      } else if ($promoType == "Percent") {
+        $salePrice = $fullRetailPrice * $amountOff;
+      }
+      $insertStatement = "INSERT INTO PromotionItem (PromoCode, ItemNumber, SalePrice) VALUES ('$promoCode','$itemNumber', '$salePrice')";
 			
 			$result = mysql_query($insertStatement);
 			if (!$result) {
-  			$message = "Error in inserting Promotion: $name , $description";
+  			echo "<h2>Error in inserting Promotion: $name , $description</h2>";
 			} else {
-	  		$message = "The Promotion $name was inserted successfully";
+	  		echo "<h2>The Promotion $name was inserted successfully</h2>";
 			} 
-			//echo "Ryan is the greatest";
-        }
-}
-//echo "<b> Ryan messed up</b>";
-
-echo "A message $message";
-$footer = <<<EOD
-			<br/>
-		<br/>
-    <a href="index.html"><input type="button" value="Return to Main Menu"/></a>
-    </body>
-	</html>
-EOD;
-	echo $footer;
-	//session_destroy();
+		}
+	} else {
+		echo "<h2>No sale items</h2>";
+	}
 }
 ?>
+<p>
+	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
+	<a href="assign_promotion_item_view.html"><button name="insert"  accesskey="S" class="button">Assign another promotion</button></a>
+</p>
+</center>
+</body>
+</html>

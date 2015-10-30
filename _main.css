@@ -10,7 +10,7 @@ a {
 
 table {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    width: 50%;
+    width: inherit;
     border-collapse: collapse;
 }
 

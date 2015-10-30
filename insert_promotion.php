@@ -49,7 +49,7 @@ function showPromotionInsertResult($message, $name, $description, $amountOff, $p
   if ($message != "") {
 		echo <<<EOD
 			<h2 class='text-center'>$message</h2>
-			<table style="border:0px; width:inherit">
+			<table>
 					<tr>
 						<td>Description:</td>
 						<td>$description</td>

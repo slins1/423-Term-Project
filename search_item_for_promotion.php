@@ -17,59 +17,63 @@
 
 <body>
 <center>
-<form action='insert_PromotionItem.php' method='post'>
+<form action='insert_promotionItem.php' method='post'>
 <h2>Please Click submit to confirm the addition of all items to the promotion</h2>
 <table>
 
 <?php
 require('db_connect.inc');
-
 // Connect to db
-connect(DB_SERVER, DB_UN, DB_PWD, DB_NAME);
+connect();
 
-$category = $_POST['category'];
+function searchItemsByCategory();
 
-//Construct SQL statements
-$itemSearchStatement = "SELECT ItemNumber, ItemDescription, Category, DepartmentName, PurchaseCost, FullRetailPrice FROM Item WHERE Category = '$category'";
+function searchItemsByCategory() {
+	$promoCode = $_POST['promoCode'];
+	$amountOff = $_POST['amountOff'];
+	$promoType = $_POST['promoType'];
+	$category = $_POST['category'];
+	
+  //Construct SQL statements
+	$item_search_sql = "SELECT ItemNumber, ItemDescription, Category, DepartmentName, PurchaseCost, FullRetailPrice FROM Item WHERE Category = '$category'";
 
-//Execute the queries
-$itemResult = mysql_query($itemSearchStatement);
-
-//Test whether the queries were successful
-if (!$itemResult) {
- $message = "The retrieval of items was unsuccessful";
+	$itemResult = mysql_query($item_search_sql);
+  //Test whether the queries were successful
+	if (!$itemResult) {
+     $item_search_message = "The retrieval of items was unsuccessful: ";
+  }
+  
+	$number_item_rows = mysql_num_rows($itemResult);
+  // Check if results turned out empty
+	$item_search_message = "";
+	if ($number_item_rows == 0) {
+	  $item_search_message = "No items found in database";
+	}
+  //Display the results
+  displayItemsPromotions($item_search_message, $itemResult, $promoCode,
+    $amountOff, $promoType);
+  //Free the result sets
+	mysql_free_result($itemResult);
 }
 
-$numRows = mysql_num_rows($itemResult);
-
-// Check if results turned out empty
-
-$message = "";
-if ($numRows == 0) {
-	$message = "No items found in database";
-}
-
-//Display the results
-displayItemsPromotions($message, $itemResult);
-
-//Free the result sets
-mysql_free_result($itemResult);
-
-function displayItemsPromotions($itemMessage, $itemResult) {
-
-	$row = mysql_fetch_assoc($itemResult);
+function displayItemsPromotions($item_search_message, $itemResult, $promoCode,
+    $amountOff, $promoType) {
 	
-	$itemNumber = $row['ItemNumber'];
-	$itemDescription = $row['ItemDescription'];
-	$category = $row['Category'];
-	$departmentName = $row['DepartmentName'];
-	$purchaseCost = $row['PurchaseCost'];
-	$fullRetailPrice = $row['FullRetailPrice'];
-	
-	echo "<p>$itemMessage</p>";
-
+	echo <<<EOD
+	<p>$itemMessage</p>
+	<input type="hidden" name="promoCode" value="$promoCode">
+  <input type="hidden" name="amountOff" value="$amountOff">
+  <input type="hidden" name="promoType" value="$promoType">
+EOD;
 	
 	while ($row = mysql_fetch_assoc($itemResult)) {
+		
+		$itemNumber = $row['ItemNumber'];
+		$itemDescription = $row['ItemDescription'];
+		$category = $row['Category'];
+		$departmentName = $row['DepartmentName'];
+		$purchaseCost = $row['PurchaseCost'];
+		$fullRetailPrice = $row['FullRetailPrice'];
 	
 	  echo <<<EOD
 	  	<tr>
@@ -81,6 +85,7 @@ function displayItemsPromotions($itemMessage, $itemResult) {
 				<td>Full Retail Price: $fullRetailPrice</td>
 			</tr>
 EOD;
+
 	}
 }
 ?>
