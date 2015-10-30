@@ -1,34 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-  <link rel="logo_favicon.jpg" href="/favicon.ico" />  
-  <title>Add Item to a Promotion - Aptaris Promotion System</title>
-</head>
-<body>
-    <div class="header"><a href="index.html">
+	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+	<title>Aptaris - Advertisement Event System</title>
+	
+	<div class="header"><a href="index.html">
 		<img src="logo_100.jpg" alt="logo" />
-		<h1>Promotion System - Add Item to a Promotion</h1></a><br/><hr />
-	</div>    
-    <form action='search_promotion_item.php' method='post'>
-        
-        <h2>Search for a promotion to add the items to:</h2>
-       
-        <table border="1">
-            <tr>
-                <td>Promotion Code:</td>
-                <td><input type="text" name="promoCode"></input></td>
-            </tr>
-            <tr>
-                <td>Name:</td>
-                <td><input type="text" name="promoName"></input></td>
-            </tr>
-                   </table>
-        
-        <p>
-            <button type="submit" name="submit" value="Submit" accesskey="S">Submit</button>
-            <button type="reset" name="reset" accesskey="R">Reset</button>
-        </p>
-    </form>
+		<h1>Advertisement Event System - Assign Promotion to an Item</h1></a><br/><hr/>
+	</div>
+</head>
+
+<body>  
+			<center>
+ 
+	<form action='search_promotion_item.php' method='post'>
+		
+		<h2>Search for a promotion to add the items to:</h2>
+
+				<h3>Type in Promotion Code to search:</h3>
+				<input type="text" name="promoCode"></input>
+			
+			<h3>-Or-</h3>
+				<h3>Search by name:</h3>
+				<input type="text" name="promoName"></input><br/><br/>
+
+		<p>
+			<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
+			<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
+		</p>
+	</form>
+			</center>
+
 </body>
 </html>

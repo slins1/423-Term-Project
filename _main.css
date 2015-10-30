@@ -3,6 +3,54 @@ body{
 	font-weight: 300;
 }
 
+a {
+	text-decoration: none;
+	color: black;
+}
+
+table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    width: 50%;
+    border-collapse: collapse;
+}
+
+td {
+    font-size: 1em;
+    border: 1px solid #fb912a;
+    padding: 3px 7px 2px 7px;
+}
+
+th {
+    font-size: 1.1em;
+    text-align: left;
+    padding-top: 5px;
+    padding-bottom: 4px;
+    background-color: #A7C942;
+    color: #ffffff;
+}
+
+input[type="text"] {
+  display: block;
+  margin: 0;
+  font-family: sans-serif;
+  font-size: large;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+  padding: 5px;
+  border: solid 1px #dcdcdc;
+  transition: box-shadow 0.3s, border 0.3s;
+}
+
+input[type="text"]:focus {
+  outline: none;
+}
+
+input[type="text"]:focus {
+  border: solid 1px #707070;
+  box-shadow: 0 0 5px 1px #969696;
+}
+
 /* 
 	HEADER ELEMENTS 
 */
@@ -14,7 +62,6 @@ img {
   float: left;
   width: 100px;
   height: 66px;
-  background: #555;
 }
 
 .header h1 {
@@ -23,43 +70,11 @@ img {
   left: 10px;
 }
 
-/*header{
-	width: 950px;
+.text-center {
+  text-align: center;
+}
+
+.center {
+	width: 30%;
 	margin: 0 auto;
-	height: 250px;
-	text-align: center;
-	min-width: 950px;
-	z-index: 1;
 }
-
-header div{
-	display: inline-block;
-}
-
-#nav{
-	width: 925px;
-	display: inline-block;
-	height: 40px;
-	min-width: 900px;
-	background: #fa8f2a;
-	text-align: center;
-}
-
-header ul{
-	margin: 10px;
-}
-
-header li{
-	display: inline-block;
-}
-
-header li a{
-	color: white;
-	text-decoration: none;
-	padding: 12px;
-}
-
-header li a:hover{
-	background: #000000;
-	border-radius: 10px;
-}*/

@@ -1,19 +1,4 @@
-function hello() {
-    $("#main").html("Hello jQuery3");
-}
-function hello() {
-    $("#main").html("Hello jQuery");
-}
-function hello() {
-    $("#main").html("Hello jQuery2");
-}
-function hello() {
-    $("#main").html("Hello jQuery");
-}
-function hello() {
-    $("#main").html("Hello jQuery2");
-}
-function hello() {
-    $("#main").html("Hello jQuery3");
-}
-								
+$(function() {
+  $(".button").button();
+  $("#datepicker").datepicker();
+});

@@ -1,129 +1,87 @@
+<html>
+	<head>
+    <link rel="stylesheet" href="jquery-ui.css">
+		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="_script.js"></script>
+    <link rel="stylesheet" type="text/css" href="_main.css">
+    <link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+    <title>Aptaris - Advertisement Event System</title>
+      
+    <div class="header"><a href="index.html">
+			<img src="logo_100.jpg" alt="logo" />
+			<h1>Advertisement Event System</h1></a>
+			<br/><hr/>
+		</div>
+  </head>
+  
+  <table>
+  <form action='item_search.html' method='post'>
+	<h2>Please Click submit to confirm the Promotion Or Click back to go back</h2>
+	
 <?php
 require('db_connect.inc');
 session_start();
 
-// Main control logic
-get_items_and_promotions();
+// Connect to db
+connect(DB_SERVER, DB_UN, DB_PWD, DB_NAME);
 
-//------------------------------------------------------
-function get_items_and_promotions()
-{
+$promoCode = $_POST['promoCode'];
+$promoName = $_POST['promoName'];
 
-  // Connect to db
-  connect_and_select_db(DB_SERVER, DB_UN, DB_PWD, DB_NAME);
+//Construct SQL statements
+$insertStatement = "SELECT PromoCode, Name, Description, AmountOff, PromoType FROM Promotion WHERE PromoCode = '$promoCode' AND	 Name = '$promoName'";
 
-	$promoCode = $_POST['promoCode'];
-	$promoName = $_POST['promoName'];
+//Execute the queries
+$result = mysql_query($insertStatement);
 
-  //Construct SQL statements
-		$promotion_search_sql = "SELECT PromoCode, Name, Description, AmountOff, PromoType
-			FROM Promotion
-			WHERE PromoCode = '$promoCode'
-			AND	 Name = '$promoName'";
-
-  //Execute the queries
-	$promotionResult = mysql_query($promotion_search_sql);
-
-  //Test whether the queries were successful
-	if (!$promotionResult)
-  {
-     $promotion_search_message = "The retrieval of promotions was unsuccessful: ".mysql_error();
-  }
-
-	$number_promotion_rows = mysql_num_rows($promotionResult);
-
-
-  // Check if results turned out empty
-
-	$promotion_search_message = "";
-	if ($number_promotion_rows == 0)
-	  $promotion_search_message = "No promotions found in database";
-
-  //Display the results
-  display_items_promotions($promotion_search_message, $promotionResult);
-
-  //Free the result sets
-	mysql_free_result($promotionResult);
+//Test whether the queries were successful
+if (!$result) {
+   $message = "The retrieval of promotions was unsuccessful";
 }
-  function connect_and_select_db($server, $username, $pwd, $dbname)
-  {
-  	// Connect to db server
-  	$conn = mysql_connect($server, $username, $pwd);
 
-  	if (!$conn) {
-  	    echo "Unable to connect to DB: " . mysql_error();
-      	    exit;
-  	}
+$numberPromotionRows = mysql_num_rows($result);
 
-  	// Select the database
-  	$dbh = mysql_select_db($dbname);
-  	if (!$dbh){
-      		echo "Unable to select ".$dbname.": " . mysql_error();
-  		exit;
-  	}
-  }
+// Check if results turned out empty
+$message = "";
+if ($numberPromotionRows == 0) {
+  $message = "No promotions found in database";
+}
 
-function display_items_promotions($promoMessage, $promoResult)
-{
-  //----------------------------------------------------------
-  // Start the html page
-  echo "<html>";
-  echo "<head>";
-  echo	"<link rel='stylesheet' type='text/css' href='_main.css'>";
-  echo  "<link rel='logo_favicon.jpg' href='/favicon.ico' />";
-  echo  "</head>";
-  echo  "<body>";
-  echo  "<div class='header'><a href='index.html'>";
-	echo	"<img src='logo_100.jpg' alt='logo' />";
-	echo	"<h1>Promotion System - Add Item to a Promotion</h1></a><br/><hr />";
-	echo "</div>";
-  echo "<table>";
-  echo "<form action='item_search.html' method='post'>";
-  echo "<h2>Please Click submit to confirm the Promotion Or Click back to go back</h2>";
+//Display the results
+displayItemsPromotions($message, $result);
 
-  // If the error messages are non-null and not an empty string print it
+//Free the result sets
+mysql_free_result($result);
+
+function displayItemsPromotions($promoMessage, $promoResult) {
 
   $row = mysql_fetch_assoc($promoResult);
+  $promoCode = $row['PromoCode'];
+  $name = $row['Name'];
+  $description = $row['Description'];
+  $amountOff = $row['AmountOff'];
+  $promoType = $row['PromoType'];
 
+  echo <<<EOD
+  	<p>$promoMessage</p>
+    <tr>
+			<td><input type='checkbox' name='promo' value='$promoCode'></td>
+      <td>Name: $name</td>
+			<td>Description: $description</td>
+			<td>Amount Off: $amountOff</td>
+			<td>Promotion Type: $promoType</td>
+		</tr>
+EOD;
 
-    $promoCode = $row['PromoCode'];
-    $name = $row['Name'];
-    $description = $row['Description'];
-    $amountOff = $row['AmountOff'];
-    $promoType = $row['PromoType'];
-
-      echo '<tr>';
-                echo '<td>';
-                echo "<input type='checkbox' name='promo' value=$promoCode>";
-                echo '</td>';
-                echo '<td>';
-                echo "NAME: $name";
-                echo '</td>';
-                echo '<td>';
-                echo "DESCRIPTION: $description";
-                echo '</td>';
-                echo '<td>';
-                echo "AMOUNT OFF: $amountOff";
-                echo '</td>';
-                echo '<td>';
-                echo "PROMO TYPE: $promoType";
-                echo '</td>';
-                echo "</tr>"; 
-  
-echo "</table>";
-
-  echo <<<UPTOEND
-  <p>
-    <button type="submit" name="submit" value="Submit" accesskey="S">
-      <u>S</u>ubmit</button>
-    <button type="reset" name="reset" accesskey="R">
-      <u>R</u>eset</button>
-  </p>
-UPTOEND;
-echo "</form>";
-  echo "</body>";
-  echo "</html>";
 }
 
-
 ?>
+			</table>
+			<br/>
+			<a href="assign_promotion_item_view.html"><button class="button">Back</button></a>
+			<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
+			</form>
+		</center>
+  </body>
+</html>

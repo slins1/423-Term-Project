@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" href="jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-        <link rel="logo_favicon.jpg" href="/favicon.ico" />  
-    <title>Add Item to a Promotion - Aptaris Promotion System</title>
-</head>
-<body>
-    <div class="header"><a href="index.html">
+	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+	<title>Aptaris - Advertisement Event System</title>
+	
+	<div class="header"><a href="index.html">
 		<img src="logo_100.jpg" alt="logo" />
-		<h1>Promotion System - Add Item to a Promotion</h1></a><br/><hr />
+		<h1>Advertisement Event System - Assign Promotion to an Item</h1></a><br/><hr/>
 	</div>
-<form action='search_promotion_item2.php' method='post'>
-        
-        <h2>Search for a Item to add the promotion to:</h2>
-       
-        <table border="1">
-            <tr>
-                <td>Category:</td>
-                <td><input type="text" name="category"></input></td>
-            </tr>
-                   </table>
-        
-        <p>
-            <button type="submit" name="submit" value="Submit" accesskey="S">Submit</button>
-            <button type="reset" name="reset" accesskey="R">Reset</button>
-        </p>
-    </form>
+</head>
+
+<body>
+	<center>
+	<form action='search_item_for_promotion.php' method='post'>
+	<h2>Search for an Item to add the promotion to:</h2>
+	<table>
+		<tr>
+			<td>Category:</td>
+			<td><input type="text" name="category"></input></td>
+		</tr>
+	</table>
+	<p>			
+		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
+		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
+	</p>
+	</form>
+	</center>
 </body>
 </html>
