@@ -17,6 +17,7 @@
 
 <body>
 	<center>
+	
 <?php
 require('db_connect.inc');
 //Connect to the database 
@@ -64,7 +65,7 @@ function showPromotionInsertResult($message, $name, $description, $amountOff, $p
 			</table>
 EOD;
     } else {
-			echo "<h2>Error: $message</h2>";
+			echo "<h2>Error in inserting promotion</h2>";
   }
 }
 ?>
