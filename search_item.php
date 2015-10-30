@@ -15,8 +15,9 @@
 	</div>
 </head>
 
-<body>   
-    <form action='search_promotion_item2.php' method='post' onsubmit="return validateCategory(this)">
+<body> 
+	<center>  
+    <form action='search_item_for_promotion.php' method='post' onsubmit="return validateCategory(this)">
         
     <h2>Search for a Item to add the promotion to:</h2>
        

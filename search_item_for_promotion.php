@@ -23,10 +23,9 @@
 
 <?php
 require('db_connect.inc');
-// Connect to db
 connect();
 
-function searchItemsByCategory();
+searchItemsByCategory();
 
 function searchItemsByCategory() {
 	$promoCode = $_POST['promoCode'];
@@ -34,39 +33,42 @@ function searchItemsByCategory() {
 	$promoType = $_POST['promoType'];
 	$category = $_POST['category'];
 	
-  //Construct SQL statements
+	//Construct SQL statements
 	$item_search_sql = "SELECT ItemNumber, ItemDescription, Category, DepartmentName, PurchaseCost, FullRetailPrice FROM Item WHERE Category = '$category'";
-
+	
 	$itemResult = mysql_query($item_search_sql);
-  //Test whether the queries were successful
+	//Test whether the queries were successful
 	if (!$itemResult) {
      $item_search_message = "The retrieval of items was unsuccessful: ";
   }
-  
+	
 	$number_item_rows = mysql_num_rows($itemResult);
-  // Check if results turned out empty
+	// Check if results turned out empty
 	$item_search_message = "";
 	if ($number_item_rows == 0) {
 	  $item_search_message = "No items found in database";
 	}
-  //Display the results
+	
+	//Display the results
   displayItemsPromotions($item_search_message, $itemResult, $promoCode,
     $amountOff, $promoType);
   //Free the result sets
 	mysql_free_result($itemResult);
+	
+	echo("fdgsfsdfgsd");
 }
 
 function displayItemsPromotions($item_search_message, $itemResult, $promoCode,
     $amountOff, $promoType) {
-	
-	echo <<<EOD
-	<p>$itemMessage</p>
+	    
+	  echo <<<EOD
+	<p>$item_search_message</p>
 	<input type="hidden" name="promoCode" value="$promoCode">
   <input type="hidden" name="amountOff" value="$amountOff">
   <input type="hidden" name="promoType" value="$promoType">
 EOD;
-	
-	while ($row = mysql_fetch_assoc($itemResult)) {
+		
+		while ($row = mysql_fetch_assoc($itemResult)) {
 		
 		$itemNumber = $row['ItemNumber'];
 		$itemDescription = $row['ItemDescription'];
@@ -77,7 +79,7 @@ EOD;
 	
 	  echo <<<EOD
 	  	<tr>
-				<td><input type='checkbox' name='items[]' value=$itemNumber></td>
+				<td><input type='checkbox' name='saleItems[]' value=$itemNumber></td>
 				<td>Item Description: $itemDescription</td>
 				<td>Category: $category</td>
 				<td>Department Name: $departmentName</td>
@@ -87,6 +89,7 @@ EOD;
 EOD;
 
 	}
+
 }
 ?>
 </table>

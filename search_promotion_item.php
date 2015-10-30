@@ -16,15 +16,13 @@
 </head>
 
   <center>
-  <form action='item_search.php' method='post'>
+  <form action='search_item.php' method='post'>
 	<h2>Please select a promotion and click submit to confirm, or click back to go back</h2>
 	<table>
-	
 <?php
 require('db_connect.inc');
-
 connect();
-session_start();
+
 retrievePromotions();
 
 function retrievePromotions() {
@@ -55,20 +53,19 @@ function displayItemsPromotions($promoMessage, $promoResult) {
 
 	if ($promoMessage == "") {
 		$row = mysql_fetch_assoc($promoResult);
+		
     $promoCode = $row['PromoCode'];
     $name = $row['Name'];
     $description = $row['Description'];
     $amountOff = $row['AmountOff'];
     $promoType = $row['PromoType'];
-    echo <<<EOD 
-    <input type="hidden" name="promoCode" value="$promoCode">
-    <input type="hidden" name="amountOff" value="$amountOff">
-    <input type="hidden" name="promoType" value="$promoType">
-EOD;
+    echo '<input type="hidden" name="promoCode" value="'.$promoCode.'" >';
+    echo '<input type="hidden" name="amountOff" value="'.$amountOff.'" >';
+    echo '<input type="hidden" name="promoType" value="'.$promoType.'" >';
 
 		echo <<<EOD
     <tr>
-			<td><input type='checkbox' name='promo' value='$promoCode'></td>
+			<td><input type='checkbox' name='promo' value=$promoCode></td>
       <td>Name: $name</td>
 			<td>Description: $description</td>
 			<td>Amount Off: $amountOff</td>
@@ -81,13 +78,13 @@ EOD;
 	}
 
 }
-
+	
 ?>
-			</table>
-			<br/>
-			<a href="assign_promotion_item_view.html"><button class="button">Back</button></a>
-			<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
-			</form>
+	</table>
+	<br/>
+	<a href="assign_promotion_item_view.html"><button class="button">Back</button></a>
+	<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
+	</form>
 		</center>
   </body>
 </html>
