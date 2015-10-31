@@ -1,41 +1,55 @@
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Insert an Ad Event - Aptaris Promotion System</title>   
-</head>
+  <head>
+      <link rel="stylesheet" href="jquery-ui.css">
+			<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+			<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+      <script src="_script.js"></script>
+      <link rel="stylesheet" type="text/css" href="_main.css">
+      <link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+      <title>Aptaris - Advertisement Event System</title>
+      
+      <div class="header"><a href="index.html">
+			<img src="logo_100.jpg" alt="logo" />
+			<h1>Advertisement Event System - Insert an Ad Event</h1></a>
+			<br/><hr/>
+		</div>
+  </head>
+  
 <body>
-    <a href="index.html"><h1>Insert an Ad Event</h1></a>
-    <hr/>
+	<center>
     <form action="insert_ad_event.php" method="post">
         <table border="1">
             <tr>
                 <td align="left">EventCode:</td>
-                <td align="left"><input type="text" name="eventCode" id="eventCode" maxlength=25 size=20></td>
+                <td align="left"><input type="text" name="eventCode" id="eventCode" maxlength=25 size=30></td>
             </tr>
             <tr>
                 <td align="left">Name:</td>
-                <td align="left"><input type="text" name="name" id="name" maxlength=25 size=20></td>
+                <td align="left"><input type="text" name="name" id="name" maxlength=25 size=30></td>
             </tr>
             <tr>
                 <td align="left">Start Date:</td>
-                <td align="left"><input type="text" name="startDate" id="startDate" maxlength=25 size=20></td>
+                <td align="left"><input type="text" name="startDate" id="startDate" maxlength=25 size=30></td>
             </tr>
             <tr>
                 <td align="left">End Date:</td>
-                <td align="left"><input type="text" name="endDate" id="endDate" maxlength=25 size=20></td>
+                <td align="left"><input type="text" name="endDate" id="endDate" maxlength=25 size=30></td>
             </tr>
             <tr>
                 <td align="left">Description:</td>
-                <td align="left"><input type="text" name="description" id="description" maxlength=100 size=35></td>
+                <td align="left"><input type="text" name="description" id="description" maxlength=100 size=30></td>
             </tr>
             <tr>
                 <td align="left">Type:</td>
-                <td align="left"><input type="text" name="type" id="type" maxlength=10 size=5></td>
+                <td align="left"><input type="text" name="type" id="type" maxlength=10 size=30></td>
             </tr>
         </table>
-        <p>
-            <button type="submit" name="submit" value="Submit" accesskey="S">Submit</button>
-            <button type="reset" name="reset" accesskey="R">Reset</button>
-        </p>
-    </form>  
+     <p>
+			<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
+			<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
+		</p>
+	</form>
+	</center>
 </body>
 </html>
