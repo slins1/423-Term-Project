@@ -54,8 +54,6 @@ function searchItemsByCategory() {
     $amountOff, $promoType);
   //Free the result sets
 	mysql_free_result($itemResult);
-	
-	echo("fdgsfsdfgsd");
 }
 
 function displayItemsPromotions($item_search_message, $itemResult, $promoCode,
