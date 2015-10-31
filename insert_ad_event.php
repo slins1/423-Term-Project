@@ -31,12 +31,19 @@ function insertAdEvent() {
 	$description = $_POST['description'];
 	$type = $_POST['type'];
 		
-	$startDates	= explode("/", $startDateUnformatted);
-	$startDatesReversed = array_reverse($startDates);
-	$startDate = implode("-", $startDatesReversed);
+	$temp = "";
+	$startDates	= explode("/", $startDateUnformatted); //[10], [28], [2015]
+	$startDatesReversed = array_reverse($startDates); //[2015], [28], [10]
+	$temp = $startDatesReversed[1]; //[2015], [28], [10] t:[28]
+	$startDatesReversed[1] = $startDatesReversed[2]; //[2015], [10], [10] t:[28]
+	$startDatesReversed[2] = $temp; //[2015], [10], [28]
+	$startDate = implode("-", $startDatesReversed); //2015-10-28
 	
 	$endDates	= explode("/", $endDateUnformatted);
 	$endDatesReversed = array_reverse($endDates);
+	$temp = $endDatesReversed[1];
+	$endDatesReversed[1] = $endDatesReversed[2];
+	$endDatesReversed[2] = $temp;
 	$endDate = implode("-", $endDatesReversed);
 	
 	$insertStatement = "INSERT INTO AdEvent (EventCode, Name, StartDate, EndDate, Description, AdType) values ('$eventCode', '$name', '$startDate', '$endDate','$description','$type')";
