@@ -26,12 +26,27 @@ insertAdEvent();
 function insertAdEvent() {	
 	$eventCode = $_POST['eventCode'];
 	$name = $_POST['name'];
-	$startDate = $_POST['startDate'];
-	$endDate = $_POST['endDate'];
+	$startDateUnformatted = $_POST['startDate'];
+	$endDateUnformatted = $_POST['endDate'];
 	$description = $_POST['description'];
 	$type = $_POST['type'];
 		
-	$insertStatement = "INSERT INTO AdEvent (EventCode, Name, StartDate, EndDate, Description, AdType) values   ('$eventCode', '$name', '$startDate', '$endDate','$description','$type')";
+	$temp = "";
+	$startDates	= explode("/", $startDateUnformatted); //[10], [28], [2015]
+	$startDatesReversed = array_reverse($startDates); //[2015], [28], [10]
+	$temp = $startDatesReversed[1]; //[2015], [28], [10] t:[28]
+	$startDatesReversed[1] = $startDatesReversed[2]; //[2015], [10], [10] t:[28]
+	$startDatesReversed[2] = $temp; //[2015], [10], [28]
+	$startDate = implode("-", $startDatesReversed); //2015-10-28
+	
+	$endDates	= explode("/", $endDateUnformatted);
+	$endDatesReversed = array_reverse($endDates);
+	$temp = $endDatesReversed[1];
+	$endDatesReversed[1] = $endDatesReversed[2];
+	$endDatesReversed[2] = $temp;
+	$endDate = implode("-", $endDatesReversed);
+	
+	$insertStatement = "INSERT INTO AdEvent (EventCode, Name, StartDate, EndDate, Description, AdType) values ('$eventCode', '$name', '$startDate', '$endDate','$description','$type')";
 	
 	//Execute the query. The result will just be true or false
 	$result = mysql_query($insertStatement);
@@ -43,7 +58,7 @@ function insertAdEvent() {
 	}
 	
 	//Show result
-	showAdEventInsertResult($message, $eventCode, $name, $startDate, $endDate, $description, $type);
+	showAdEventInsertResult($message, $eventCode, $name, $startDateUnformatted, $endDateUnformatted, $description, $type);
 }
   
 function showAdEventInsertResult($message, $eventCode, $name, $startDate, $endDate, $description, $type) {
@@ -51,7 +66,35 @@ function showAdEventInsertResult($message, $eventCode, $name, $startDate, $endDa
   // message contains the lastname and firstname
   if ($message) {
     if ($message != "") {
-      echo "<h2>$message</h2><br />";
+      echo <<<EOD
+			<h2 class='text-center'>$message</h2>
+			<table>
+					<tr>
+						<td>Event Code:</td>
+						<td>$eventCode</td>
+					</tr>
+					<tr>
+						<td>Name:</td>
+						<td>$name</td>
+					</tr>
+					<tr>
+						<td>Start Date:</td>
+						<td>$startDate</td>
+					</tr>
+					<tr>
+						<td>End Date:</td>
+						<td>$endDate</td>
+					</tr>
+					<tr>
+						<td>Description:</td>
+						<td>$description</td>
+					</tr>
+					<tr>
+						<td>Type:</td>
+						<td>$type</td>
+					</tr>
+			</table>
+EOD;
     } else {
 			echo "<p>Error</p>";
 		}

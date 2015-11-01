@@ -324,6 +324,7 @@ button.ui-button::-moz-focus-inner {
 	top: 2px;
 	width: 1.8em;
 	height: 1.8em;
+	background-color: #bf7600;
 }
 .ui-datepicker .ui-datepicker-prev-hover,
 .ui-datepicker .ui-datepicker-next-hover {
