@@ -20,38 +20,24 @@
     <form action='search_item_for_promotion.php' method='post' onsubmit="return validateCategory(this)">
         
     <h2>Search for a Item to add the promotion to:</h2>
-       
-    <table border="1">
-      <tr>
-        <td>Category:</td>
-         <td><select name="category" id="category">
-            <option>ACCESSORIES/FOOTWEAR</option>
-            <option>BASIC APPAREL</option>
-            <option>CHILDRENS APPAREL</option>
-            <option>ELECTRONICS/PREPAID</option>
-            <option>FOOD CONVENIENCE</option>
-            <option>FOOD GROCERY</option>
-            <option>HEALTH/BEAUTY</option>
-            <option>HOME DECOR</option>
-            <option>HOUSEHOLD PRODUCTS</option>
-            <option>HOUSEWARES</option>
-            <option>MENS APPAREL</option>
-            <option>MISCELLANEOUS</option>
-            <option>OFFICE/PARTY</option>
-            <option>SEASONAL MERCHANDISE</option>
-            <option>SOFT HOME</option>
-            <option>SUPPLIES</option>
-            <option>TOYS</option>
-            <option>WOMENS APPAREL</option>
-        </select>
-				</td>
-    </tr>
-  </table>
+    <h3>Please Select a Type to Search by:</h3>
+                <select name="searchType" id="searchType">
+                    <option>Item Number</option>
+                    <option>Item Description</option>
+                    <option>Category</option>
+                    <option>Department Name</option>
+                    <option>Purchase Cost</option>
+                    <option>Full Retail Price</option>
+                </select>
+    <br/></br/>
+    <input type="text" name="searchData" id="searchData">
   
 <?php
 	$promoCode = $_POST['promoCode'];
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
+
+
 
   echo <<<EOD
     <input type="hidden" name="promoCode" value="$promoCode">

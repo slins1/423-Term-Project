@@ -26,11 +26,37 @@ connect();
 retrievePromotions();
 
 function retrievePromotions() {
-	$promoCode = $_POST['promoCode'];
-	$promoName = $_POST['promoName'];
+	$searchType = $_POST['searchType'];
+	$searchData = $_POST['searchData'];
+
+	if($searchType == "Promotion Code"){
+		$insertStatement = "SELECT PromoCode, Name, Description, 
+		AmountOff, PromoType FROM Promotion 
+		WHERE PromoCode = '$searchData'";
+	}
+	else if($searchType == "Promotion Name"){
+		$insertStatement = "SELECT PromoCode, Name, Description, 
+		AmountOff, PromoType FROM Promotion 
+		WHERE Name = '$searchData'";
+	}
+	else if($searchType == "Promotion Description"){
+		$insertStatement = "SELECT PromoCode, Name, Description, 
+		AmountOff, PromoType FROM Promotion 
+		WHERE Description = '$searchData'";
+	}
+	else if($searchType == "Amount Off"){
+		$insertStatement = "SELECT PromoCode, Name, Description, 
+		AmountOff, PromoType FROM Promotion 
+		WHERE AmountOff = '$searchData'";
+	}
+	else if($searchType == "Promotion Type(Dollar/Percent)"){
+		$insertStatement = "SELECT PromoCode, Name, Description, 
+		AmountOff, PromoType FROM Promotion 
+		WHERE PromoType = '$searchData'";
+	}
 	
 	//Construct SQL statements
-	$insertStatement = "SELECT PromoCode, Name, Description, AmountOff, PromoType FROM Promotion WHERE PromoCode = '$promoCode' AND	 Name = '$promoName'";
+	
 	
 	//Execute the queries
 	$result = mysql_query($insertStatement);
@@ -51,31 +77,35 @@ function retrievePromotions() {
 
 function displayItemsPromotions($promoMessage, $promoResult) {
 
-	if ($promoMessage == "") {
-		$row = mysql_fetch_assoc($promoResult);
-		
+	
+
+
+	while ($row = mysql_fetch_assoc($promoResult)) {
     $promoCode = $row['PromoCode'];
     $name = $row['Name'];
     $description = $row['Description'];
     $amountOff = $row['AmountOff'];
     $promoType = $row['PromoType'];
-    echo '<input type="hidden" name="promoCode" value="'.$promoCode.'" >';
-    echo '<input type="hidden" name="amountOff" value="'.$amountOff.'" >';
-    echo '<input type="hidden" name="promoType" value="'.$promoType.'" >';
+    
+echo '<input type="hidden" name="promoCode" value="'.$promoCode.'" >';
+echo '<input type="hidden" name="amountOff" value="'.$amountOff.'" >';
+echo '<input type="hidden" name="promoType" value="'.$promoType.'" >';
 
 		echo <<<EOD
     <tr>
-			<td><input type='checkbox' name='promo' value=$promoCode></td>
-      <td>Name: $name</td>
+			<td><input type='radio' name='promo' value=$promoCode></td>
+      		<td>Name: $name</td>
 			<td>Description: $description</td>
 			<td>Amount Off: $amountOff</td>
 			<td>Promotion Type: $promoType</td>
 		</tr>
+	
 EOD;
+}
 
-	} else {
-		echo $message;
-	}
+
+
+
 
 }
 	
