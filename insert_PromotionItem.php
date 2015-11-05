@@ -25,7 +25,7 @@ function insert_promotionItem() {
 	$promoCode = $_POST['promoCode'];
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
-	
+
 	if (isset($_POST['saleItems'])) {
 
 	  $itemArray = $_POST['saleItems'];

@@ -17,7 +17,7 @@
 
 <body>
 <center>
-<form action='insert_promotionItem.php' method='post'>
+<form action='insert_PromotionItem.php' method='post'>
 <h2>Please Click submit to confirm the addition of all items to the promotion</h2>
 <table>
 
@@ -31,10 +31,40 @@ function searchItemsByCategory() {
 	$promoCode = $_POST['promoCode'];
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
-	$category = $_POST['category'];
+	$searchType = $_POST['searchType'];
+	$searchData = $_POST['searchData'];
 	
 	//Construct SQL statements
-	$item_search_sql = "SELECT ItemNumber, ItemDescription, Category, DepartmentName, PurchaseCost, FullRetailPrice FROM Item WHERE Category = '$category'";
+	if($searchType == "Item Number"){
+	$item_search_sql = "SELECT ItemNumber, ItemDescription, Category, 
+	DepartmentName, PurchaseCost, FullRetailPrice FROM Item 
+	WHERE ItemNumber = '$searchData'";
+	}
+	else if($searchType == "Item Description"){
+	$item_search_sql = "SELECT ItemNumber, ItemDescription, Category, 
+	DepartmentName, PurchaseCost, FullRetailPrice FROM Item 
+	WHERE ItemDescription = '$searchData'";
+	}
+	else if($searchType == "Category"){
+	$item_search_sql = "SELECT ItemNumber, ItemDescription, Category, 
+	DepartmentName, PurchaseCost, FullRetailPrice FROM Item 
+	WHERE Category = '$searchData'";
+	}
+	else if($searchType == "Department Name"){
+	$item_search_sql = "SELECT ItemNumber, ItemDescription, Category, 
+	DepartmentName, PurchaseCost, FullRetailPrice FROM Item 
+	WHERE DepartmentName = '$searchData'";
+	}
+	else if($searchType == "Purchase Cost"){
+	$item_search_sql = "SELECT ItemNumber, ItemDescription, Category, 
+	DepartmentName, PurchaseCost, FullRetailPrice FROM Item 
+	WHERE PurchaseCost = '$searchData'";
+	}
+	else if($searchType == "Full Retail Price"){
+	$item_search_sql = "SELECT ItemNumber, ItemDescription, Category, 
+	DepartmentName, PurchaseCost, FullRetailPrice FROM Item 
+	WHERE FullRetailPrice = '$searchData'";
+	}
 	
 	$itemResult = mysql_query($item_search_sql);
 	//Test whether the queries were successful
