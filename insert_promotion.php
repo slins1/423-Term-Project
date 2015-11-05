@@ -1,8 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="_script.js"></script>
+	<link rel="stylesheet" type="text/css" href="_main.css">
+	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+	<title>Aptaris - Advertisement Event System</title>
+	
+	<div class="header"><a href="index.html">
+		<img src="logo_100.jpg" alt="logo" />
+		<h1>Advertisement Event System - Insert Promotion</h1></a><br/><hr/>
+	</div>
+</head>
+
+<body>
+	<center>
+	
 <?php
 require('db_connect.inc');
-
-//Connect to the database
-connect(DB_SERVER, DB_UN, DB_PWD,DB_NAME);
+//Connect to the database 
+connect();
 //Insert promotion into the database
 insertPromotion();
 
@@ -13,7 +32,6 @@ function insertPromotion() {
 	$promoType = $_POST['promoType'];
 	
 	$insertStatement = "INSERT INTO Promotion (Name, Description, AmountOff, PromoType) values ( '$name', '$description', '$amountOff', '$promoType')";
-
 	//Execute the query. The result will just be true or false
 	$result = mysql_query($insertStatement);
 	$message = "";
@@ -22,34 +40,39 @@ function insertPromotion() {
 	} else {
 	  $message = "The Promotion $name was inserted successfully";
 	}
-
 	showPromotionInsertResult($message, $name, $description, $amountOff, $promoType);
 }
 			   
 function showPromotionInsertResult($message, $name, $description, $amountOff, $promoType) {
-	// Start the html page
-  echo "<html>";
-
 	// If the message is non-null and not an empty string print it
   // message contains the lastname and firstname
-  if ($message) {
-    if ($message != "") {
-			echo "<center><font color='blue'>$message</font></center><br />";
-    } else {
-			echo "<p>Error</p>";
-		}
-  }
-
-	//finish up the html code, and put the return button to go back to main menu
-	$footer = <<<EOD
-			<br/>
-		<br/>
-    <a href="index.html"><input type="button" value="Return to Main Menu"/></a>
-    </body>
-	</html>
+  if ($message != "") {
+		echo <<<EOD
+			<h2 class='text-center'>$message</h2>
+			<table>
+					<tr>
+						<td>Description:</td>
+						<td>$description</td>
+					</tr>
+					<tr>
+						<td>Amount Off:</td>
+						<td>$amountOff</td>
+					</tr>
+					<tr>
+						<td>Promo Type:</td>
+						<td>$promoType</td>
+					</tr>
+			</table>
 EOD;
-
-	echo $footer;
+    } else {
+			echo "<h2>Error in inserting promotion</h2>";
+  }
 }
-
 ?>
+<p>
+	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
+	<a href="insert_promotion_view.html"><button name="insert"  accesskey="S" class="button">Insert another promotion</button></a>
+</p>
+</center>
+</body>
+</html>
