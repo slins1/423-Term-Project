@@ -17,7 +17,7 @@
 
 <body>
 <center>
-<form action='insert_promotionItem.php' method='post'>
+<form action='insert_PromotionItem.php' method='post'>
 <h2>Please Click submit to confirm the addition of all items to the promotion</h2>
 <table>
 

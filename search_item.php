@@ -53,6 +53,7 @@
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
 
+
   echo <<<EOD
     <input type="hidden" name="promoCode" value="$promoCode">
     <input type="hidden" name="amountOff" value="$amountOff">
