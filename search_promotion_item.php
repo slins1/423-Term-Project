@@ -77,9 +77,7 @@ function retrievePromotions() {
 
 function displayItemsPromotions($promoMessage, $promoResult) {
 
-	echo '<input type="hidden" name="promoCode" value="'.$promoCode.'" >';
-    echo '<input type="hidden" name="amountOff" value="'.$amountOff.'" >';
-    echo '<input type="hidden" name="promoType" value="'.$promoType.'" >';
+	
 
 
 	while ($row = mysql_fetch_assoc($promoResult)) {
@@ -89,10 +87,13 @@ function displayItemsPromotions($promoMessage, $promoResult) {
     $amountOff = $row['AmountOff'];
     $promoType = $row['PromoType'];
     
+echo '<input type="hidden" name="promoCode" value="'.$promoCode.'" >';
+echo '<input type="hidden" name="amountOff" value="'.$amountOff.'" >';
+echo '<input type="hidden" name="promoType" value="'.$promoType.'" >';
 
 		echo <<<EOD
     <tr>
-			<td><input type='checkbox' name='promo[]' value=$promoCode></td>
+			<td><input type='radio' name='promo' value=$promoCode></td>
       		<td>Name: $name</td>
 			<td>Description: $description</td>
 			<td>Amount Off: $amountOff</td>
@@ -101,6 +102,8 @@ function displayItemsPromotions($promoMessage, $promoResult) {
 	
 EOD;
 }
+
+
 
 
 
