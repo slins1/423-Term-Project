@@ -26,9 +26,83 @@ connect();
 retrievePromotions();
 
 function retrievePromotions() {
-	$searchType = $_POST['searchType'];
-	$searchData = $_POST['searchData'];
+	$promoCode = $_POST['promoCode'];
+	$name = $_POST['name'];
+	$description = $_POST['description'];
+	$amountOff = $_POST['amountOff'];
+	$promoType = $_POST['promoType'];
 
+	$cond1 = "";
+	$cond2 = "";
+	$cond3 = "";
+	$cond4 = "";
+	$cond5 = "";
+	$whereCondition = "";
+
+	if(isset($promoCode) && ($promoCode != "")){
+		$cond1 = "PromoCode = '".$promoCode."'";
+	}
+	if(isset($name) && ($name != "")){
+		$cond2 = "Name = '".$name."'";
+	}
+	if(isset($description) && ($description != "")){
+		$cond3 = "Description = '".$description."'";
+	}
+	if(isset($amountOff) && ($amountOff != "")){
+		$cond4 = "AmountOff = '".$amountOff."'";
+	}
+	if(isset($promoType) && ($promoType != "---")){
+		$cond5 = "PromoType = '".$promoType."'";
+	}
+
+	if($cond1 != ""){
+		$whereCondition = $whereCondition.$cond1;
+	}
+	if($cond2 != ""){
+		if(strlen($whereCondition) > 1){
+			$whereCondition = $whereCondition." AND ".$cond2;
+		}
+		else{
+			$whereCondition = $whereCondition.$cond2;
+		}
+	}
+	if($cond3 != ""){
+		if(strlen($whereCondition) > 1){
+			$whereCondition = $whereCondition." AND ".$cond3;
+		}
+		else{
+			$whereCondition = $whereCondition.$cond3;
+		}
+	}
+	if($cond4 != ""){
+		if(strlen($whereCondition) > 1){
+			$whereCondition = $whereCondition." AND ".$cond4;
+		}
+		else{
+			$whereCondition = $whereCondition.$cond4;
+		}
+	}
+	if($cond5 != ""){
+		if(strlen($whereCondition) > 1){
+			$whereCondition = $whereCondition." AND ".$cond5;
+		}
+		else{
+			$whereCondition = $whereCondition.$cond5;
+		}
+	}
+	//echo "$whereCondition";
+
+	$insertStatement = "SELECT PromoCode, Name, Description,
+	AmountOff, PromoType FROM Promotion WHERE $whereCondition";
+	//echo "$insertStatement";
+	/*
+	echo "$cond1";
+	echo "$cond2";
+	echo "$cond3";
+	echo "$cond4";
+	echo "$cond5";
+*/
+/*
 	if($searchType == "Promotion Code"){
 		$insertStatement = "SELECT PromoCode, Name, Description, 
 		AmountOff, PromoType FROM Promotion 
@@ -54,7 +128,7 @@ function retrievePromotions() {
 		AmountOff, PromoType FROM Promotion 
 		WHERE PromoType = '$searchData'";
 	}
-	
+	*/
 	//Construct SQL statements
 	
 	
