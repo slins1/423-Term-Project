@@ -19,6 +19,14 @@
   <form action='search_item.php' method='post'>
 	<h2>Please select a promotion and click submit to confirm, or click back to go back</h2>
 	<table>
+		<tr>
+		<td></td>
+		<td><b>PROMO CODE</b></td>
+		<td><b>NAME</b></td>
+		<td><b>DESCRIPTION</b></td>
+		<td><b>AMOUNT OFF</b></td>
+		<td><b>PROMOTION TYPE(DOLLAR/PERCENT)</b></td>
+	</tr>
 <?php
 require('db_connect.inc');
 connect();
@@ -140,7 +148,6 @@ function retrievePromotions() {
 	if (!$result || $numberPromotionRows == 0) {
 	   $message = "The retrieval of promotions was unsuccessful";
 	}
-	
 	//Display the results
 	displayItemsPromotions($message, $result);
 	
@@ -161,17 +168,19 @@ function displayItemsPromotions($promoMessage, $promoResult) {
     $amountOff = $row['AmountOff'];
     $promoType = $row['PromoType'];
     
-echo '<input type="hidden" name="promoCode" value="'.$promoCode.'" >';
-echo '<input type="hidden" name="amountOff" value="'.$amountOff.'" >';
-echo '<input type="hidden" name="promoType" value="'.$promoType.'" >';
+//echo '<input type="hidden" name="promoCode[]" value=$promoCode>';
+//echo '<input type="hidden" name="amountOff" value="'.$amountOff.'" >';
+//echo '<input type="hidden" name="promoType" value="'.$promoType.'" >';
 
 		echo <<<EOD
+	
     <tr>
 			<td><input type='radio' name='promo' value=$promoCode></td>
-      		<td>Name: $name</td>
-			<td>Description: $description</td>
-			<td>Amount Off: $amountOff</td>
-			<td>Promotion Type: $promoType</td>
+			<td>$promoCode</td>
+      		<td>$name</td>
+			<td>$description</td>
+			<td>$amountOff</td>
+			<td>$promoType</td>
 		</tr>
 	
 EOD;

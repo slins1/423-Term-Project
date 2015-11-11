@@ -20,14 +20,20 @@
     <form action='search_item_for_promotion.php' method='post' onsubmit="return validateCategory(this)">
         
     <h2>Search for a Item to add the promotion to:</h2>
-    <p><b>Item Number:</b></p>
-        <input type="text" name="itemNumber" id="itemNumber"
-        placeholder="Enter an Item Number">
-    <p><b>Item Description:</b></p>
-        <input type="text" name="itemDescription" id="itemDescription"
-        placeholder="Enter an Item Description">
-    <p><b>Category:</b></p>
-        <select name="category" id="category">
+    <table>
+        <tr>
+            <td><p><b>Item Number:</b></td>
+            <td><input type="text" name="itemNumber" id="itemNumber"
+            placeholder="Enter an Item Number"></p></td>
+        </tr>
+        <tr>
+            <td><p><b>Item Description:</b></td>
+            <td><input type="text" name="itemDescription" id="itemDescription"
+                placeholder="Enter an Item Description"></p></td>
+        </tr>
+        <tr>
+            <td><p><b>Category:</b></td>
+            <td><select name="category" id="category">
             <option>---</option>
             <option>ACCESSORIES/FOOTWEAR</option>
             <option>BASIC APPAREL</option>
@@ -47,9 +53,11 @@
             <option>SUPPLIES</option>
             <option>TOYS</option>
             <option>WOMENS APPAREL</option>
-        </select>
-        <p><b>Department Name</b></p>
-        <select name="departmentName" id="departmentName">
+        </select></p></td>
+    </tr>
+    <tr>
+        <td><p><b>Department Name</b></td>
+        <td><select name="departmentName" id="departmentName">
             <option>---</option>
             <option>ACCESSORIES</option>
             <option>FOOTWEAR</option>
@@ -108,19 +116,43 @@
             <option>PLUS BOTTOMS</option>
             <option>PLUS TOPS</option>
             <option>SLEEPWEAR/SCRUBS</option>
-        </select>
-        <p><b>Purchase Cost:</b></p>
-        <input type="text" name="purchaseCost" id="purchaseCost"
-        placeholder="Enter a Purchase Cost">
-        <p><b>Full Retail Price:</b></p>
-        <input type="text" name="fullRetailPrice" id="fullRetailPrice"
-        placeholder="Enter a Full Retial Price">
+        </select></p></td>
+    </tr>
+    <tr>
+        <td><p><b>Purchase Cost:</b></td>
+        <td><input type="text" name="purchaseCost" id="purchaseCost"
+        placeholder="Enter a Purchase Cost"></p></td>
+    </tr>
+    <tr>
+        <td><p><b>Full Retail Price:</b></td>
+        <td><input type="text" name="fullRetailPrice" id="fullRetailPrice"
+        placeholder="Enter a Full Retial Price"></p></td>
+    </tr>
+</table>
         
   
 <?php
-	$promoCode = $_POST['promoCode'];
-	$amountOff = $_POST['amountOff'];
-	$promoType = $_POST['promoType'];
+require('db_connect.inc');
+connect();
+
+    $promoCode1 = $_POST['promo'];
+
+
+    
+            $promo_search_sql ="SELECT PromoCode, AmountOff, PromoType 
+            FROM Promotion WHERE PromoCode = $promoCode1";
+
+            $promoResult = mysql_query($promo_search_sql);
+            $row = mysql_fetch_assoc($promoResult);
+
+            $promoCode = $row['PromoCode'];
+            $amountOff = $row['AmountOff'];
+            $promoType = $row['PromoType'];
+
+        
+	//$promoCode = $_POST['promoCode'];
+	//$amountOff = $_POST['amountOff'];
+	//$promoType = $_POST['promoType'];
 
 
 
