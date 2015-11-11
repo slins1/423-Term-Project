@@ -19,6 +19,14 @@
   <form action='search_item.php' method='post'>
 	<h2>Please select a promotion and click submit to confirm, or click back to go back</h2>
 	<table>
+		<tr>
+		<td></td>
+		<td><b>PROMO CODE</b></td>
+		<td><b>NAME</b></td>
+		<td><b>DESCRIPTION</b></td>
+		<td><b>AMOUNT OFF</b></td>
+		<td><b>PROMOTION TYPE(DOLLAR/PERCENT)</b></td>
+	</tr>
 <?php
 require('db_connect.inc');
 connect();
@@ -26,9 +34,83 @@ connect();
 retrievePromotions();
 
 function retrievePromotions() {
-	$searchType = $_POST['searchType'];
-	$searchData = $_POST['searchData'];
+	$promoCode = $_POST['promoCode'];
+	$name = $_POST['name'];
+	$description = $_POST['description'];
+	$amountOff = $_POST['amountOff'];
+	$promoType = $_POST['promoType'];
 
+	$cond1 = "";
+	$cond2 = "";
+	$cond3 = "";
+	$cond4 = "";
+	$cond5 = "";
+	$whereCondition = "";
+
+	if(isset($promoCode) && ($promoCode != "")){
+		$cond1 = "PromoCode = '".$promoCode."'";
+	}
+	if(isset($name) && ($name != "")){
+		$cond2 = "Name = '".$name."'";
+	}
+	if(isset($description) && ($description != "")){
+		$cond3 = "Description = '".$description."'";
+	}
+	if(isset($amountOff) && ($amountOff != "")){
+		$cond4 = "AmountOff = '".$amountOff."'";
+	}
+	if(isset($promoType) && ($promoType != "---")){
+		$cond5 = "PromoType = '".$promoType."'";
+	}
+
+	if($cond1 != ""){
+		$whereCondition = $whereCondition.$cond1;
+	}
+	if($cond2 != ""){
+		if(strlen($whereCondition) > 1){
+			$whereCondition = $whereCondition." AND ".$cond2;
+		}
+		else{
+			$whereCondition = $whereCondition.$cond2;
+		}
+	}
+	if($cond3 != ""){
+		if(strlen($whereCondition) > 1){
+			$whereCondition = $whereCondition." AND ".$cond3;
+		}
+		else{
+			$whereCondition = $whereCondition.$cond3;
+		}
+	}
+	if($cond4 != ""){
+		if(strlen($whereCondition) > 1){
+			$whereCondition = $whereCondition." AND ".$cond4;
+		}
+		else{
+			$whereCondition = $whereCondition.$cond4;
+		}
+	}
+	if($cond5 != ""){
+		if(strlen($whereCondition) > 1){
+			$whereCondition = $whereCondition." AND ".$cond5;
+		}
+		else{
+			$whereCondition = $whereCondition.$cond5;
+		}
+	}
+	//echo "$whereCondition";
+
+	$insertStatement = "SELECT PromoCode, Name, Description,
+	AmountOff, PromoType FROM Promotion WHERE $whereCondition";
+	//echo "$insertStatement";
+	/*
+	echo "$cond1";
+	echo "$cond2";
+	echo "$cond3";
+	echo "$cond4";
+	echo "$cond5";
+*/
+/*
 	if($searchType == "Promotion Code"){
 		$insertStatement = "SELECT PromoCode, Name, Description, 
 		AmountOff, PromoType FROM Promotion 
@@ -54,7 +136,7 @@ function retrievePromotions() {
 		AmountOff, PromoType FROM Promotion 
 		WHERE PromoType = '$searchData'";
 	}
-	
+	*/
 	//Construct SQL statements
 	
 	
@@ -66,7 +148,6 @@ function retrievePromotions() {
 	if (!$result || $numberPromotionRows == 0) {
 	   $message = "The retrieval of promotions was unsuccessful";
 	}
-	
 	//Display the results
 	displayItemsPromotions($message, $result);
 	
@@ -87,17 +168,19 @@ function displayItemsPromotions($promoMessage, $promoResult) {
     $amountOff = $row['AmountOff'];
     $promoType = $row['PromoType'];
     
-echo '<input type="hidden" name="promoCode" value="'.$promoCode.'" >';
-echo '<input type="hidden" name="amountOff" value="'.$amountOff.'" >';
-echo '<input type="hidden" name="promoType" value="'.$promoType.'" >';
+//echo '<input type="hidden" name="promoCode[]" value=$promoCode>';
+//echo '<input type="hidden" name="amountOff" value="'.$amountOff.'" >';
+//echo '<input type="hidden" name="promoType" value="'.$promoType.'" >';
 
 		echo <<<EOD
+	
     <tr>
 			<td><input type='radio' name='promo' value=$promoCode></td>
-      		<td>Name: $name</td>
-			<td>Description: $description</td>
-			<td>Amount Off: $amountOff</td>
-			<td>Promotion Type: $promoType</td>
+			<td>$promoCode</td>
+      		<td>$name</td>
+			<td>$description</td>
+			<td>$amountOff</td>
+			<td>$promoType</td>
 		</tr>
 	
 EOD;

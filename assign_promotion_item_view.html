@@ -21,16 +21,36 @@
 	<form action='search_promotion_item.php' method='post'>
 		
 		<h2>Search for a promotion to add the items to:</h2>
-				<h3>Please Select a Type to Search by:</h3>
-				<select name="searchType" id="searchType">
-					<option>Promotion Code</option>
-					<option>Promotion Name</option>
-					<option>Promotion Description</option>
-					<option>Amount Off</option>
-					<option>Promotion Type(Dollar/Percent)</option>
-				</select>
-				<br/></br/>
-				<input type="text" name="searchData" id="searchData" placeholder="Enter a Search Term">
+		<table>
+				<tr>
+					<td><p><b>Promo Code:</b></td>
+					<td><input type="text" name="promoCode" id="promoCode"
+					placeholder="Enter a Promo Code"></p></td>
+				</tr>
+				<tr>
+					<td><p><b>Name:</b></td>
+					<td><input type="text" name="name" id="name"
+						placeholder= "Enter a Name"></p></td>
+				</tr>
+				<tr>
+					<td><p><b>Description:</b></td>
+					<td><input type="text" name="description" id="description" placeholder="Enter a Description"></p></td>
+				</tr>
+				<tr>
+					<td><p><b>Amount Off:</b></td>
+					<td><input type="text" name="amountOff" id="amountOff" placeholder="Enter an Amount off"></p></td>
+				</tr>
+				<tr>
+					<td><p><b>Promotion Type:</b></td>
+					<td><select name="promoType" id="promoType">
+                    	<option>---</option>
+                    	<option>Dollar</option>
+                    	<option>Percent</option>
+                	</select>
+                	</p></td>
+            	</tr>
+            </table>
+
 		<p>
 			<button type="reset" name="reset" value="Reset" accesskey="R" class="button">Reset</button>
 			<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
