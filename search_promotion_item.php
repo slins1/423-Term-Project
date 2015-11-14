@@ -1,91 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="_script.js"></script>
+	<link rel="stylesheet" type="text/css" href="_main.css">
+	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+	<title>Aptaris - Advertisement Event System</title>
+	
+	<div class="header"><a href="index.html">
+		<img src="logo_100.jpg" alt="logo" />
+		<h1>Advertisement Event System - Assign Promotion to an Item</h1></a><br/><hr/>
+	</div>
+</head>
+
+  <center>
+  <form action='search_item.php' method='post'>
+	<h2>Please select a promotion and click submit to confirm, or click back to go back</h2>
+	<table>
+		<tr>
+		<td></td>
+		<td><b>PROMO CODE</b></td>
+		<td><b>NAME</b></td>
+		<td><b>DESCRIPTION</b></td>
+		<td><b>AMOUNT OFF</b></td>
+		<td><b>PROMOTION TYPE(DOLLAR/PERCENT)</b></td>
+	</tr>
 <?php
 require('db_connect.inc');
-require('promo_item_added_result_view.inc');
+connect();
 
-// Main control logic
-get_items_and_promotions();
+retrievePromotions();
 
-
-//------------------------------------------------------
-function get_items_and_promotions()
-{
-  // Connect to db
-  connect_and_select_db(DB_SERVER, DB_UN, DB_PWD, DB_NAME);
-
-	$itemDepartment = $_POST['itemDepartment'];
-	$itemNumber = $_POST['itemNumber'];
-	$itemDescription = $_POST['itemDescription'];
+function retrievePromotions() {
 	$promoCode = $_POST['promoCode'];
-	$promoName = $_POST['promoName'];
-	$promoDescription = $_POST['promoDescription'];
+	$name = $_POST['name'];
+	$description = $_POST['description'];
+	$amountOff = $_POST['amountOff'];
+	$promoType = $_POST['promoType'];
 
+	$cond1 = "";
+	$cond2 = "";
+	$cond3 = "";
+	$cond4 = "";
+	$cond5 = "";
+	$whereCondition = "";
 
-  //Construct SQL statements
-  $item_search_sql = "SELECT DepartmentName, ItemNumber, ItemDescription,
-			FROM Item
-			WHERE DepartmentName = '$itemDepartment'
-			AND   ItemNumber = '$itemNumber'
-			AND	 ItemDescription = '$itemDescription'";
+	if(isset($promoCode) && ($promoCode != "")){
+		$cond1 = "PromoCode = '".$promoCode."'";
+	}
+	if(isset($name) && ($name != "")){
+		$cond2 = "Name = '".$name."'";
+	}
+	if(isset($description) && ($description != "")){
+		$cond3 = "Description = '".$description."'";
+	}
+	if(isset($amountOff) && ($amountOff != "")){
+		$cond4 = "AmountOff = '".$amountOff."'";
+	}
+	if(isset($promoType) && ($promoType != "---")){
+		$cond5 = "PromoType = '".$promoType."'";
+	}
 
+	if($cond1 != ""){
+		$whereCondition = $whereCondition.$cond1;
+	}
+	if($cond2 != ""){
+		if(strlen($whereCondition) > 1){
+			$whereCondition = $whereCondition." AND ".$cond2;
+		}
+		else{
+			$whereCondition = $whereCondition.$cond2;
+		}
+	}
+	if($cond3 != ""){
+		if(strlen($whereCondition) > 1){
+			$whereCondition = $whereCondition." AND ".$cond3;
+		}
+		else{
+			$whereCondition = $whereCondition.$cond3;
+		}
+	}
+	if($cond4 != ""){
+		if(strlen($whereCondition) > 1){
+			$whereCondition = $whereCondition." AND ".$cond4;
+		}
+		else{
+			$whereCondition = $whereCondition.$cond4;
+		}
+	}
+	if($cond5 != ""){
+		if(strlen($whereCondition) > 1){
+			$whereCondition = $whereCondition." AND ".$cond5;
+		}
+		else{
+			$whereCondition = $whereCondition.$cond5;
+		}
+	}
+	//echo "$whereCondition";
 
-		$promotion_search_sql = "SELECT PromoCode, Name, Description
-			FROM Promotion
-			WHERE PromoCode = '$promoCode'
-			AND	 Name = '$promoName'
-			AND   Description = '$promoDescription'";
+	$insertStatement = "SELECT PromoCode, Name, Description,
+	AmountOff, PromoType FROM Promotion WHERE $whereCondition";
+	//echo "$insertStatement";
+	/*
+	echo "$cond1";
+	echo "$cond2";
+	echo "$cond3";
+	echo "$cond4";
+	echo "$cond5";
+*/
+/*
+	if($searchType == "Promotion Code"){
+		$insertStatement = "SELECT PromoCode, Name, Description, 
+		AmountOff, PromoType FROM Promotion 
+		WHERE PromoCode = '$searchData'";
+	}
+	else if($searchType == "Promotion Name"){
+		$insertStatement = "SELECT PromoCode, Name, Description, 
+		AmountOff, PromoType FROM Promotion 
+		WHERE Name = '$searchData'";
+	}
+	else if($searchType == "Promotion Description"){
+		$insertStatement = "SELECT PromoCode, Name, Description, 
+		AmountOff, PromoType FROM Promotion 
+		WHERE Description = '$searchData'";
+	}
+	else if($searchType == "Amount Off"){
+		$insertStatement = "SELECT PromoCode, Name, Description, 
+		AmountOff, PromoType FROM Promotion 
+		WHERE AmountOff = '$searchData'";
+	}
+	else if($searchType == "Promotion Type(Dollar/Percent)"){
+		$insertStatement = "SELECT PromoCode, Name, Description, 
+		AmountOff, PromoType FROM Promotion 
+		WHERE PromoType = '$searchData'";
+	}
+	*/
+	//Construct SQL statements
+	
+	
+	//Execute the queries
+	$result = mysql_query($insertStatement);
+	$numberPromotionRows = mysql_num_rows($result);
 
-  //Execute the queries
-  $itemResult =   mysql_query($item_search_sql);
-	$promotionResult = mysql_query($promotion_search_sql);
-
-  //Test whether the queries were successful
-  if (!$itemResult)
-  {
-     $item_search_message = "The retrieval of items was unsuccessful: ".mysql_error();
-  }
-	if (!$promotionResult)
-  {
-     $promotion_search_message = "The retrieval of promotions was unsuccessful: ".mysql_error();
-  }
-
-  $number_item_rows = mysql_num_rows($itemResult);
-	$number_promotion_rows = mysql_num_rows($promotionResult);
-
-
-  // Check if results turned out empty
-	$item_search_message = "";
-	if ($number_item_rows == 0)
-		$item_search_message = "No items found in database";
-
-	$promotion_search_message = "";
-	if ($number_promotion_rows == 0)
-	  $promotion_search_message = "No promotions found in database";
-
-  //Display the results
-  show_items_promotions($item_search_message, $itemResult, $promotion_search_message, $promotionResult);
-
-  //Free the result sets
-  mysql_free_result($itemResult);
-	mysql_free_result($promotionResult);
-
-  function connect_and_select_db($server, $username, $pwd, $dbname)
-  {
-  	// Connect to db server
-  	$conn = mysql_connect($server, $username, $pwd);
-
-  	if (!$conn) {
-  	    echo "Unable to connect to DB: " . mysql_error();
-      	    exit;
-  	}
-
-  	// Select the database
-  	$dbh = mysql_select_db($dbname);
-  	if (!$dbh){
-      		echo "Unable to select ".$dbname.": " . mysql_error();
-  		exit;
-  	}
-  }
+	//Test whether the queries were successful
+	if (!$result || $numberPromotionRows == 0) {
+	   $message = "The retrieval of promotions was unsuccessful";
+	}
+	//Display the results
+	displayItemsPromotions($message, $result);
+	
+	//Free the result sets
+	mysql_free_result($result);
 
 }
 
+function displayItemsPromotions($promoMessage, $promoResult) {
+
+	
+
+
+	while ($row = mysql_fetch_assoc($promoResult)) {
+    $promoCode = $row['PromoCode'];
+    $name = $row['Name'];
+    $description = $row['Description'];
+    $amountOff = $row['AmountOff'];
+    $promoType = $row['PromoType'];
+    
+//echo '<input type="hidden" name="promoCode[]" value=$promoCode>';
+//echo '<input type="hidden" name="amountOff" value="'.$amountOff.'" >';
+//echo '<input type="hidden" name="promoType" value="'.$promoType.'" >';
+
+		echo <<<EOD
+	
+    <tr>
+			<td><input type='radio' name='promo' value=$promoCode></td>
+			<td>$promoCode</td>
+      		<td>$name</td>
+			<td>$description</td>
+			<td>$amountOff</td>
+			<td>$promoType</td>
+		</tr>
+	
+EOD;
+}
+
+
+
+
+
+}
+	
 ?>
+	</table>
+	<br/>
+	<a href="assign_promotion_item_view.html"><button class="button">Back</button></a>
+	<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
+	</form>
+		</center>
+  </body>
+</html>
