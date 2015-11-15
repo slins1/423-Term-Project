@@ -29,7 +29,7 @@ function insertAdEvent() {
 	$startDateUnformatted = $_POST['startDate'];
 	$endDateUnformatted = $_POST['endDate'];
 	$description = $_POST['description'];
-	$type = $_POST['type'];
+	$type = $_POST['eventType'];
 		
 	$temp = "";
 	$startDates	= explode("/", $startDateUnformatted); //[10], [28], [2015]

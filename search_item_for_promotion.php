@@ -31,6 +31,7 @@ searchItemsByCategory();
 
 function searchItemsByCategory() {
 	$promoCode = $_POST['promoCode'];
+	$promoName = $_POST['promoName'];
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
 
@@ -166,17 +167,18 @@ function searchItemsByCategory() {
 	
 	//Display the results
   displayItemsPromotions($item_search_message, $itemResult, $promoCode,
-    $amountOff, $promoType);
+    $promoName, $amountOff, $promoType);
   //Free the result sets
 	mysql_free_result($itemResult);
 }
 
 function displayItemsPromotions($item_search_message, $itemResult, $promoCode,
-    $amountOff, $promoType) {
+    $promoName, $amountOff, $promoType) {
 	    
 	  echo <<<EOD
 	<p>$item_search_message</p>
 	<input type="hidden" name="promoCode" value="$promoCode">
+	<input type="hidden" name="promoName" value="$promoName">
   <input type="hidden" name="amountOff" value="$amountOff">
   <input type="hidden" name="promoType" value="$promoType">
   <tr>
