@@ -14,6 +14,7 @@
 		<h1>Advertisement Event System - Assign Promotion to an Item</h1></a><br/><hr/>
 	</div>
 </head>
+<center>
 
 <?php
 require('db_connect.inc');
@@ -23,8 +24,11 @@ insert_promotionItem();
 
 function insert_promotionItem() {
 	$promoCode = $_POST['promoCode'];
+	$promoName = $_POST['promoName'];
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
+
+echo "<h2>The following items were added to the promotion: $promoName</h2>";
 
 	if (isset($_POST['saleItems'])) {
 
@@ -33,7 +37,9 @@ function insert_promotionItem() {
 
     for ($k = 0; $k < $arraySize; $k++) {
     	$current_item = $itemArray[$k];
-    	$item_search_sql ="SELECT ItemNumber, FullRetailPrice FROM Item WHERE ItemNumber = '$current_item'";
+    	$item_search_sql ="SELECT ItemNumber, ItemDescription,
+    	Category, DepartmentName , PurchaseCost, FullRetailPrice 
+    	FROM Item WHERE ItemNumber = '$current_item'";
     	$itemResult = mysql_query($item_search_sql);
       if (!$itemResult) {
      		$item_search_message = "The retrieval of items was unsuccessful";
@@ -49,6 +55,10 @@ function insert_promotionItem() {
         	
 			$row = mysql_fetch_assoc($itemResult);
 			$itemNumber = $row['ItemNumber'];
+			$itemDescription = $row['ItemDescription'];
+			$category = $row['Category'];
+			$departmentName = $row['DepartmentName'];
+			$purchaseCost = $row['PurchaseCost'];
 			$fullRetailPrice = $row['FullRetailPrice'];
       if ($promoType == "Dollar") {
         $salePrice = $fullRetailPrice - $amountOff;
@@ -59,15 +69,45 @@ function insert_promotionItem() {
 			
 			$result = mysql_query($insertStatement);
 			if (!$result) {
-  			echo "<h2>Error in inserting Promotion: $name , $description</h2>";
+  			echo "<h2>Error in inserting Promotions</h2>";
 			} else {
-	  		echo "<h2>The Promotion $name was inserted successfully</h2>";
+	  		echo <<<EOD
+	  		<br />
+	  		<table>
+	  			<tr>
+	  				<td>Item Number</td>
+	  				<td>$itemNumber</td>
+	  			</tr>
+	  			<tr>
+	  				<td>Item Description</td>
+	  				<td>$itemDescription</td>
+	  			</tr>
+	  			<tr>
+	  				<td>Category</td>
+	  				<td>$category</td>
+	  			</tr>
+	  			<tr>
+	  				<td>Department Name</td>
+	  				<td>$departmentName</td>
+	  			</tr>
+	  			<tr>
+	  				<td>Purchase Cost</td>
+	  				<td>$purchaseCost</td>
+	  			</tr>
+	  			<tr>
+	  				<td>Full Retail Price</td>
+	  				<td>$fullRetailPrice</td>
+	  			</tr>
+	  		</table>
+EOD;
 			} 
 		}
 	} else {
 		echo "<h2>No sale items</h2>";
 	}
 }
+
+
 ?>
 <p>
 	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
