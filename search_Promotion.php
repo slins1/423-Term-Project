@@ -57,7 +57,7 @@ connect();
 
     $eventCode = $_POST['adEvent'];
 
-
+//i added a comment
     $adEvent_search_sql = "SELECT Name FROM AdEvent WHERE EventCode = '$eventCode'";
 
     $adEventResult = mysql_query($adEvent_search_sql);
