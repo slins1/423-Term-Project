@@ -40,6 +40,7 @@ function retrievePromotions() {
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
 
+
 	if(($promoType == 'Percent') && ($amountOff >= 1)){
 		$amountOff = $amountOff/100;
 		$amountOff = ltrim($amountOff, "0");
