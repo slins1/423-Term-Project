@@ -58,8 +58,17 @@ connect();
     $eventCode = $_POST['adEvent'];
 
 
+    $adEvent_search_sql = "SELECT Name FROM AdEvent WHERE EventCode = '$eventCode'";
+
+    $adEventResult = mysql_query($adEvent_search_sql);
+
+    $row = mysql_fetch_assoc($adEventResult);
+
+    $eventName = $row['Name'];
+
   echo <<<EOD
     <input type="hidden" name="eventCode" value="$eventCode">
+    <input type="hidden" name="eventName" value="$eventName">
 EOD;
 ?>
 

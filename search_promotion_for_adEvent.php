@@ -31,6 +31,7 @@ searchPromotions();
 
 function searchPromotions() {
 	$eventCode = $_POST['eventCode'];
+	$eventName = $_POST['eventName'];
 
 	$promoCode = $_POST['promoCode'];
 	$name = $_POST['name'];
@@ -124,17 +125,19 @@ function searchPromotions() {
 	}
 	
 	//Display the results
-  displayItemsPromotions($promo_search_message, $promoResult, $eventCode);
+  displayItemsPromotions($promo_search_message, $promoResult, $eventCode,
+  	$eventName);
   //Free the result sets
 	mysql_free_result($promoResult);
 }
 
 function displayItemsPromotions($promo_search_message, $promoResult, 
-	$eventCode) {
+	$eventCode, $eventName) {
 	    
 	  echo <<<EOD
 	<p>$promo_search_message</p>
 	<input type="hidden" name="eventCode" value="$eventCode">
+	<input type="hidden" name="eventName" value="$eventName">
   <tr>
 		<td></td>
 		<td><b>PROMO CODE</b></td>

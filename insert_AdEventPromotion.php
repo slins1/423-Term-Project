@@ -14,6 +14,7 @@
 		<h1>Advertisement Event System - Assign Promotion to an Ad Event</h1></a><br/><hr/>
 	</div>
 </head>
+<center>
 
 <?php
 require('db_connect.inc');
@@ -23,7 +24,9 @@ insert_AdEventPromotion();
 
 function insert_AdEventPromotion() {
 	$eventCode = $_POST['eventCode'];
+	$eventName = $_POST['eventName'];
 	
+echo "<h2> The Following Promotions were added to the Ad Event: $eventName </h2>";
 
 	if (isset($_POST['promos'])) {
 
@@ -32,14 +35,48 @@ function insert_AdEventPromotion() {
 
     for ($k = 0; $k < $arraySize; $k++) {
     	$promoCode = $promoArray[$k];
-    	
+    	$promo_search_sql = "SELECT * FROM Promotion WHERE PromoCode = '$promoCode'";
+    	$promoResult = mysql_query($promo_search_sql);
+
+    	$row = mysql_fetch_assoc($promoResult);
+    	$promoCode = $row['PromoCode'];
+    	$name = $row['Name'];
+    	$description = $row['Description'];
+    	$amountOff = $row['AmountOff'];
+    	$promoType = $row['PromoType'];
+
+
       $insertStatement = "INSERT INTO AdEventPromotion (EventCode, PromoCode) VALUES ('$eventCode','$promoCode')";
 			
 			$result = mysql_query($insertStatement);
 			if (!$result) {
   			echo "<h2>Error in inserting Ad Event</h2>";
 			} else {
-	  		echo "<h2>The Ad Events were inserted successfully</h2>";
+	  		echo <<<EOD
+	  		<br />
+	  		<table>
+	  			<tr>
+	  				<td>Promo Code</td>
+	  				<td>$promoCode</td>
+	  			</tr>
+	  			<tr>
+	  				<td>Name</td>
+	  				<td>$name</td>
+	  			</tr>
+	  			<tr>
+	  				<td>Description</td>
+	  				<td>$description</td>
+	  			</tr>
+	  			<tr>
+	  				<td>AmountOff</td>
+	  				<td>$amountOff</td>
+	  			</tr>
+	  			<tr>
+	  				<td>Promo Type</td>
+	  				<td>$promoType</td>
+	  			</tr>
+	  		</table>
+EOD;
 			} 
 		}
 	} else {

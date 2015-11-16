@@ -118,14 +118,41 @@
         
   
 <?php
+<<<<<<< HEAD
 	$promoCode = $_POST['promoCode'];
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
+=======
+require('db_connect.inc');
+connect();
+
+    $promoCode1 = $_POST['promo'];
+
+
+    
+            $promo_search_sql ="SELECT PromoCode, Name, AmountOff, PromoType 
+            FROM Promotion WHERE PromoCode = $promoCode1";
+
+            $promoResult = mysql_query($promo_search_sql);
+            $row = mysql_fetch_assoc($promoResult);
+
+            $promoCode = $row['PromoCode'];
+            $promoName = $row['Name'];
+            $amountOff = $row['AmountOff'];
+            $promoType = $row['PromoType'];
+
+
+        
+	//$promoCode = $_POST['promoCode'];
+	//$amountOff = $_POST['amountOff'];
+	//$promoType = $_POST['promoType'];
+>>>>>>> refs/remotes/origin/master
 
 
 
   echo <<<EOD
     <input type="hidden" name="promoCode" value="$promoCode">
+    <input type="hidden" name="promoName" value="$promoName">
     <input type="hidden" name="amountOff" value="$amountOff">
     <input type="hidden" name="promoType" value="$promoType">
 EOD;
