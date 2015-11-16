@@ -1,46 +1,35 @@
+
+<!DOCTYPE html>
 <html>
 <head>
-        <link rel="stylesheet" href="jquery-ui.css">
-        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-        <script src="_script.js"></script>
-        <link rel="stylesheet" type="text/css" href="_main.css">
-        <link rel="logo_favicon.jpg" href="/favicon.ico"/>
-        <title>Aptaris - Advertisement Event System</title>
-
-        <div class="header"><a href="index.html">
-                <img src="logo_100.jpg" alt="logo" />
-                <h1>Advertisement Event System - Update Item</h1></a><br/><hr/>
-        </div>
+	<link rel="stylesheet" href="jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="_script.js"></script>
+	<link rel="stylesheet" type="text/css" href="_main.css">
+	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+	<title>Aptaris - Advertisement Event System</title>
+	
+	<div class="header"><a href="index.html">
+		<img src="logo_100.jpg" alt="logo" />
+		<h1>Advertisement Event System - Update Item</h1></a><br/><hr/>
+	</div>
 </head>
-<body>
-        <center>
-    <form action='update_item.php' method='post' onsubmit="">
 
-    <h2>Update an Item:</h2>
+<body> 
+	<center>  
+    <form action='search_item_for_update.php' method='post' onsubmit="return validateCategory(this)">
+        
+    <h2>Search for a Item to Update:</h2>
     <p><b>Item Number:</b></p>
-
-<?php
-$row = $_POST['row'];
-$implode = implode(',',$row);
-$explode = explode(',', $implode);
-$itemNumber = $explode[0];
-$itemDescription = $explode[1];
-$category = $explode[2];
-$departmentName = $explode[3];
-$purchaseCost = $explode[4];
-$fullRetailPrice = $explode[5];
-echo '<input type="text" name="itemNum" id="itemNum" value = "'.$itemNumber.'">';
-echo <<<EOD
+        <input type="text" name="itemNumber" id="itemNumber"
+        placeholder="Enter an Item Number">
     <p><b>Item Description:</b></p>
-EOD;
-echo '<input type="text" name="itemDescription" id="itemDescription" value = "'.$itemDescription.'">';
-echo <<<EOD
+        <input type="text" name="itemDescription" id="itemDescription"
+        placeholder="Enter an Item Description">
     <p><b>Category:</b></p>
-EOD;
-echo '<select name="category" id="category" selected = "'.$category.'">';
-echo <<<EOD
-            <option selected disabled>$category</option>
+        <select name="category" id="category">
+            <option>---</option>
             <option>ACCESSORIES/FOOTWEAR</option>
             <option>BASIC APPAREL</option>
             <option>CHILDRENS APPAREL</option>
@@ -61,10 +50,8 @@ echo <<<EOD
             <option>WOMENS APPAREL</option>
         </select>
         <p><b>Department Name</b></p>
-EOD;
-echo '<select name="departmentName" id="departmentName" selected="'.$departmentName.'">';
-echo <<<EOD
-            <option selected disabled>$departmentName</option>
+        <select name="departmentName" id="departmentName">
+            <option>---</option>
             <option>ACCESSORIES</option>
             <option>FOOTWEAR</option>
             <option>CHILDRENS BASICS</option>
@@ -123,14 +110,14 @@ echo <<<EOD
             <option>PLUS TOPS</option>
             <option>SLEEPWEAR/SCRUBS</option>
         </select>
-<p>
-EOD;
-echo '<p><b>Purchase Cost:</b></p>';
-echo '<input type="text" name="purchaseCost" id="purchaseCost" value="'.$purchaseCost.'">';
-echo '<p><b>Full Retail Price:</b></p>';
-echo '<input type="text" name="fullRetailPrice" id="fullRetailPrice" value="'.$fullRetailPrice.'">';
-echo '<input type="hidden" name="itemNumber" id="itemNumber" value="'.$itemNumber.'">';
-?>			
+        <p><b>Purchase Cost:</b></p>
+        <input type="text" name="purchaseCost" id="purchaseCost"
+        placeholder="Enter a Purchase Cost">
+        <p><b>Full Retail Price:</b></p>
+        <input type="text" name="fullRetailPrice" id="fullRetailPrice"
+        placeholder="Enter a Full Retial Price">
+        
+<p>			
 		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
 		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
 	</p>
@@ -138,3 +125,4 @@ echo '<input type="hidden" name="itemNumber" id="itemNumber" value="'.$itemNumbe
 	</center>
 </body>
 </html>
+

@@ -21,35 +21,21 @@
 	<form action='search_promotion_item.php' method='post'>
 		
 		<h2>Search for a promotion to add the items to:</h2>
-		<table>
-				<tr>
-					<td><p><b>Promo Code:</b></td>
-					<td><input type="text" name="promoCode" id="promoCode"
-					placeholder="Enter a Promo Code"></p></td>
-				</tr>
-				<tr>
-					<td><p><b>Name:</b></td>
-					<td><input type="text" name="name" id="name"
-						placeholder= "Enter a Name"></p></td>
-				</tr>
-				<tr>
-					<td><p><b>Description:</b></td>
-					<td><input type="text" name="description" id="description" placeholder="Enter a Description"></p></td>
-				</tr>
-				<tr>
-					<td><p><b>Amount Off:</b></td>
-					<td><input type="text" name="amountOff" id="amountOff" placeholder="Enter an Amount off"></p></td>
-				</tr>
-				<tr>
-					<td><p><b>Promotion Type:</b></td>
-					<td><select name="promoType" id="promoType">
-                    	<option>---</option>
-                    	<option>Dollar</option>
-                    	<option>Percent</option>
-                	</select>
-                	</p></td>
-            	</tr>
-            </table>
+				<p><b>Promo Code:</b></p>
+				<input type="text" name="promoCode" id="promoCode"
+				placeholder="Enter a Promo Code">
+				<p><b>Name:</b></p>
+				<input type="text" name="name" id="name" placeholder="Enter a Name">
+				<p><b>Description:</b></p>
+				<input type="text" name="description" id="description" placeholder="Enter a Description">
+				<p><b>Amount Off:</b></p>
+				<input type="text" name="amountOff" id="amountOff" placeholder="Enter an Amount off">
+				<p><b>Promotion Type:</b></p>
+				<select name="promoType" id="promoType">
+                    <option>---</option>
+                    <option>Dollar</option>
+                    <option>Percent</option>
+                </select>
 
 		<p>
 			<button type="reset" name="reset" value="Reset" accesskey="R" class="button">Reset</button>

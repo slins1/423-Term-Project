@@ -58,17 +58,17 @@ function insert_promotionItem() {
       $insertStatement = "INSERT INTO PromotionItem (PromoCode, ItemNumber, SalePrice) VALUES ('$promoCode','$itemNumber', '$salePrice')";
 			
 			$result = mysql_query($insertStatement);
-			if (!$result) {
-  			echo "<h2>Error in inserting Promotions</h2>";
-			} else {
-	  		echo "<h2>The Promotions were inserted successfully</h2>";
-			} 
+			
 		}
 	} else {
 		echo "<h2>No sale items</h2>";
 	}
 }
-
+if (!$result) {
+  			echo "<h2>Error in inserting Promotions</h2>";
+			} else {
+	  		echo "<h2>The Promotions were inserted successfully</h2>";
+			} 
 ?>
 <p>
 	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
