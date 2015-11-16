@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,11 +17,10 @@
 </head>
 
   <center>
-  <form action='search_item.php' method='post'>
+  <form action='index.html' method='post'>
 	<h2>Please select a promotion and click submit to confirm, or click back to go back</h2>
 	<table>
 		<tr>
-		<td></td>
 		<td><b>PROMO CODE</b></td>
 		<td><b>NAME</b></td>
 		<td><b>DESCRIPTION</b></td>
@@ -175,9 +175,8 @@ function displayItemsPromotions($promoMessage, $promoResult) {
 		echo <<<EOD
 	
     <tr>
-			<td><input type='radio' name='promo' value=$promoCode></td>
 			<td>$promoCode</td>
-      		<td>$name</td>
+      			<td>$name</td>
 			<td>$description</td>
 			<td>$amountOff</td>
 			<td>$promoType</td>
@@ -195,9 +194,11 @@ EOD;
 ?>
 	</table>
 	<br/>
-	<a href="assign_promotion_item_view.html"><button class="button">Back</button></a>
-	<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
+	<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Back To Main Menu</button>
 	</form>
+	<br/>
+		<a href="report_promotion_view.html"><button name="insert" class="button">Run Another Report</button></a>
+
 		</center>
   </body>
 </html>
