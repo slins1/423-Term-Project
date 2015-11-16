@@ -51,8 +51,8 @@ input[type="text"]:focus {
   box-shadow: 0 0 5px 1px #969696;
 }
 
-/* 
-	HEADER ELEMENTS 
+/*
+	HEADER ELEMENTS
 */
 img {
 	display: block;
@@ -77,4 +77,16 @@ img {
 .center {
 	width: 30%;
 	margin: 0 auto;
+}
+
+.error{
+	color: red;
+	float:left;
+}
+.correct{
+	color: green;
+	float: left;
+}
+.statusImage{
+	float: left;
 }

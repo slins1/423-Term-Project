@@ -5,10 +5,11 @@
 	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
+	<script type="text/javascript" src="validate_promotion_insert.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+	<link rel="logo_favicon.jpg" href="/favicon.ico"/>
 	<title>Aptaris - Advertisement Event System</title>
-	
+
 	<div class="header"><a href="index.html">
 		<img src="logo_100.jpg" alt="logo" />
 		<h1>Advertisement Event System - Insert Promotion</h1></a><br/><hr/>
@@ -17,26 +18,37 @@
 
 <body>
 	<center>
-	<form action="insert_promotion.php" method="post">
+	<form action="insert_promotion.php" method="post" name="addPromotion" id="addPromotion" onSubmit="return validate_promotion();">
 		<table border="1" cellpadding="5">
 			<tr>
 				<td align="left">Promotion Name:</td>
-				<td align="center"><input type="text" name="name" id="name" maxlength="25" size="40" placeholder="e.g. Candy Sale"></td>
+				<td align="center"><input type="text" name="name" id="name" maxlength="25" size="40" placeholder="e.g. Candy Sale"/>
+				<span id="errorPromoName" class="error"></span>
+			<span id="successPromoName" class="error"></span></td>
 			</tr>
 			<tr>
 				<td align="left">Description:</td>
-				<td align="center"><input type="text" name="description" id="description" maxlength="100" size="40" placeholder="e.g. Only items listed are eligible"></td>
+				<td align="center"><input type="text" name="description" id="description" maxlength="100" size="40" placeholder="e.g. Only items listed are eligible"/>
+				<span id="errorPromoDescription" class="error"></span>
+			<span id="successPromoDescription" class="error"></span></td>
 			</tr>
 			<tr>
 				<td align="left">Amount Off:</td>
-				<td align="center"><input type="text" name="amountOff" id="amountOff" maxlength="10" size="40" placeholder="e.g. 50%"></td>
+				<td align="center"><input type="text" name="amountOff" id="amountOff" maxlength="10" size="40" placeholder="e.g. 50%"/>
+				<span id="errorAmountOff" class="error"></span>
+			<span id="successAmountOff" class="error"></span></td>
 			</tr>
 			<tr>
 				<td align="left">Promo Type:</td>
-				<td align="center"><input type="text" name="promoType" id="promoType" maxlength="10" size="40" placeholder="e.g. Percent"></td>
+				<td align="center"><select name="promoType" id="promoType">
+                    	<option>Dollar</option>
+                    	<option>Percent</option>
+                	</select>
+				<span id="errorPromoType" class="error"></span>
+			<span id="successPromoType" class="error"></span></td>
 			</tr>
 		</table>
-		
+
 		<p>
 			<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
 			<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
