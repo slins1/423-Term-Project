@@ -18,21 +18,11 @@
 <body>  
 	<center>
  
-	<form action='search_promotion_adEvent.php' method='post'>
+	<form action='search_adEvent_date.php' method='post'>
 		
-		<h2>Search for an Ad Event to add Promotions to:</h2>
+		<h2>Search for an Ad Event by date:</h2>
 		<table>
-				<tr>
-					<td><p><b>Event Code:</b></td>
-					<td><input type="text" name="eventCode" id="eventCode"
-					placeholder="Enter an Event Code"></p></td>
-				</tr>
-				<tr>
-					<td><p><b>Name:</b></td>
-					<td><input type="text" name="name" id="name"
-						placeholder= "Enter a Name"></p></td>
-				</tr>
-				<tr>
+					<tr>
 					<td><p><b>Start Date:</b></td>
 					<td><input type="text" name="startDate" id="startDate" placeholder="Enter a date"></p></td>
 				</tr>
@@ -40,20 +30,7 @@
 					<td><p><b>End Date:</b></td>
 					<td><input type="text" name="endDate" id="endDate" placeholder="Enter a date"></p></td>
 				</tr>
-				<tr>
-					<td><p><b>Description:</b></td>
-					<td><input type="text" name="description" id="description" placeholder="Enter a Description"></p></td>
-				</tr>
-				<tr>
-					<td><p><b>Ad Type:</b></td>
-					<td><div class="dropDown"><select name="adType" id="adType">
-                    	<option>Planner</option>
-                    	<option>Circular</option>
-                    	<option>PassOut</option>
-                	</select></div>
-                	</p></td>
-            	</tr>
-            </table>
+               </table>
 
 		<p>
 			<button type="reset" name="reset" value="Reset" accesskey="R" class="button">Reset</button>

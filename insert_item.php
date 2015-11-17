@@ -37,7 +37,7 @@ function insertItem() {
 	// Execute the query--it will return either true or false
 	$result = mysql_query($insertStatement);
 	$message = "";
-	if(!$result) {
+	if (!$result) {
 		$message = "Error in inserting Item: $itemNum, $description";
 	} else {
 		$message = "Data for Item: $itemNum inserted successfully";
