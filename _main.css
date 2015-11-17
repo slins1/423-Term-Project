@@ -20,6 +20,10 @@ td {
     padding: 3px 7px 2px 7px;
 }
 
+.noBorder {
+    border: 0px;
+}
+
 th {
     font-size: 1.1em;
     text-align: left;
