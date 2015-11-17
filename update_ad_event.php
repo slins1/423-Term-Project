@@ -11,7 +11,7 @@
       
       <div class="header"><a href="index.html">
 			<img src="logo_100.jpg" alt="logo" />
-			<h1>Advertisement Event System - Insert an Item</h1></a>
+			<h1>Advertisement Event System - Update an Ad Event</h1></a>
 			<br/><hr/>
 		</div>
   </head>
@@ -21,32 +21,31 @@
 <?php
 require ('db_connect.inc');
 connect();
-//Insert item into the database
-insertItem();
+//Update ad event in the database
+updateAdEvent();
 
-function insertItem() {
-	$itemNum = $_POST['itemNum'];
+function updateAdEvent() {
+	$eventCode = $_POST['eventCode'];
+	$oldCode = $_POST['code'];
+	$name = $_POST['name'];
 	$description = $_POST['description'];
-	$category = $_POST['category'];
-	$deptName = $_POST['deptName'];
-	$purchaseCost = $_POST['purchaseCost'];
-	$retailPrice = $_POST['retailPrice'];
-
-	$insertStatement = "INSERT INTO Item (ItemNumber, ItemDescription, Category, DepartmentName, PurchaseCost, FullRetailPrice) values ( '$itemNum', '$description', '$category', '$deptName', '$purchaseCost', '$retailPrice')";
+	$startDate = $_POST['startDate'];
+	$endDate = $_POST['endDate'];
+	$eventType = $_POST['eventType'];
 	
+	$updateStatement = "Update AdEvent SET EventCode = '".$eventCode."', Description = '".$description."', Name = '".$name."', StartDate = '".$startDate."', EndDate = '".$endDate."', EventType = '".$eventType."' WHERE EventCode = '".$oldCode."'";
 	// Execute the query--it will return either true or false
-	$result = mysql_query($insertStatement);
+	$result = mysql_query($updateStatement);
 	$message = "";
-	if (!$result) {
-		$message = "Error in inserting Item: $itemNum, $description";
+	if(!$result) {
+		$message = "Error in updating Ad Event: $eventCode, $description";
 	} else {
-		$message = "Data for Item: $itemNum inserted successfully";
+		$message = "Data for Event Code: $eventCode updated successfully";
 	}
-
-	showItemInsertResult($message, $itemNum, $description, $category, $deptName, $purchaseCost, $retailPrice);
+	showItemUpdateResult($message, $eventCode, $description, $name, $startDate, $endDate, $eventType);
 }
 
-function showItemInsertResult($message, $itemNum, $description, $category, $deptName, $purchaseCost, $retailPrice) {
+function showItemUpdateResult($message, $eventCode, $description, $name, $startDate, $endDate, $eventType) {
 
   // If the message is non-null and not an empty string print it
   // message contains the lastname and firstname
@@ -61,7 +60,7 @@ function showItemInsertResult($message, $itemNum, $description, $category, $dept
 ?>
 <p>
 	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
-	<a href="insert_item_view.html"><button name="insert"  accesskey="S" class="button">Insert another item</button></a>
+	<a href="update_ad_event_search_view.html"><button name="update"  accesskey="S" class="button">Update another ad event</button></a>
 </p>
 </center>
 </body>

@@ -33,8 +33,7 @@
         </tr>
         <tr>
             <td><p><b>Category:</b></td>
-            <td><select name="category" id="category">
-            <option>---</option>
+            <td><div class="dropDown"><select name="category" id="category">
             <option>ACCESSORIES/FOOTWEAR</option>
             <option>BASIC APPAREL</option>
             <option>CHILDRENS APPAREL</option>
@@ -53,12 +52,11 @@
             <option>SUPPLIES</option>
             <option>TOYS</option>
             <option>WOMENS APPAREL</option>
-        </select></p></td>
+        </select></div></p></td>
     </tr>
     <tr>
         <td><p><b>Department Name</b></td>
-        <td><select name="departmentName" id="departmentName">
-            <option>---</option>
+        <td><div class="dropDown"><select name="departmentName" id="departmentName">
             <option>ACCESSORIES</option>
             <option>FOOTWEAR</option>
             <option>CHILDRENS BASICS</option>
@@ -116,7 +114,7 @@
             <option>PLUS BOTTOMS</option>
             <option>PLUS TOPS</option>
             <option>SLEEPWEAR/SCRUBS</option>
-        </select></p></td>
+        </select></div></p></td>
     </tr>
     <tr>
         <td><p><b>Purchase Cost:</b></td>
