@@ -39,6 +39,11 @@ function searchPromotions() {
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
 
+	if(($promoType == 'Percent') && ($amountOff >= 1)){
+		$amountOff = $amountOff/100;
+		$amountOff = ltrim($amountOff, "0");
+	}
+
 	$cond1 = "";
 	$cond2 = "";
 	$cond3 = "";
@@ -56,7 +61,7 @@ function searchPromotions() {
 		$cond3 = "Description = '".$description."'";
 	}
 	if(isset($amountOff) && ($amountOff != "")){
-		$cond4 = "AmountOff = '".$amountOff."'";
+		$cond4 = "AmountOff = ".$amountOff."";
 	}
 	if(isset($promoType) && ($promoType != "---")){
 		$cond5 = "PromoType = '".$promoType."'";
