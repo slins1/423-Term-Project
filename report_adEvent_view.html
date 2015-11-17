@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="jquery-ui.css">
+	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="_script.js"></script>
+	<link rel="stylesheet" type="text/css" href="_main.css">
+	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+	<title>Aptaris - Advertisement Event System</title>
+	
+	<div class="header"><a href="index.html">
+		<img src="logo_100.jpg" alt="logo" />
+		<h1>Advertisement Event System - Assign Promotion to an Ad Event</h1></a><br/><hr/>
+	</div>
+</head>
+
+<body>  
+	<center>
+ 
+	<form action='search_adEvent_date.php' method='post'>
+		
+		<h2>Search for an Ad Event by date:</h2>
+		<table>
+					<tr>
+					<td><p><b>Start Date:</b></td>
+					<td><input type="text" name="startDate" id="startDate" placeholder="Enter a date"></p></td>
+				</tr>
+				<tr>
+					<td><p><b>End Date:</b></td>
+					<td><input type="text" name="endDate" id="endDate" placeholder="Enter a date"></p></td>
+				</tr>
+               </table>
+
+		<p>
+			<button type="reset" name="reset" value="Reset" accesskey="R" class="button">Reset</button>
+			<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
+		</p>
+	</form>
+</center>
+
+</body>
+</html>

@@ -11,21 +11,21 @@
 	
 	<div class="header"><a href="index.html">
 		<img src="logo_100.jpg" alt="logo" />
-		<h1>Advertisement Event System - Assign Promotion to an Item</h1></a><br/><hr/>
+		<h1>Advertisement Event System - Assign Promotion to an Ad Event</h1></a><br/><hr/>
 	</div>
 </head>
 
 <body>  
 	<center>
  
-	<form action='search_promotion_item.php' method='post'>
+	<form action='search_promotion_adEvent.php' method='post'>
 		
-		<h2>Search for a promotion to add the items to:</h2>
+		<h2>Search for an Ad Event to add Promotions to:</h2>
 		<table>
 				<tr>
-					<td><p><b>Promo Code:</b></td>
-					<td><input type="text" name="promoCode" id="promoCode"
-					placeholder="Enter a Promo Code"></p></td>
+					<td><p><b>Event Code:</b></td>
+					<td><input type="text" name="eventCode" id="eventCode"
+					placeholder="Enter an Event Code"></p></td>
 				</tr>
 				<tr>
 					<td><p><b>Name:</b></td>
@@ -33,18 +33,24 @@
 						placeholder= "Enter a Name"></p></td>
 				</tr>
 				<tr>
+					<td><p><b>Start Date:</b></td>
+					<td><input type="text" name="startDate" id="startDate" placeholder="Enter a date"></p></td>
+				</tr>
+				<tr>
+					<td><p><b>End Date:</b></td>
+					<td><input type="text" name="endDate" id="endDate" placeholder="Enter a date"></p></td>
+				</tr>
+				<tr>
 					<td><p><b>Description:</b></td>
 					<td><input type="text" name="description" id="description" placeholder="Enter a Description"></p></td>
 				</tr>
 				<tr>
-					<td><p><b>Amount Off:</b></td>
-					<td><input type="text" name="amountOff" id="amountOff" placeholder="Enter an Amount off"></p></td>
-				</tr>
-				<tr>
-					<td><p><b>Promotion Type:</b></td>
-					<td><select name="promoType" id="promoType">
-                    	<option>Dollar</option>
-                    	<option>Percent</option>
+					<td><p><b>Ad Type:</b></td>
+					<td><select name="adType" id="adType">
+                    	<option>---</option>
+                    	<option>Planner</option>
+                    	<option>Circular</option>
+                    	<option>PassOut</option>
                 	</select>
                 	</p></td>
             	</tr>

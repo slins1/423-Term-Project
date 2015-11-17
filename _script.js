@@ -1,8 +1,8 @@
-function hello() {
-    $("#main").html("Hello jQuery");
-}
-$(document).ready(function() {
-    $(function() {
-    $( "#accordion" ).accordion();
-  });
+$(function() {
+  $(".button").button();
+  $("#startDate, #endDate").datepicker();
 });
+
+function goBack() {
+	window.history.back();
+}

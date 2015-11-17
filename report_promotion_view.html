@@ -18,24 +18,10 @@
 <body>  
 	<center>
  
-	<form action='search_promotion_item.php' method='post'>
+	<form action='search_promotion_amountOff.php' method='post'>
 		
 		<h2>Search for a promotion to add the items to:</h2>
 		<table>
-				<tr>
-					<td><p><b>Promo Code:</b></td>
-					<td><input type="text" name="promoCode" id="promoCode"
-					placeholder="Enter a Promo Code"></p></td>
-				</tr>
-				<tr>
-					<td><p><b>Name:</b></td>
-					<td><input type="text" name="name" id="name"
-						placeholder= "Enter a Name"></p></td>
-				</tr>
-				<tr>
-					<td><p><b>Description:</b></td>
-					<td><input type="text" name="description" id="description" placeholder="Enter a Description"></p></td>
-				</tr>
 				<tr>
 					<td><p><b>Amount Off:</b></td>
 					<td><input type="text" name="amountOff" id="amountOff" placeholder="Enter an Amount off"></p></td>
@@ -43,6 +29,7 @@
 				<tr>
 					<td><p><b>Promotion Type:</b></td>
 					<td><select name="promoType" id="promoType">
+                    	<option>---</option>
                     	<option>Dollar</option>
                     	<option>Percent</option>
                 	</select>
