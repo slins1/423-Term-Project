@@ -5,6 +5,7 @@
 			<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 			<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
       <script src="_script.js"></script>
+      <script type="text/javascript" src="validate_item_insert.js"></script>
       <link rel="stylesheet" type="text/css" href="_main.css">
       <link rel="logo_favicon.jpg" href="/favicon.ico"/>
       <title>Aptaris - Advertisement Event System</title>
@@ -18,20 +19,24 @@
 
 <body>
 	<center>
-    <form action="insert_item.php" method="post" name="addItem" id="addItem">
+    <form action="insert_item.php" method="post" name="addItem" id="addItem" onSubmit="return validate_item();">
         <table>
             <tr>
-                <td>Item Number</td>
-                <td><input type="text" name="itemNum" id="itemNum" placeholder="e.g. 1234567" maxlength="7" size="16"/></td>
+                <td>Item Number:</td>
+                <td><input type="text" name="itemNum" id="itemNum" placeholder="e.g. 1234567" maxlength="7" size="16"/>
+                  <span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td>
             </tr>
             <tr>
-                <td>Item Description</td>
-                <td><textarea maxlength="50" rows="2" cols="20" name="description" placeholder="e.g. MENS BB METAL LOOP BELT BRWN XL" id="description"></textarea></td>
+                <td>Item Description:</td>
+                <td><textarea maxlength="50" rows="2" cols="20" name="itemDescription" placeholder="e.g. MENS BB METAL LOOP BELT BRWN XL" id="itemDescription"></textarea>
+                  <span id="errorItemDescription" class="error"></span>
+                  <span id="successItemDescription" class="correct"></span></td>
             </tr>
             <tr>
-                <td>Category</td>
+                <td>Category:</td>
                 <td>
-                    <select name="category" id="category">
+                   <div class="dropDown"> <select name="category" id="category">
                         <option>ACCESSORIES/FOOTWEAR</option>
                         <option>BASIC APPAREL</option>
                         <option>CHILDRENS APPAREL</option>
@@ -50,13 +55,13 @@
                         <option>SUPPLIES</option>
                         <option>TOYS</option>
                         <option>WOMENS APPAREL</option>
-                    </select>
+                    </select></div>
                 </td>
             </tr>
             <tr>
-                <td>Department Name</td>
+                <td>Department Name:</td>
                 <td>
-                    <select name="deptName" id="deptName">
+                    <div class="dropDown"><select name="deptName" id="deptName">
                         <option>ACCESSORIES</option>
                         <option>FOOTWEAR</option>
                         <option>CHILDRENS BASICS</option>
@@ -114,16 +119,20 @@
                         <option>PLUS BOTTOMS</option>
                         <option>PLUS TOPS</option>
                         <option>SLEEPWEAR/SCRUBS</option>
-                    </select>
+                    </select></div>
                 </td>
             </tr>
             <tr>
-                <td>Purchase Cost</td>
-                <td><input type="text" name="purchaseCost" id="purchaseCost" placeholder="e.g. 7.99" size="16"/></td>
+                <td>Purchase Cost:</td>
+                <td><input type="text" name="purchaseCost" id="purchaseCost" placeholder="e.g. 7.99" size="16"/>
+                <span id="errorPurchaseCost" class="error"></span>
+                <span id="successPurchaseCost" class="correct"></span></td>
             </tr>
             <tr>
-                <td>Full Retail Price</td>
-                <td><input type="text" name="retailPrice" id="retailPrice" placeholder="e.g. 9.99" size="16"/></td>
+                <td>Full Retail Price:</td>
+                <td><input type="text" name="retailPrice" id="retailPrice" placeholder="e.g. 9.99" size="16"/>
+                <span id="errorRetailPrice" class="error"></span>
+                <span id="successRetailPrice" class="correct"></span></td>
             </tr>
         </table>
         <p>

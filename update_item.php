@@ -11,7 +11,7 @@
       
       <div class="header"><a href="index.html">
 			<img src="logo_100.jpg" alt="logo" />
-			<h1>Advertisement Event System - Insert an Item</h1></a>
+			<h1>Advertisement Event System - Update an Item</h1></a>
 			<br/><hr/>
 		</div>
   </head>
@@ -21,32 +21,32 @@
 <?php
 require ('db_connect.inc');
 connect();
-//Insert item into the database
-insertItem();
+//Update item in the database
+updateItem();
 
-function insertItem() {
+function updateItem() {
+	$itemNumber = $_POST['itemNumber'];
 	$itemNum = $_POST['itemNum'];
-	$description = $_POST['description'];
+	$description = $_POST['itemDescription'];
 	$category = $_POST['category'];
-	$deptName = $_POST['deptName'];
+	$deptName = $_POST['departmentName'];
 	$purchaseCost = $_POST['purchaseCost'];
-	$retailPrice = $_POST['retailPrice'];
-
-	$insertStatement = "INSERT INTO Item (ItemNumber, ItemDescription, Category, DepartmentName, PurchaseCost, FullRetailPrice) values ( '$itemNum', '$description', '$category', '$deptName', '$purchaseCost', '$retailPrice')";
+	$retailPrice = $_POST['fullRetailPrice'];
+	
+	$updateStatement = "Update Item SET ItemNumber = '".$itemNum."', ItemDescription = '".$description."', Category = '".$category."', DepartmentName = '".$deptName."', PurchaseCost = '".$purchaseCost."', FullRetailPrice = '".$retailPrice."' WHERE ItemNumber = '".$itemNumber."'";
 	
 	// Execute the query--it will return either true or false
-	$result = mysql_query($insertStatement);
+	$result = mysql_query($updateStatement);
 	$message = "";
-	if (!$result) {
-		$message = "Error in inserting Item: $itemNum, $description";
+	if(!$result) {
+		$message = "Error in updating Item: $itemNum, $description";
 	} else {
-		$message = "Data for Item: $itemNum inserted successfully";
+		$message = "Data for Item: $itemNum updated successfully";
 	}
-
-	showItemInsertResult($message, $itemNum, $description, $category, $deptName, $purchaseCost, $retailPrice);
+	showItemUpdateResult($message, $itemNum, $description, $category, $deptName, $purchaseCost, $retailPrice);
 }
 
-function showItemInsertResult($message, $itemNum, $description, $category, $deptName, $purchaseCost, $retailPrice) {
+function showItemUpdateResult($message, $itemNum, $description, $category, $deptName, $purchaseCost, $retailPrice) {
 
   // If the message is non-null and not an empty string print it
   // message contains the lastname and firstname
@@ -61,7 +61,7 @@ function showItemInsertResult($message, $itemNum, $description, $category, $dept
 ?>
 <p>
 	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
-	<a href="insert_item_view.html"><button name="insert"  accesskey="S" class="button">Insert another item</button></a>
+	<a href="update_item_search_view.html"><button name="update"  accesskey="S" class="button">Update another item</button></a>
 </p>
 </center>
 </body>
