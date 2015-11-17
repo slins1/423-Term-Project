@@ -68,7 +68,7 @@ input[type="text"]:focus {
    height: 34px;
    overflow: hidden;
    background: url(images/down_arrow_select.jpg) no-repeat right #ffffff;
-   border: 3px solid #e4e4e4;
+   border: 1px solid #e4e4e4;
    }
 
 /*
