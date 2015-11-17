@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,20 +11,19 @@
 	
 	<div class="header"><a href="index.html">
 		<img src="images/logo_100.jpg" alt="logo" />
-		<h1>Advertisement Event System - Assign Promotion to an Item</h1></a><br/><hr/>
+		<h1>Advertisement Event System - Promotion Report</h1></a><br/><hr/>
 	</div>
 </head>
 
   <center>
   <form action='index.html' method='post'>
-	<h2>Please select a promotion and click submit to confirm, or click back to go back</h2>
-	<table>
+	<table cellpadding="5px">
 		<tr>
-		<td><b>PROMO CODE</b></td>
-		<td><b>NAME</b></td>
-		<td><b>DESCRIPTION</b></td>
-		<td><b>AMOUNT OFF</b></td>
-		<td><b>PROMOTION TYPE(DOLLAR/PERCENT)</b></td>
+		<th>Promo Code</th>
+		<th>Name</th>
+		<th>Description</th>
+		<th>Amount Off</th>
+		<th>Promotion Type</th>
 	</tr>
 <?php
 require('db_connect.inc');
