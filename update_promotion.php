@@ -32,18 +32,42 @@ function updatePromotion() {
 	$promoType = $_POST['promoType'];
 	
 	$updateStatement = "Update Promotion SET Name = '".$promoName."', Description = '".$description."', AmountOff = '".$amountOff."', PromoType = '".$promoType."' WHERE PromoCode = '".$promoCode."'";
-	echo "$updateStatement";
 	// Execute the query--it will return either true or false
 	$result = mysql_query($updateStatement);
 	$message = "";
 	if(!$result) {
 		$message = "Error in updating Promotion: $promoCode, $description";
 	} else {
-		$message = "Data for Item: $promoCode updated successfully";
+		$message = "Data for Promotion: $promoCode updated successfully";
 	}
+	recalculateSalePrice($promoCode);
 	showItemUpdateResult($message, $promoCode, $description, $promoName, $amountOff, $promoType);
 }
-
+function recalculateSalePrice($promoCode) {
+	$selectStatement = "Select * from PromotionItem Where PromoCode = '".$promoCode."'";
+	$myResult = mysql_query($selectStatement);
+	while ($row = mysql_fetch_assoc($myResult)){
+		$itemNum = $row['ItemNumber'];
+		$selectItemSql = "Select * from Item Where ItemNumber = '".$itemNum."'";
+		$selectPromotionSql = "Select * from Promotion Where PromoCode = '".$promoCode."'";
+		$itemResult = mysql_query($selectItemSql);
+		$promotionResult = mysql_query($selectPromotionSql);
+		$item = mysql_fetch_assoc($itemResult);
+		$promotion = mysql_fetch_assoc($promotionResult);
+		$itemPrice = $item['FullRetailPrice'];
+		$amountOff = $promotion['AmountOff'];
+		$discountType = $promotion['PromoType'];
+		if($discountType = "Dollar"){
+			$discountPrice = $itemPrice - $amountOff;
+		}
+		else{
+			$discountPrice = $itemPrice*(1-$amountOff);
+		}
+		$updateSql = "Update PromotionItem SET SalePrice = '".$discountPrice."' Where PromoCode = '".$promoCode."' AND ItemNumber = '".$itemNum."'";
+		$result1 = mysql_query($updateSql);
+	}
+	return;
+}
 function showItemUpdateResult($message, $promoCode, $description, $promoName, $amountOff, $promoType) {
 
   // If the message is non-null and not an empty string print it
