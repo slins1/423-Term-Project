@@ -68,6 +68,9 @@ echo "<h2>The following items were added to the promotion: $promoName</h2>";
       $insertStatement = "INSERT INTO PromotionItem (PromoCode, ItemNumber, SalePrice) VALUES ('$promoCode','$itemNumber', '$salePrice')";
 			
 			$result = mysql_query($insertStatement);
+<<<<<<< HEAD
+			
+=======
 			if (!$result) {
   			echo "<h2>Error in inserting Promotions</h2>";
 			} else {
@@ -101,13 +104,22 @@ echo "<h2>The following items were added to the promotion: $promoName</h2>";
 	  		</table>
 EOD;
 			} 
+>>>>>>> refs/remotes/origin/master
 		}
 	} else {
 		echo "<h2>No sale items</h2>";
 	}
 }
+<<<<<<< HEAD
+if (!$result) {
+  			echo "<h2>Error in inserting Promotions</h2>";
+			} else {
+	  		echo "<h2>The Promotions were inserted successfully</h2>";
+			} 
+=======
 
 
+>>>>>>> refs/remotes/origin/master
 ?>
 <p>
 	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
