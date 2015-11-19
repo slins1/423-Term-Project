@@ -18,19 +18,18 @@
 <body> 
 	<center>  
     <form action='search_item_for_update.php' method='post' onsubmit="return validateCategory(this)">
+        <h2>Search for an item to update</h2>
         <table border="1">
             <tr>
     <td align="left">Item Number:</td>
-    <td align="left"><input type="text" name="itemNumber" id="itemNumber"
-        placeholder="Enter an Item Number" size="30">
+    <td align="left"><input type="text" name="itemNumber" id="itemNumber" placeholder="Enter an Item Number" size="30">
          <span id="errorItemNum" class="error"></span>
                   <span id="successItemNum" class="correct"></span>
         </td>
             </tr>
             <tr>
     <td align="left">Item Description:</td>
-    <td align="left"><input type="text" name="itemDescription" id="itemDescription"
-        placeholder="Enter an Item Description" size="30" >
+    <td align="left"><input type="text" name="itemDescription" id="itemDescription" placeholder="Enter an Item Description" size="30" >
         <span id="errorItemNum" class="error"></span>
                   <span id="successItemNum" class="correct"></span></td>
                   </tr>

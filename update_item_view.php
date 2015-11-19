@@ -15,11 +15,10 @@
 </head>
 <body>
         <center>
-    <form action='update_item.php' method='post' onsubmit="">
-
-    <h2>Update an Item:</h2>
-    <p><b>Item Number:</b></p>
-
+    <form action='update_item.php' method='post' onsubmit="">    
+    <table border="1">
+    <tr>
+    <td>Item Number:</td>
 <?php
 $row = $_POST['row'];
 $implode = implode(',',$row);
@@ -30,17 +29,15 @@ $category = $explode[2];
 $departmentName = $explode[3];
 $purchaseCost = $explode[4];
 $fullRetailPrice = $explode[5];
-echo '<input type="text" name="itemNum" id="itemNum" value = "'.$itemNumber.'"><span id="errorItemNum" class="error"></span>
-                  <span id="successItemNum" class="correct"></span>';
+echo '<td><input type="text" name="itemNum" id="itemNum" value = "'.$itemNumber.'" size="40"><span id="errorItemNum" class="error"></span><span id="successItemNum" class="correct"></span></td></tr>';
 echo <<<EOD
-    <p><b>Item Description:</b></p>
+    <tr><td>Item Description:</td>
 EOD;
-echo '<input type="text" name="itemDescription" id="itemDescription" value = "'.$itemDescription.'"><span id="errorItemNum" class="error"></span>
-                  <span id="successItemNum" class="correct"></span>';
+echo '<td><input type="text" name="itemDescription" id="itemDescription" value = "'.$itemDescription.'" size="40"><span id="errorItemNum" class="error"></span><span id="successItemNum" class="correct"></span></td></tr>';
 echo <<<EOD
-    <p><b>Category:</b></p>
+    <tr><td>Category:</td>
 EOD;
-echo '<select name="category" id="category" selected = "'.$category.'">';
+echo '<td><div class="dropDown"><select name="category" id="category" selected = "'.$category.'">';
 echo <<<EOD
             <option selected value="$category">$category</option>
             <option>ACCESSORIES/FOOTWEAR</option>
@@ -61,10 +58,10 @@ echo <<<EOD
             <option>SUPPLIES</option>
             <option>TOYS</option>
             <option>WOMENS APPAREL</option>
-        </select>
-        <p><b>Department Name</b></p>
+        </select></div></td></tr>
+        <tr><td>Department Name</td>
 EOD;
-echo '<select name="departmentName" id="departmentName" selected="'.$departmentName.'">';
+echo '<td><div class="dropDown"><select name="departmentName" id="departmentName" selected="'.$departmentName.'">';
 echo <<<EOD
             <option selected value="$departmentName">$departmentName</option>
             <option>ACCESSORIES</option>
@@ -124,16 +121,15 @@ echo <<<EOD
             <option>PLUS BOTTOMS</option>
             <option>PLUS TOPS</option>
             <option>SLEEPWEAR/SCRUBS</option>
-        </select>
-<p>
+        </select></div></td></tr>
 EOD;
-echo '<p><b>Purchase Cost:</b></p>';
-echo '<input type="text" name="purchaseCost" id="purchaseCost" value="'.$purchaseCost.'"><span id="errorItemNum" class="error"></span>
-                  <span id="successItemNum" class="correct"></span>';
-echo '<p><b>Full Retail Price:</b></p>';
-echo '<input type="text" name="fullRetailPrice" id="fullRetailPrice" value="'.$fullRetailPrice.'"><span id="errorItemNum" class="error"></span>
-                  <span id="successItemNum" class="correct"></span>';
-echo '<input type="hidden" name="itemNumber" id="itemNumber" value="'.$itemNumber.'">';
+echo '<tr><td>Purchase Cost:</td>';
+echo '<td><input type="text" name="purchaseCost" id="purchaseCost" value="'.$purchaseCost.'" size="40"><span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td></tr>';
+echo '<tr><td>Full Retail Price:</td>';
+echo '<td><input type="text" name="fullRetailPrice" id="fullRetailPrice" value="'.$fullRetailPrice.'" size="40"><span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td></tr>';
+echo '<input type="hidden" name="itemNumber" id="itemNumber" value="'.$itemNumber.'"></table>';
 ?>			
 		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
 		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
