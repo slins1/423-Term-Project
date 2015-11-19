@@ -30,6 +30,12 @@ function updatePromotion() {
 	$description = $_POST['description'];
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
+
+
+	if(($promoType == 'Percent') && ($amountOff >= 1)){
+		$amountOff = $amountOff/100;
+		//$amountOff = ltrim($amountOff, "0");
+	}
 	
 	$updateStatement = "Update Promotion SET Name = '".$promoName."', Description = '".$description."', AmountOff = '".$amountOff."', PromoType = '".$promoType."' WHERE PromoCode = '".$promoCode."'";
 	// Execute the query--it will return either true or false
