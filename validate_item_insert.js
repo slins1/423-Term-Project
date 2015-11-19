@@ -36,18 +36,18 @@ function validate_item_number() {
 
     if (itemNum.value === "") {
         sucItemNum.innerHTML = "";
-		errItemNum.innerHTML = "<img class='statusImage' src='error.png' alt='error'> Required!";
+		errItemNum.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> Required!";
 		return false;
 	}
 	
     if (!itemNumRegex.test(itemNum.value)) {
         sucItemNum.innerHTML = "";
-		errItemNum.innerHTML = "<img class='statusImage' src='error.png' alt='error'> Use 7-digit numbers!";
+		errItemNum.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> Use 7-digit numbers!";
 		return false;
     }
     
     errItemNum.innerHTML = "";
-    sucItemNum.innerHTML = "<img class='statusImage' src='correct.png' alt='correct'> Complete!";
+    sucItemNum.innerHTML = "<img class='statusImage' src='images/correct.png' alt='correct'> Complete!";
 	return true;
 }
 
@@ -59,18 +59,18 @@ function validate_item_description() {
 
   if (itemDescription.value === "") {
     sucItemDescription.innerHTML = "";
-    errItemDescription.innerHTML = "<img class='statusImage' src='error.png' alt='error'> Required!";
+    errItemDescription.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> Required!";
     return false;
   }
   
   if (!itemDescriptionRegex.test(itemDescription.value)) {
     sucItemDescription.innerHTML = "";
-    errItemDescription.innerHTML = "<img class='statusImage' src='error.png' alt='error'> Invalid special characters used!\n(Use '.', ',', '=' or '#')";
+    errItemDescription.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> Invalid special characters used!\n(Use '.', ',', '=' or '#')";
     return false;
   }
   
   errItemDescription.innerHTML = "";
-  sucItemDescription.innerHTML = "<img class='statusImage' src='correct.png' alt='correct'> Complete!";
+  sucItemDescription.innerHTML = "<img class='statusImage' src='images/correct.png' alt='correct'> Complete!";
   return true;
 }
 
@@ -82,17 +82,17 @@ function validate_purchase_cost() {
 
   if (purchaseCost.value === "") {
     sucPurchaseCost.innerHTML = "";
-    errPurchaseCost.innerHTML = "<img class='statusImage' src='error.png' alt='error'> Required!";
+    errPurchaseCost.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> Required!";
     return false;
   }
   
   if (!purchaseCostRegex.test(purchaseCost.value)) {
     sucPurchaseCost.innerHTML = "";
-    errPurchaseCost.innerHTML = "<img class='statusImage' src='error.png' alt='error'> Use format 'X.XX'!";
+    errPurchaseCost.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> Use format 'X.XX'!";
     return false;
   }
   errPurchaseCost.innerHTML = "";
-  sucPurchaseCost.innerHTML = "<img class='statusImage' src='correct.png' alt='correct'> Complete!";
+  sucPurchaseCost.innerHTML = "<img class='statusImage' src='images/correct.png' alt='correct'> Complete!";
   return true;
 }
 
@@ -104,17 +104,17 @@ function validate_retail_price() {
 
   if (retailPrice.value === "") {
     sucRetailPrice.innerHTML = "";
-    errRetailPrice.innerHTML = "<img class='statusImage' src='error.png' alt='error'> Required!";
+    errRetailPrice.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> Required!";
     return false;
   }
   
   if (!retailPriceRegex.test(retailPrice.value)) {
     sucRetailPrice.innerHTML = "";
-    errRetailPrice.innerHTML = "<img class='statusImage' src='error.png' alt='error'> Use format 'X.XX'!";
+    errRetailPrice.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> Use format 'X.XX'!";
     return false;
   }
   
   errRetailPrice.innerHTML = "";
-  sucRetailPrice.innerHTML = "<img class='statusImage' src='correct.png' alt='correct'> Complete!";
+  sucRetailPrice.innerHTML = "<img class='statusImage' src='images/correct.png' alt='correct'> Complete!";
   return true;
 }

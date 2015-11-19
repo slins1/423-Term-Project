@@ -20,9 +20,13 @@ td {
     padding: 3px 7px 2px 7px;
 }
 
+.noBorder {
+    border: 0px;
+}
+
 th {
     font-size: 1.1em;
-    text-align: left;
+    text-align: center;
     padding-top: 5px;
     padding-bottom: 4px;
     background-color: #fb912a;
