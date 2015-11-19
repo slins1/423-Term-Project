@@ -25,10 +25,10 @@ insertAdEvent();
 
 function insertAdEvent() {	
 	$eventCode = $_POST['eventCode'];
-	$name = $_POST['name'];
+	$name = $_POST['eventName'];
 	$startDateUnformatted = $_POST['startDate'];
 	$endDateUnformatted = $_POST['endDate'];
-	$description = $_POST['description'];
+	$description = $_POST['eventDescription'];
 	$type = $_POST['eventType'];
 		
 	$temp = "";

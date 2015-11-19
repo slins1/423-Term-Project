@@ -26,8 +26,8 @@ connect();
 insertPromotion();
 
 function insertPromotion() {
-	$name = $_POST['name'];
-	$description = $_POST['description'];
+	$name = $_POST['promoName'];
+	$description = $_POST['promoDescription'];
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
 
