@@ -19,6 +19,14 @@
   <form action='search_item.php' method='post'>
 	<h2>Please select a promotion and click submit to confirm, or click back to go back</h2>
 	<table>
+		<tr>
+			<th></th>
+			<th>Promo Code</th>
+			<th>Promo Name</th>
+			<th>Description</th>
+			<th>Amount Off</th>
+			<th>Promo Type</th>
+		</tr>
 <?php
 require('db_connect.inc');
 connect();
@@ -35,7 +43,7 @@ function retrievePromotions() {
 
 	if(($promoType == 'Percent') && ($amountOff >= 1)){
 		$amountOff = $amountOff/100;
-		$amountOff = ltrim($amountOff, "0");
+		//$amountOff = ltrim($amountOff, "0");
 	}
 
 	$cond1 = "";
@@ -174,10 +182,11 @@ echo '<input type="hidden" name="promoType" value="'.$promoType.'" >';
 		echo <<<EOD
     <tr>
 			<td><input type='radio' name='promo' value=$promoCode></td>
-      		<td>Name: $name</td>
-			<td>Description: $description</td>
-			<td>Amount Off: $amountOff</td>
-			<td>Promotion Type: $promoType</td>
+			<td>$promoCode</td>
+      		<td>$name</td>
+			<td>$description</td>
+			<td>$amountOff</td>
+			<td>$promoType</td>
 		</tr>
 	
 EOD;

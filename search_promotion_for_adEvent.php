@@ -41,7 +41,7 @@ function searchPromotions() {
 
 	if(($promoType == 'Percent') && ($amountOff >= 1)){
 		$amountOff = $amountOff/100;
-		$amountOff = ltrim($amountOff, "0");
+		//$amountOff = ltrim($amountOff, "0");
 	}
 
 	$cond1 = "";
@@ -144,12 +144,12 @@ function displayItemsPromotions($promo_search_message, $promoResult,
 	<input type="hidden" name="eventCode" value="$eventCode">
 	<input type="hidden" name="eventName" value="$eventName">
   <tr>
-		<td></td>
-		<td><b>PROMO CODE</b></td>
-		<td><b>NAME</b></td>
-		<td><b>DESCRIPTION</b></td>
-		<td><b>AMOUNT OFF</b></td>
-		<td><b>PROMOTION TYPE(DOLLAR/PERCENT)</b></td>
+		<th></th>
+		<th><b>Promo Code</b></th>
+		<th><b>Name</b></th>
+		<th><b>Description</b></th>
+		<th><b>Amount Off</b></th>
+		<th><b>Promotion Type</b></th>
   </tr>
 EOD;
 		

@@ -182,13 +182,13 @@ function displayItemsPromotions($item_search_message, $itemResult, $promoCode,
   <input type="hidden" name="amountOff" value="$amountOff">
   <input type="hidden" name="promoType" value="$promoType">
   <tr>
-  	<td></td>
-  	<td><b>ITEM NUMBER</b></td>
-  	<td><b>ITEM DESCRIPTION</b></td>
-  	<td><b>CATEGORY</b></td>
-  	<td><b>DEPARTMENT NAME</b></td>
-  	<td><b>PURCHASE COST</b></td>
-  	<td><b>FULL RETAIL PRICE</b></td>
+  	<th></th>
+  	<th><b>ITEM NUMBER</b></th>
+  	<th><b>ITEM DESCRIPTION</b></th>
+  	<th><b>CATEGORY</b></th>
+  	<th><b>DEPARTMENT NAME</b></th>
+  	<th><b>PURCHASE COST</b></th>
+  	<th><b>FULL RETAIL PRICE</b></th>
   </tr>
 EOD;
 		

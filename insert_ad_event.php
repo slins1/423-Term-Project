@@ -67,6 +67,7 @@ function showAdEventInsertResult($message, $eventCode, $name, $startDate, $endDa
   if ($message) {
     if ($message != "") {
       echo <<<EOD
+      		
 			<h2 class='text-center'>$message</h2>
 			<table>
 					<tr>
