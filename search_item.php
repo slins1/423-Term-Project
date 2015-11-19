@@ -24,16 +24,21 @@
         <tr>
             <td><p><b>Item Number:</b></td>
             <td><input type="text" name="itemNumber" id="itemNumber"
-            placeholder="Enter an Item Number"></p></td>
+            placeholder="Enter an Item Number"></p>
+            <span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td>
         </tr>
         <tr>
             <td><p><b>Item Description:</b></td>
             <td><input type="text" name="itemDescription" id="itemDescription"
-                placeholder="Enter an Item Description"></p></td>
+                placeholder="Enter an Item Description"></p>
+                <span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td>
         </tr>
         <tr>
             <td><p><b>Category:</b></td>
             <td><div class="dropDown"><select name="category" id="category">
+            <option>---</option>
             <option>ACCESSORIES/FOOTWEAR</option>
             <option>BASIC APPAREL</option>
             <option>CHILDRENS APPAREL</option>
@@ -57,6 +62,7 @@
     <tr>
         <td><p><b>Department Name</b></td>
         <td><div class="dropDown"><select name="departmentName" id="departmentName">
+            <option>---</option>
             <option>ACCESSORIES</option>
             <option>FOOTWEAR</option>
             <option>CHILDRENS BASICS</option>
@@ -119,12 +125,15 @@
     <tr>
         <td><p><b>Purchase Cost:</b></td>
         <td><input type="text" name="purchaseCost" id="purchaseCost"
-        placeholder="Enter a Purchase Cost"></p></td>
+        placeholder="Enter a Purchase Cost"></p>
+        <span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td>
     </tr>
     <tr>
         <td><p><b>Full Retail Price:</b></td>
         <td><input type="text" name="fullRetailPrice" id="fullRetailPrice"
-        placeholder="Enter a Full Retial Price"></p></td>
+        placeholder="Enter a Full Retial Price"></p><span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td>
     </tr>
 </table>
         

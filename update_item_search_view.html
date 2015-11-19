@@ -27,8 +27,11 @@
     <p><b>Item Description:</b></p>
         <input type="text" name="itemDescription" id="itemDescription"
         placeholder="Enter an Item Description">
+        <span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span>
     <p><b>Category:</b></p>
         <div class="dropDown"><select name="category" id="category">
+            <option>---</option>
             <option>ACCESSORIES/FOOTWEAR</option>
             <option>BASIC APPAREL</option>
             <option>CHILDRENS APPAREL</option>
@@ -50,6 +53,7 @@
         </select></div>
         <p><b>Department Name</b></p>
         <div class="dropDown"><select name="departmentName" id="departmentName">
+            <option>---</option>
             <option>ACCESSORIES</option>
             <option>FOOTWEAR</option>
             <option>CHILDRENS BASICS</option>
@@ -111,9 +115,13 @@
         <p><b>Purchase Cost:</b></p>
         <input type="text" name="purchaseCost" id="purchaseCost"
         placeholder="Enter a Purchase Cost">
+        <span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span>
         <p><b>Full Retail Price:</b></p>
         <input type="text" name="fullRetailPrice" id="fullRetailPrice"
         placeholder="Enter a Full Retial Price">
+        <span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span>
         
 <p>			
 		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
