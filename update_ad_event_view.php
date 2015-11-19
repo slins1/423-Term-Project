@@ -62,7 +62,7 @@ echo <<<EOD
                 </tr>
                 <tr>
                     <td align="left">Type:</td>
-                    <td align="left"><select name="eventType">
+                    <td align="left"><div class="dropDown"><select name="eventType">
 EOD;
                         echo '<option selected disabled>'.$type.'</option>';
 echo <<<EOD
@@ -75,7 +75,7 @@ echo <<<EOD
                         <option value="Passout">
                             Pass Out
                         </option>
-                    </select></td>
+                    </select></div></td>
                 </tr>
             </table>
 EOD;

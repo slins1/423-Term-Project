@@ -50,13 +50,13 @@ echo <<<EOD
 			</tr>
 			<tr>
 				<td align="left">Promo Type:</td>
-				<td><select name="promoType" id="promoType" maxlength="10">
+				<td><div class="dropDown"><select name="promoType" id="promoType" maxlength="10">
 EOD;
 				echo '<option selected disabled>'.$promoType.'</option>';
 echo <<<EOD
 				<option>Dollar</option>
 				<option>Percent</option>
-				</select>
+				</select></div>
 				</td>
 EOD;
 echo <<<EOD

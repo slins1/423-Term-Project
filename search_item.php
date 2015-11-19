@@ -34,6 +34,7 @@
         <tr>
             <td><p><b>Category:</b></td>
             <td><div class="dropDown"><select name="category" id="category">
+            <option>---</option>
             <option>ACCESSORIES/FOOTWEAR</option>
             <option>BASIC APPAREL</option>
             <option>CHILDRENS APPAREL</option>
@@ -57,6 +58,7 @@
     <tr>
         <td><p><b>Department Name</b></td>
         <td><div class="dropDown"><select name="departmentName" id="departmentName">
+            <option>---</option>
             <option>ACCESSORIES</option>
             <option>FOOTWEAR</option>
             <option>CHILDRENS BASICS</option>

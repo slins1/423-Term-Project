@@ -33,7 +33,7 @@ function updateAdEvent() {
 	$endDate = $_POST['endDate'];
 	$eventType = $_POST['eventType'];
 	
-	$updateStatement = "Update AdEvent SET EventCode = '".$eventCode."', Description = '".$description."', Name = '".$name."', StartDate = '".$startDate."', EndDate = '".$endDate."', EventType = '".$eventType."' WHERE EventCode = '".$oldCode."'";
+	$updateStatement = "Update AdEvent SET EventCode = '".$eventCode."', Description = '".$description."', Name = '".$name."', StartDate = '".$startDate."', EndDate = '".$endDate."', AdType = '".$eventType."' WHERE EventCode = '".$oldCode."'";
 	// Execute the query--it will return either true or false
 	$result = mysql_query($updateStatement);
 	$message = "";

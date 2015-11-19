@@ -32,10 +32,29 @@ function searchAdEventsByCategory() {
 
 	$eventCode = $_POST['eventCode'];
 	$eventName = $_POST['name'];
-	$startDate = $_POST['startDate'];
-	$endDate = $_POST['endDate'];
+	$startDateUnformatted = $_POST['startDate'];
+	$endDateUnformatted = $_POST['endDate'];
 	$description = $_POST['description'];
 	$eventType = $_POST['eventType'];
+
+
+	$temp = "";
+	$startDates	= explode("/", $startDateUnformatted); //[10], [28], [2015]
+	$startDatesReversed = array_reverse($startDates); //[2015], [28], [10]
+	$temp = $startDatesReversed[1]; //[2015], [28], [10] t:[28]
+	$startDatesReversed[1] = $startDatesReversed[2]; //[2015], [10], [10] t:[28]
+	$startDatesReversed[2] = $temp; //[2015], [10], [28]
+	$startDate = implode("-", $startDatesReversed); //2015-10-28
+
+
+	
+	$endDates	= explode("/", $endDateUnformatted);
+	$endDatesReversed = array_reverse($endDates);
+	$temp = $endDatesReversed[1];
+	$endDatesReversed[1] = $endDatesReversed[2];
+	$endDatesReversed[2] = $temp;
+	$endDate = implode("-", $endDatesReversed);
+
 
 	$cond1 = "";
 	$cond2 = "";
@@ -54,13 +73,13 @@ function searchAdEventsByCategory() {
 	if(isset($eventName) && ($eventName != "")){
 		$cond3 = "Name LIKE '%".$eventName."%'";
 	}
-	if(isset($startDate) && ($startDate != "")){
+	if(isset($startDate) && ($startDate != "--")){
 		$cond4 = "StartDate = '".$startDate."'";
 	}
-	if(isset($endDate) && ($endDate != "")){
+	if(isset($endDate) && ($endDate != "--")){
 		$cond5 = "EndDate = '".$endDate."'";
 	}
-	if(isset($eventType) && ($eventType != "")){
+	if(isset($eventType) && ($eventType != "---")){
 		$cond6 = "AdType = '".$eventType."'";
 	}
 
