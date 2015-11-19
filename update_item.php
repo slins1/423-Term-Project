@@ -34,7 +34,6 @@ function updateItem() {
 	$retailPrice = $_POST['fullRetailPrice'];
 	
 	$updateStatement = "Update Item SET ItemNumber = '".$itemNum."', ItemDescription = '".$description."', Category = '".$category."', DepartmentName = '".$deptName."', PurchaseCost = '".$purchaseCost."', FullRetailPrice = '".$retailPrice."' WHERE ItemNumber = '".$itemNumber."'";
-	
 	// Execute the query--it will return either true or false
 	$result = mysql_query($updateStatement);
 	$message = "";
@@ -43,9 +42,34 @@ function updateItem() {
 	} else {
 		$message = "Data for Item: $itemNum updated successfully";
 	}
+	recalculateSalePrice($itemNum);
 	showItemUpdateResult($message, $itemNum, $description, $category, $deptName, $purchaseCost, $retailPrice);
 }
-
+function recalculateSalePrice($itemNum) {
+	$selectStatement = "Select * from PromotionItem Where ItemNumber = '".$itemNum."'";
+	$myResult = mysql_query($selectStatement);
+	while ($row = mysql_fetch_assoc($myResult)){
+		$promoCode = $row['PromoCode'];
+		$selectItemSql = "Select * from Item Where ItemNumber = '".$itemNum."'";
+		$selectPromotionSql = "Select * from Promotion Where PromoCode = '".$promoCode."'";
+		$itemResult = mysql_query($selectItemSql);
+		$promotionResult = mysql_query($selectPromotionSql);
+		$item = mysql_fetch_assoc($itemResult);
+		$promotion = mysql_fetch_assoc($promotionResult);
+		$itemPrice = $item['FullRetailPrice'];
+		$amountOff = $promotion['AmountOff'];
+		$discountType = $promotion['PromoType'];
+		if($discountType = "Dollar"){
+			$discountPrice = $itemPrice - $amountOff;
+		}
+		else{
+			$discountPrice = $itemPrice*(1-$amountOff);
+		}
+		$updateSql = "Update PromotionItem SET SalePrice = '".$discountPrice."' Where PromoCode = '".$promoCode."' AND ItemNumber = '".$itemNum."'";
+		$result1 = mysql_query($updateSql);
+	}
+	return;
+}
 function showItemUpdateResult($message, $itemNum, $description, $category, $deptName, $purchaseCost, $retailPrice) {
 
   // If the message is non-null and not an empty string print it
