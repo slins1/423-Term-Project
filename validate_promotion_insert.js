@@ -29,18 +29,18 @@ function validate_promotion_name() {
 
     if (promoName.value === "") {
         sucPromoName.innerHTML = "";
-		errPromoName.innerHTML = "<img class='statusImage' src='error.png' alt='error'> Required!";
+		errPromoName.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> Required!";
 		return false;
 	}
 	
     if (!promoNameRegex.test(promoName.value)) {
         sucPromoName.innerHTML = "";
-        errPromoName.innerHTML = "<img class='statusImage' src='error.png' alt='error'>Invalid special characters used! (Use '.', ',', '=' or '#')";
+        errPromoName.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'>Invalid special characters used! (Use '.', ',', '=' or '#')";
         return false;
     }
     
     errPromoName.innerHTML = "";
-    sucPromoName.innerHTML = "<img class='statusImage' src='correct.png' alt='correct'> Complete!";
+    sucPromoName.innerHTML = "<img class='statusImage' src='images/correct.png' alt='correct'> Complete!";
 	return true;
 }
 
@@ -52,18 +52,18 @@ function validate_promotion_description() {
 
   if (promoDescription.value === "") {
     sucPromoDescription.innerHTML = "";
-    errPromoDescription.innerHTML = "<img class='statusImage' src='error.png' alt='error'> Required!";
+    errPromoDescription.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> Required!";
     return false;
   }
   
   if (!promoDescriptionRegex.test(promoDescription.value)) {
     sucPromoDescription.innerHTML = "";
-    errPromoDescription.innerHTML = "<img class='statusImage' src='error.png' alt='error'> Invalid special characters used! (Use '.', ',', '=' or '#')";
+    errPromoDescription.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> Invalid special characters used! (Use '.', ',', '=' or '#')";
     return false;
   }
   
   errPromoDescription.innerHTML = "";
-  sucPromoDescription.innerHTML = "<img class='statusImage' src='correct.png' alt='correct'> Complete!";
+  sucPromoDescription.innerHTML = "<img class='statusImage' src='images/correct.png' alt='correct'> Complete!";
   return true;
 }
 
@@ -75,17 +75,17 @@ function validate_amount_off() {
 
   if (amountOff.value === "") {
     sucAmountOff.innerHTML = "";
-    errAmountOff.innerHTML = "<img class='statusImage' src='error.png' alt='error'> Required!";
+    errAmountOff.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> Required!";
     return false;
   }
   
   if (!amountOffRegex.test(amountOff.value)) {
     sucAmountOff.innerHTML = "";
-    errAmountOff.innerHTML = "<img class='statusImage' src='error.png' alt='error'> Use format 'X.XX', 'X', or 'X.X'!";
+    errAmountOff.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> Use format 'X.XX', 'X', or 'X.X'!";
     return false;
   }
   
   errAmountOff.innerHTML = "";
-  sucAmountOff.innerHTML = "<img class='statusImage' src='correct.png' alt='correct'> Complete!";
+  sucAmountOff.innerHTML = "<img class='statusImage' src='images/correct.png' alt='correct'> Complete!";
   return true;
 }
