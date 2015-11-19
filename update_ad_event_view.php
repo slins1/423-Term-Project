@@ -33,31 +33,31 @@ echo <<<EOD
 		<tr>
                     <td align="left">EventCode:</td>
 EOD;
-                    echo '<td align="left"><input type="text" name="eventCode" id="eventCode" value="'.$eventCode.'" maxlength="25" size="30"></td>';
+                    echo '<td align="left"><input type="text" name="eventCode" id="eventCode" value="'.$eventCode.'" maxlength="25" size="30"><span id="errorItemNum" class="error"></span><span id="successItemNum" class="correct"></span></td>';
 echo <<<EOD
                 </tr>
                 <tr>
                     <td align="left">Name:</td>
 EOD;
-                    echo '<td align="left"><input type="text" name="name" id="name" value="'.$name.'" maxlength="25" size="30"></td>';
+                    echo '<td align="left"><input type="text" name="name" id="name" value="'.$name.'" maxlength="25" size="30"><span id="errorItemNum" class="error"></span> <span id="successItemNum" class="correct"></span></td>';
 echo <<<EOD
                 </tr>
                 <tr>
                     <td align="left">Start Date:</td>
 EOD;
-                    echo '<td align="left"><input type="text" name="startDate" id="startDate" value="'.$start.'" maxlength="25" size="30"></td>';
+                    echo '<td align="left"><input type="text" name="startDate" id="startDate" value="'.$start.'" maxlength="25" size="30"><span id="errorItemNum" class="error"></span> <span id="successItemNum" class="correct"></span></td>';
 echo <<<EOD
                 </tr>
                 <tr>
                     <td align="left">End Date:</td>
 EOD;
-                    echo '<td align="left"><input type="text" name="endDate" id="endDate" value="'.$end.'" maxlength="25" size="30"></td>';
+                    echo '<td align="left"><input type="text" name="endDate" id="endDate" value="'.$end.'" maxlength="25" size="30"><span id="errorItemNum" class="error"></span><span id="successItemNum" class="correct"></span></td>';
 echo <<<EOD
                 </tr>
                 <tr>
                     <td align="left">Description:</td>
 EOD;
-                    echo '<td align="left"><input type="text" name="description" id="description" value="'.$description.'" maxlength="100" size="30"></td>';
+                    echo '<td align="left"><input type="text" name="description" id="description" value="'.$description.'" maxlength="100" size="30"><span id="errorItemNum" class="error"></span><span id="successItemNum" class="correct"></span></td>';
 echo <<<EOD
                 </tr>
                 <tr>

@@ -33,19 +33,22 @@ echo <<<EOD
 			<tr>
 				<td align="left">Promotion Name:</td>
 EOD;
-				echo '<td align="center"><input type="text" name="name" id="name" maxlength="25" size="80" value = "'.$promoName.'"></td>';
+				echo '<td align="center"><input type="text" name="name" id="name" maxlength="25" size="80" value = "'.$promoName.'"><span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td>';
 echo <<<EOD
 			</tr>
 			<tr>
 				<td align="left">Description:</td>
 EOD;
-				echo '<td align="center"><input type="text" name="description" id="description" maxlength="100" size="80" value="'.$promoDescription.'"></td>';
+				echo '<td align="center"><input type="text" name="description" id="description" maxlength="100" size="80" value="'.$promoDescription.'"><span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td>';
 echo <<<EOD
 			</tr>
 			<tr>
 				<td align="left">Amount Off:</td>
 EOD;
-				echo '<td align="center"><input type="text" name="amountOff" id="amountOff" maxlength="10" size="80" value="'.$amountOff.'"></td>';
+				echo '<td align="center"><input type="text" name="amountOff" id="amountOff" maxlength="10" size="80" value="'.$amountOff.'"><span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td>';
 echo <<<EOD
 			</tr>
 			<tr>
