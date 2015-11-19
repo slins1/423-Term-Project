@@ -111,7 +111,7 @@ function displayAdEvents($adEventMessage, $adEventResult) {
     $description = $row['Description'];
     $AdType = $row['AdType'];
 
-    echo"<h2>Promotions associated with Ad Event: $eventCode</h2>";
+    echo"<h2>Promotions associated with Ad Event: $name</h2>";
 
     $adEventPromoSearch = "SELECT ID, EventCode, PromoCode 
     FROM AdEventPromotion Where EventCode = '$eventCode'";
