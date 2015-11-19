@@ -12,10 +12,10 @@ function validate_event() {
     errorFlag = 1;
   }
 
-  if (validate_end_date() == false) {
+ /* if (validate_end_date() == false) {
     document.addEvent.endDate.focus();
     errorFlag = 1;
-  }
+  }*/
 
   if (validate_description() == false) {
     document.addEvent.eventDescription.focus();
@@ -76,7 +76,7 @@ function validate_name() {
   return true;
 }
 
-function validate_end_date() {
+/*function validate_end_date() {
   var endDate = document.addEvent.endDate;
   var startDate = document.addEvent.startDate;
   var errEndDate = document.getElementById("errorEndDate");
@@ -90,7 +90,7 @@ function validate_end_date() {
   errEndDate.innerHTML = "";
   sucEndDate.innerHTML = "<img class='statusImage' src='images/correct.png' alt='correct'> Complete!";
   return true;
-}
+}*/
 
 function validate_description() {
   var description = document.addEvent.eventDescription;
