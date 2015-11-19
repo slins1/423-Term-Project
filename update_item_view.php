@@ -42,7 +42,7 @@ echo <<<EOD
 EOD;
 echo '<select name="category" id="category" selected = "'.$category.'">';
 echo <<<EOD
-            <option selected disabled>$category</option>
+            <option selected value="$category">$category</option>
             <option>ACCESSORIES/FOOTWEAR</option>
             <option>BASIC APPAREL</option>
             <option>CHILDRENS APPAREL</option>
@@ -66,7 +66,7 @@ echo <<<EOD
 EOD;
 echo '<select name="departmentName" id="departmentName" selected="'.$departmentName.'">';
 echo <<<EOD
-            <option selected disabled>$departmentName</option>
+            <option selected value="$departmentName">$departmentName</option>
             <option>ACCESSORIES</option>
             <option>FOOTWEAR</option>
             <option>CHILDRENS BASICS</option>
