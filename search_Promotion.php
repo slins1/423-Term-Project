@@ -42,6 +42,7 @@
         <tr>
             <td><p><b>Promotion Type:</b></td>
             <td><div class="dropDown"><select name="promoType" id="promoType">
+                    <option>---</option>
                     <option>Dollar</option>
                     <option>Percent</option>
                     </select></div>

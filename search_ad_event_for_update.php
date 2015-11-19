@@ -46,7 +46,7 @@ function searchAdEventsByCategory() {
 	$startDatesReversed[2] = $temp; //[2015], [10], [28]
 	$startDate = implode("-", $startDatesReversed); //2015-10-28
 
-	echo "start date = $startDate";
+
 	
 	$endDates	= explode("/", $endDateUnformatted);
 	$endDatesReversed = array_reverse($endDates);
@@ -128,7 +128,6 @@ function searchAdEventsByCategory() {
 	}
 
 	$ad_event_search_sql = "SELECT * FROM AdEvent WHERE $whereCondition";
-	echo "<br/> $ad_event_search_sql";
 	$eventResult = mysql_query($ad_event_search_sql);
 	//Test whether the queries were successful
 	if (!$eventResult) {
