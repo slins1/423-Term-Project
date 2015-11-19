@@ -41,7 +41,7 @@ function retrievePromotions() {
 
 	if(($promoType == 'Percent') && ($amountOff >= 1)){
 		$amountOff = $amountOff/100;
-		$amountOff = ltrim($amountOff, "0");
+		//$amountOff = ltrim($amountOff, "0");
 	}
 
 	$cond1 = "";

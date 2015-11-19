@@ -26,7 +26,7 @@ insertItem();
 
 function insertItem() {
 	$itemNum = $_POST['itemNum'];
-	$description = $_POST['description'];
+	$description = $_POST['itemDescription'];
 	$category = $_POST['category'];
 	$deptName = $_POST['deptName'];
 	$purchaseCost = $_POST['purchaseCost'];
