@@ -29,6 +29,7 @@
 		</tr>
 <?php
 require('db_connect.inc');
+
 connect();
 
 retrievePromotions();
@@ -201,7 +202,7 @@ EOD;
 ?>
 	</table>
 	<br/>
-	<a href="assign_promotion_item_view.html"><button class="button">Back</button></a>
+	<button class="button" onclick="goBack()">Back</button>
 	<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
 	</form>
 		</center>
