@@ -7,16 +7,14 @@
       <script src="_script.js"></script>
       <script type="text/javascript" src="validate_item_insert.js"></script>
       <link rel="stylesheet" type="text/css" href="_main.css">
-      <link rel="logo_favicon.jpg" href="/favicon.ico"/>
+      <link rel="images/logo_favicon.jpg" href="/favicon.ico"/>
       <title>Aptaris - Advertisement Event System</title>
-
       <div class="header"><a href="index.html">
-			<img src="logo_100.jpg" alt="logo" />
+			<img src="images/logo_100.jpg" alt="logo" />
 			<h1>Advertisement Event System - Insert an Item</h1></a>
 			<br/><hr/>
 		</div>
   </head>
-
 <body>
 	<center>
     <form action="insert_item.php" method="post" name="addItem" id="addItem" onSubmit="return validate_item();">
@@ -36,7 +34,7 @@
             <tr>
                 <td>Category:</td>
                 <td>
-                    <select name="category" id="category">
+                   <div class="dropDown"> <select name="category" id="category">
                         <option>ACCESSORIES/FOOTWEAR</option>
                         <option>BASIC APPAREL</option>
                         <option>CHILDRENS APPAREL</option>
@@ -55,13 +53,13 @@
                         <option>SUPPLIES</option>
                         <option>TOYS</option>
                         <option>WOMENS APPAREL</option>
-                    </select>
+                    </select></div>
                 </td>
             </tr>
             <tr>
                 <td>Department Name:</td>
                 <td>
-                    <select name="deptName" id="deptName">
+                    <div class="dropDown"><select name="deptName" id="deptName">
                         <option>ACCESSORIES</option>
                         <option>FOOTWEAR</option>
                         <option>CHILDRENS BASICS</option>
@@ -119,7 +117,7 @@
                         <option>PLUS BOTTOMS</option>
                         <option>PLUS TOPS</option>
                         <option>SLEEPWEAR/SCRUBS</option>
-                    </select>
+                    </select></div>
                 </td>
             </tr>
             <tr>

@@ -7,11 +7,11 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+	<link rel="images/logo_favicon.jpg" href="/favicon.ico"/>        
 	<title>Aptaris - Advertisement Event System</title>
 	
 	<div class="header"><a href="index.html">
-		<img src="logo_100.jpg" alt="logo" />
+		<img src="images/logo_100.jpg" alt="logo" />
 		<h1>Advertisement Event System - Update Item</h1></a><br/><hr/>
 	</div>
 </head>
@@ -27,8 +27,10 @@
     <p><b>Item Description:</b></p>
         <input type="text" name="itemDescription" id="itemDescription"
         placeholder="Enter an Item Description">
+        <span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span>
     <p><b>Category:</b></p>
-        <select name="category" id="category">
+        <div class="dropDown"><select name="category" id="category">
             <option>---</option>
             <option>ACCESSORIES/FOOTWEAR</option>
             <option>BASIC APPAREL</option>
@@ -48,9 +50,9 @@
             <option>SUPPLIES</option>
             <option>TOYS</option>
             <option>WOMENS APPAREL</option>
-        </select>
+        </select></div>
         <p><b>Department Name</b></p>
-        <select name="departmentName" id="departmentName">
+        <div class="dropDown"><select name="departmentName" id="departmentName">
             <option>---</option>
             <option>ACCESSORIES</option>
             <option>FOOTWEAR</option>
@@ -109,13 +111,17 @@
             <option>PLUS BOTTOMS</option>
             <option>PLUS TOPS</option>
             <option>SLEEPWEAR/SCRUBS</option>
-        </select>
+        </select></div>
         <p><b>Purchase Cost:</b></p>
         <input type="text" name="purchaseCost" id="purchaseCost"
         placeholder="Enter a Purchase Cost">
+        <span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span>
         <p><b>Full Retail Price:</b></p>
         <input type="text" name="fullRetailPrice" id="fullRetailPrice"
         placeholder="Enter a Full Retial Price">
+        <span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span>
         
 <p>			
 		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>

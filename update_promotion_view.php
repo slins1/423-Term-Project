@@ -5,11 +5,11 @@
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script src="_script.js"></script>
         <link rel="stylesheet" type="text/css" href="_main.css">
-        <link rel="logo_favicon.jpg" href="/favicon.ico"/>
+        <link rel="images/logo_favicon.jpg" href="/favicon.ico"/>
         <title>Aptaris - Advertisement Event System</title>
 
         <div class="header"><a href="index.html">
-                <img src="logo_100.jpg" alt="logo" />
+                <img src="images/logo_100.jpg" alt="logo" />
                 <h1>Advertisement Event System - Update Promotion</h1></a><br/><hr/>
         </div>
 </head>
@@ -33,30 +33,33 @@ echo <<<EOD
 			<tr>
 				<td align="left">Promotion Name:</td>
 EOD;
-				echo '<td align="center"><input type="text" name="name" id="name" maxlength="25" size="80" value = "'.$promoName.'"></td>';
+				echo '<td align="center"><input type="text" name="name" id="name" maxlength="25" size="80" value = "'.$promoName.'"><span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td>';
 echo <<<EOD
 			</tr>
 			<tr>
 				<td align="left">Description:</td>
 EOD;
-				echo '<td align="center"><input type="text" name="description" id="description" maxlength="100" size="80" value="'.$promoDescription.'"></td>';
+				echo '<td align="center"><input type="text" name="description" id="description" maxlength="100" size="80" value="'.$promoDescription.'"><span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td>';
 echo <<<EOD
 			</tr>
 			<tr>
 				<td align="left">Amount Off:</td>
 EOD;
-				echo '<td align="center"><input type="text" name="amountOff" id="amountOff" maxlength="10" size="80" value="'.$amountOff.'"></td>';
+				echo '<td align="center"><input type="text" name="amountOff" id="amountOff" maxlength="10" size="80" value="'.$amountOff.'"><span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td>';
 echo <<<EOD
 			</tr>
 			<tr>
 				<td align="left">Promo Type:</td>
-				<td><select name="promoType" id="promoType" maxlength="10">
+				<td><div class="dropDown"><select name="promoType" id="promoType" maxlength="10">
 EOD;
 				echo '<option selected disabled>'.$promoType.'</option>';
 echo <<<EOD
 				<option>Dollar</option>
 				<option>Percent</option>
-				</select>
+				</select></div>
 				</td>
 EOD;
 echo <<<EOD

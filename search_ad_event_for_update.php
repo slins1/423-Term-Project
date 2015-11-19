@@ -6,11 +6,11 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+	<link rel="images/logo_favicon.jpg" href="/favicon.ico"/>        
 	<title>Aptaris - Advertisement Event System</title>
 	
 	<div class="header"><a href="index.html">
-		<img src="logo_100.jpg" alt="logo" />
+		<img src="images/logo_100.jpg" alt="logo" />
 		<h1>Advertisement Event System - Update Ad Event</h1></a><br/><hr/>
 	</div>
 </head>
@@ -32,10 +32,29 @@ function searchAdEventsByCategory() {
 
 	$eventCode = $_POST['eventCode'];
 	$eventName = $_POST['name'];
-	$startDate = $_POST['startDate'];
-	$endDate = $_POST['endDate'];
+	$startDateUnformatted = $_POST['startDate'];
+	$endDateUnformatted = $_POST['endDate'];
 	$description = $_POST['description'];
 	$eventType = $_POST['eventType'];
+
+
+	$temp = "";
+	$startDates	= explode("/", $startDateUnformatted); //[10], [28], [2015]
+	$startDatesReversed = array_reverse($startDates); //[2015], [28], [10]
+	$temp = $startDatesReversed[1]; //[2015], [28], [10] t:[28]
+	$startDatesReversed[1] = $startDatesReversed[2]; //[2015], [10], [10] t:[28]
+	$startDatesReversed[2] = $temp; //[2015], [10], [28]
+	$startDate = implode("-", $startDatesReversed); //2015-10-28
+
+
+	
+	$endDates	= explode("/", $endDateUnformatted);
+	$endDatesReversed = array_reverse($endDates);
+	$temp = $endDatesReversed[1];
+	$endDatesReversed[1] = $endDatesReversed[2];
+	$endDatesReversed[2] = $temp;
+	$endDate = implode("-", $endDatesReversed);
+
 
 	$cond1 = "";
 	$cond2 = "";
@@ -54,13 +73,13 @@ function searchAdEventsByCategory() {
 	if(isset($eventName) && ($eventName != "")){
 		$cond3 = "Name LIKE '%".$eventName."%'";
 	}
-	if(isset($startDate) && ($startDate != "")){
+	if(isset($startDate) && ($startDate != "--")){
 		$cond4 = "StartDate = '".$startDate."'";
 	}
-	if(isset($endDate) && ($endDate != "")){
+	if(isset($endDate) && ($endDate != "--")){
 		$cond5 = "EndDate = '".$endDate."'";
 	}
-	if(isset($eventType) && ($eventType != "")){
+	if(isset($eventType) && ($eventType != "---")){
 		$cond6 = "AdType = '".$eventType."'";
 	}
 

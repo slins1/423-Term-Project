@@ -7,14 +7,14 @@
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js" type="text/javascript"></script>
     <script src="_script.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="_main.css"/>
-    <link rel="logo_favicon.jpg" href="/favicon.ico"/>
+    <link rel="images/logo_favicon.jpg" href="/favicon.ico"/>
 
     <title>Aptaris - Advertisement Event System</title>
 </head>
 
 <body>
     <div class="header">
-        <a href="index.html"><img src="logo_100.jpg" alt="logo"/>
+        <a href="index.html"><img src="images/logo_100.jpg" alt="logo"/>
         <h1><a href="index.html">Advertisement Event System - Update an Ad Event</h1></a><br/><hr/>
     </div>
 
@@ -23,28 +23,43 @@
             <table border="1">
                 <tr>
                     <td align="left">EventCode:</td>
-                    <td align="left"><input type="text" name="eventCode" id="eventCode" placeholder="e.g. AB12345678C" maxlength="25" size="30"></td>
+                    <td align="left"><input type="text" name="eventCode" id="eventCode" placeholder="e.g. AB12345678C" maxlength="25" size="30">
+                        <span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span>
+                    </td>
                 </tr>
                 <tr>
                     <td align="left">Name:</td>
-                    <td align="left"><input type="text" name="name" id="name" placeholder="e.g. 2012 July Promotional Planner" maxlength="25" size="30"></td>
+                    <td align="left"><input type="text" name="name" id="name" placeholder="e.g. 2012 July Promotional Planner" maxlength="25" size="30">
+                        <span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span>
+                    </td>
                 </tr>
                 <tr>
                     <td align="left">Start Date:</td>
-                    <td align="left"><input type="text" name="startDate" id="startDate" placeholder="e.g. 10/28/2015" maxlength="25" size="30"></td>
+                    <td align="left"><input type="text" name="startDate" id="startDate" placeholder="e.g. 10/28/2015" maxlength="25" size="30">
+                        <span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span>
+                    </td>
                 </tr>
                 <tr>
                     <td align="left">End Date:</td>
-                    <td align="left"><input type="text" name="endDate" id="endDate" placeholder="e.g. 12/25/2015" maxlength="25" size="30"></td>
+                    <td align="left"><input type="text" name="endDate" id="endDate" placeholder="e.g. 12/25/2015" maxlength="25" size="30">
+                        <span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span>
+                    </td>
                 </tr>
                 <tr>
                     <td align="left">Description:</td>
-                    <td align="left"><input type="text" name="description" id="description" placeholder="e.g. Summer Passout" maxlength="100" size="30"></td>
+                    <td align="left"><input type="text" name="description" id="description" placeholder="e.g. Summer Passout" maxlength="100" size="30">
+                        <span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span>
+                    </td>
                 </tr>
                 <tr>
                     <td align="left">Type:</td>
-                    <td align="left"><select name="eventType">
-			<option value=""> --- </option>
+                    <td align="left"><div class="dropDown"><select name="eventType" id="eventType">
+                        <option value="---">---</option>
                         <option value="Planner">
                             Planner
                         </option>
@@ -54,7 +69,7 @@
                         <option value="Passout">
                             Pass Out
                         </option>
-                    </select></td>
+                    </select></div></td>
                 </tr>
             </table>
             <p>

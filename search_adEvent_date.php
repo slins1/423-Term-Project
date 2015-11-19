@@ -6,11 +6,11 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+	<link rel="images/logo_favicon.jpg" href="/favicon.ico"/>        
 	<title>Aptaris - Advertisement Event System</title>
 	
 	<div class="header"><a href="index.html">
-		<img src="logo_100.jpg" alt="logo" />
+		<img src="images/logo_100.jpg" alt="logo" />
 		<h1>Advertisement Event System - Assign Promotion to an Ad Event</h1></a><br/><hr/>
 	</div>
 </head>
@@ -111,7 +111,7 @@ function displayAdEvents($adEventMessage, $adEventResult) {
     $description = $row['Description'];
     $AdType = $row['AdType'];
 
-    echo"<h2>Promotions associated with Ad Event: $eventCode</h2>";
+    echo"<h2>Promotions associated with Ad Event: $name</h2>";
 
     $adEventPromoSearch = "SELECT ID, EventCode, PromoCode 
     FROM AdEventPromotion Where EventCode = '$eventCode'";

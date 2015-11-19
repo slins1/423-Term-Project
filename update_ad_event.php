@@ -6,11 +6,11 @@
 			<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
       <script src="_script.js"></script>
       <link rel="stylesheet" type="text/css" href="_main.css">
-      <link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+      <link rel="images/logo_favicon.jpg" href="/favicon.ico"/>        
       <title>Aptaris - Advertisement Event System</title>
       
       <div class="header"><a href="index.html">
-			<img src="logo_100.jpg" alt="logo" />
+			<img src="images/logo_100.jpg" alt="logo" />
 			<h1>Advertisement Event System - Update an Ad Event</h1></a>
 			<br/><hr/>
 		</div>
@@ -33,7 +33,7 @@ function updateAdEvent() {
 	$endDate = $_POST['endDate'];
 	$eventType = $_POST['eventType'];
 	
-	$updateStatement = "Update AdEvent SET EventCode = '".$eventCode."', Description = '".$description."', Name = '".$name."', StartDate = '".$startDate."', EndDate = '".$endDate."', EventType = '".$eventType."' WHERE EventCode = '".$oldCode."'";
+	$updateStatement = "Update AdEvent SET EventCode = '".$eventCode."', Description = '".$description."', Name = '".$name."', StartDate = '".$startDate."', EndDate = '".$endDate."', AdType = '".$eventType."' WHERE EventCode = '".$oldCode."'";
 	// Execute the query--it will return either true or false
 	$result = mysql_query($updateStatement);
 	$message = "";

@@ -5,11 +5,11 @@
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script src="_script.js"></script>
         <link rel="stylesheet" type="text/css" href="_main.css">
-        <link rel="logo_favicon.jpg" href="/favicon.ico"/>
+        <link rel="images/logo_favicon.jpg" href="/favicon.ico"/>
         <title>Aptaris - Advertisement Event System</title>
 
         <div class="header"><a href="index.html">
-                <img src="logo_100.jpg" alt="logo" />
+                <img src="images/logo_100.jpg" alt="logo" />
                 <h1>Advertisement Event System - Update Ad Event</h1></a><br/><hr/>
         </div>
 </head>
@@ -33,36 +33,36 @@ echo <<<EOD
 		<tr>
                     <td align="left">EventCode:</td>
 EOD;
-                    echo '<td align="left"><input type="text" name="eventCode" id="eventCode" value="'.$eventCode.'" maxlength="25" size="30"></td>';
+                    echo '<td align="left"><input type="text" name="eventCode" id="eventCode" value="'.$eventCode.'" maxlength="25" size="30"><span id="errorItemNum" class="error"></span><span id="successItemNum" class="correct"></span></td>';
 echo <<<EOD
                 </tr>
                 <tr>
                     <td align="left">Name:</td>
 EOD;
-                    echo '<td align="left"><input type="text" name="name" id="name" value="'.$name.'" maxlength="25" size="30"></td>';
+                    echo '<td align="left"><input type="text" name="name" id="name" value="'.$name.'" maxlength="25" size="30"><span id="errorItemNum" class="error"></span> <span id="successItemNum" class="correct"></span></td>';
 echo <<<EOD
                 </tr>
                 <tr>
                     <td align="left">Start Date:</td>
 EOD;
-                    echo '<td align="left"><input type="text" name="startDate" id="startDate" value="'.$start.'" maxlength="25" size="30"></td>';
+                    echo '<td align="left"><input type="text" name="startDate" id="startDate" value="'.$start.'" maxlength="25" size="30"><span id="errorItemNum" class="error"></span> <span id="successItemNum" class="correct"></span></td>';
 echo <<<EOD
                 </tr>
                 <tr>
                     <td align="left">End Date:</td>
 EOD;
-                    echo '<td align="left"><input type="text" name="endDate" id="endDate" value="'.$end.'" maxlength="25" size="30"></td>';
+                    echo '<td align="left"><input type="text" name="endDate" id="endDate" value="'.$end.'" maxlength="25" size="30"><span id="errorItemNum" class="error"></span><span id="successItemNum" class="correct"></span></td>';
 echo <<<EOD
                 </tr>
                 <tr>
                     <td align="left">Description:</td>
 EOD;
-                    echo '<td align="left"><input type="text" name="description" id="description" value="'.$description.'" maxlength="100" size="30"></td>';
+                    echo '<td align="left"><input type="text" name="description" id="description" value="'.$description.'" maxlength="100" size="30"><span id="errorItemNum" class="error"></span><span id="successItemNum" class="correct"></span></td>';
 echo <<<EOD
                 </tr>
                 <tr>
                     <td align="left">Type:</td>
-                    <td align="left"><select name="eventType">
+                    <td align="left"><div class="dropDown"><select name="eventType">
 EOD;
                         echo '<option selected disabled>'.$type.'</option>';
 echo <<<EOD
@@ -75,7 +75,7 @@ echo <<<EOD
                         <option value="Passout">
                             Pass Out
                         </option>
-                    </select></td>
+                    </select></div></td>
                 </tr>
             </table>
 EOD;

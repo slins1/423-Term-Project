@@ -6,11 +6,11 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+	<link rel="images/logo_favicon.jpg" href="/favicon.ico"/>        
 	<title>Aptaris - Advertisement Event System</title>
 	
 	<div class="header"><a href="index.html">
-		<img src="logo_100.jpg" alt="logo" />
+		<img src="images/logo_100.jpg" alt="logo" />
 		<h1>Advertisement Event System - Assign Promotion to an Item</h1></a><br/><hr/>
 	</div>
 </head>
@@ -68,9 +68,6 @@ echo "<h2>The following items were added to the promotion: $promoName</h2>";
       $insertStatement = "INSERT INTO PromotionItem (PromoCode, ItemNumber, SalePrice) VALUES ('$promoCode','$itemNumber', '$salePrice')";
 			
 			$result = mysql_query($insertStatement);
-<<<<<<< HEAD
-			
-=======
 			if (!$result) {
   			echo "<h2>Error in inserting Promotions</h2>";
 			} else {
@@ -104,22 +101,13 @@ echo "<h2>The following items were added to the promotion: $promoName</h2>";
 	  		</table>
 EOD;
 			} 
->>>>>>> refs/remotes/origin/master
 		}
 	} else {
 		echo "<h2>No sale items</h2>";
 	}
 }
-<<<<<<< HEAD
-if (!$result) {
-  			echo "<h2>Error in inserting Promotions</h2>";
-			} else {
-	  		echo "<h2>The Promotions were inserted successfully</h2>";
-			} 
-=======
 
 
->>>>>>> refs/remotes/origin/master
 ?>
 <p>
 	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
