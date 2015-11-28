@@ -55,7 +55,7 @@ function validate_event_code() {
 
 function validate_name() {
   var name = document.addEvent.eventName;
-  var nameRegex = /^[0-9A-Za-z\.\,\#\= ]*$/;
+  var nameRegex = /^[0-9A-Za-z\.\,\%\#\= ]*$/;
   var errName = document.getElementById("errorName");
   var sucName = document.getElementById("successName");
 
@@ -67,7 +67,7 @@ function validate_name() {
 
   if (!nameRegex.test(name.value)) {
     sucName.innerHTML = "";
-    errName.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> Invalid special characters used!\n(Use '.', ',', '=' or '#')";
+    errName.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> Invalid special characters used!\n(Use '.', ',', '=', '%' or '#')";
     return false;
   }
 
