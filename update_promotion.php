@@ -30,6 +30,12 @@ function updatePromotion() {
 	$description = $_POST['description'];
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
+
+
+	if(($promoType == 'Percent') && ($amountOff >= 1)){
+		$amountOff = $amountOff/100;
+		//$amountOff = ltrim($amountOff, "0");
+	}
 	
 	$updateStatement = "Update Promotion SET Name = '".$promoName."', Description = '".$description."', AmountOff = '".$amountOff."', PromoType = '".$promoType."' WHERE PromoCode = '".$promoCode."'";
 	// Execute the query--it will return either true or false
@@ -38,7 +44,11 @@ function updatePromotion() {
 	if(!$result) {
 		$message = "Error in updating Promotion: $promoCode, $description";
 	} else {
+<<<<<<< HEAD
 		$message = "Data for Promotion: $promoCode updated successfully";
+=======
+		$message = "Data for Promotion: $promoName updated successfully";
+>>>>>>> master
 	}
 	recalculateSalePrice($promoCode);
 	showItemUpdateResult($message, $promoCode, $description, $promoName, $amountOff, $promoType);
@@ -72,12 +82,26 @@ function showItemUpdateResult($message, $promoCode, $description, $promoName, $a
 
   // If the message is non-null and not an empty string print it
   // message contains the lastname and firstname
-  if ($message) {
-    if ($message != "") {
-      echo "<h2>$message</h2><br />";
+  if ($message != "") {
+		echo <<<EOD
+			<h2 class='text-center'>$message</h2>
+			<table>
+					<tr>
+						<td>Description:</td>
+						<td>$description</td>
+					</tr>
+					<tr>
+						<td>Amount Off:</td>
+						<td>$amountOff</td>
+					</tr>
+					<tr>
+						<td>Promo Type:</td>
+						<td>$promoType</td>
+					</tr>
+			</table>
+EOD;
     } else {
-			echo "<p>Error</p>";
-		}
+			echo "<h2>Error in inserting promotion</h2>";
   }
 }
 ?>

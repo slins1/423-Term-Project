@@ -20,13 +20,13 @@
 	<h2>Please select an Ad Event and click submit to confirm, or click back to go back</h2>
 	<table>
 		<tr>
-		<td></td>
-		<td><b>EVENT CODE</b></td>
-		<td><b>NAME</b></td>
-		<td><b>START DATE</b></td>
-		<td><b>END DATE</b></td>
-		<td><b>DESCRIPTION</b></td>
-		<td><b>AD TYPE(PLANNER/CIRCULAR/PASSOUT)</b></td>
+		<th></th>
+		<th><b>Event Code</b></th>
+		<th><b>Name</b></th>
+		<th><b>Start Date</b></th>
+		<th><b>End Date</b></th>
+		<th><b>Description</b></th>
+		<th><b>Ad Type</b></th>
 	</tr>
 <?php
 require('db_connect.inc');
@@ -201,7 +201,7 @@ EOD;
 ?>
 	</table>
 	<br/>
-	<a href="assign_promotion_adEvent_view.html"><button class="button">Back</button></a>
+	<button class="button" onclick="goBack()">Back</button>
 	<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
 	</form>
 		</center>

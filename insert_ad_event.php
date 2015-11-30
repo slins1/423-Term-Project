@@ -25,10 +25,10 @@ insertAdEvent();
 
 function insertAdEvent() {	
 	$eventCode = $_POST['eventCode'];
-	$name = $_POST['name'];
+	$name = $_POST['eventName'];
 	$startDateUnformatted = $_POST['startDate'];
 	$endDateUnformatted = $_POST['endDate'];
-	$description = $_POST['description'];
+	$description = $_POST['eventDescription'];
 	$type = $_POST['eventType'];
 		
 	$temp = "";
@@ -67,6 +67,7 @@ function showAdEventInsertResult($message, $eventCode, $name, $startDate, $endDa
   if ($message) {
     if ($message != "") {
       echo <<<EOD
+      		
 			<h2 class='text-center'>$message</h2>
 			<table>
 					<tr>

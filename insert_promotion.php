@@ -26,14 +26,14 @@ connect();
 insertPromotion();
 
 function insertPromotion() {
-	$name = $_POST['name'];
-	$description = $_POST['description'];
+	$name = $_POST['promoName'];
+	$description = $_POST['promoDescription'];
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
 
 	if(($promoType == 'Percent') && ($amountOff >= 1)){
 		$amountOff = $amountOff/100;
-		$amountOff = ltrim($amountOff, "0");
+		//$amountOff = ltrim($amountOff, "0");
 	}
 	
 	$insertStatement = "INSERT INTO Promotion (Name, Description, AmountOff, PromoType) values ( '$name', '$description', '$amountOff', '$promoType')";
