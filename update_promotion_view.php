@@ -17,7 +17,7 @@
         <center>
     <form action='update_promotion.php' method='post' onsubmit="">
 
-    <h2>Update an Item:</h2>
+    <h2>Update a Promotioncs:</h2>
     <table border="1" cellpadding="5">
 
 <?php
@@ -55,7 +55,8 @@ echo <<<EOD
 				<td align="left">Promo Type:</td>
 				<td><div class="dropDown"><select name="promoType" id="promoType" maxlength="10">
 EOD;
-				echo '<option selected disabled>'.$promoType.'</option>';
+                        echo '<option selected>'.$promoType.'</option>';
+
 echo <<<EOD
 				<option>Dollar</option>
 				<option>Percent</option>

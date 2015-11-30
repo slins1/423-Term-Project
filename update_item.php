@@ -10,7 +10,7 @@
       <title>Aptaris - Advertisement Event System</title>
       
       <div class="header"><a href="index.html">
-			<img src="logo_100.jpg" alt="logo" />
+			<img src="images/logo_100.jpg" alt="logo" />
 			<h1>Advertisement Event System - Update an Item</h1></a>
 			<br/><hr/>
 		</div>
