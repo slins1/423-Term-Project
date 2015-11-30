@@ -61,6 +61,10 @@ function updateAdEvent() {
 }
 
 function showItemUpdateResult($message, $eventCode, $description, $name, $startDate, $endDate, $eventType) {
+	
+	if (!$eventType) {
+		$message = "NO EVENT TYPE";
+	}
 
   // If the message is non-null and not an empty string print it
   // message contains the lastname and firstname

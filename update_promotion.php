@@ -44,11 +44,7 @@ function updatePromotion() {
 	if(!$result) {
 		$message = "Error in updating Promotion: $promoCode, $description";
 	} else {
-<<<<<<< HEAD
 		$message = "Data for Promotion: $promoCode updated successfully";
-=======
-		$message = "Data for Promotion: $promoName updated successfully";
->>>>>>> master
 	}
 	recalculateSalePrice($promoCode);
 	showItemUpdateResult($message, $promoCode, $description, $promoName, $amountOff, $promoType);

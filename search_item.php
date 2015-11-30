@@ -19,7 +19,8 @@
 	<center>  
     <form action='search_item_for_promotion.php' method='post' onsubmit="return validateCategory(this)">
         
-    <h2>Search for a Item to add the promotion to:</h2>
+    <h2>Search for a Item to add the promotion to</h2>
+    <h4>At least one field is required</h4>
     <table>
         <tr>
             <td><p><b>Item Number:</b></td>
