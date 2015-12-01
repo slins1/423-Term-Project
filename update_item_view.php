@@ -5,11 +5,11 @@
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script src="_script.js"></script>
         <link rel="stylesheet" type="text/css" href="_main.css">
-        <link rel="logo_favicon.jpg" href="/favicon.ico"/>
+        <link rel="images/logo_favicon.jpg" href="/favicon.ico"/>
         <title>Aptaris - Advertisement Event System</title>
 
         <div class="header"><a href="index.html">
-                <img src="logo_100.jpg" alt="logo" />
+                <img src="images/logo_100.jpg" alt="logo" />
                 <h1>Advertisement Event System - Update Item</h1></a><br/><hr/>
         </div>
 </head>
@@ -30,11 +30,13 @@ $category = $explode[2];
 $departmentName = $explode[3];
 $purchaseCost = $explode[4];
 $fullRetailPrice = $explode[5];
-echo '<input type="text" name="itemNum" id="itemNum" value = "'.$itemNumber.'">';
+echo '<input type="text" name="itemNum" id="itemNum" value = "'.$itemNumber.'"><span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span>';
 echo <<<EOD
     <p><b>Item Description:</b></p>
 EOD;
-echo '<input type="text" name="itemDescription" id="itemDescription" value = "'.$itemDescription.'">';
+echo '<input type="text" name="itemDescription" id="itemDescription" value = "'.$itemDescription.'"><span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span>';
 echo <<<EOD
     <p><b>Category:</b></p>
 EOD;
@@ -126,9 +128,11 @@ echo <<<EOD
 <p>
 EOD;
 echo '<p><b>Purchase Cost:</b></p>';
-echo '<input type="text" name="purchaseCost" id="purchaseCost" value="'.$purchaseCost.'">';
+echo '<input type="text" name="purchaseCost" id="purchaseCost" value="'.$purchaseCost.'"><span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span>';
 echo '<p><b>Full Retail Price:</b></p>';
-echo '<input type="text" name="fullRetailPrice" id="fullRetailPrice" value="'.$fullRetailPrice.'">';
+echo '<input type="text" name="fullRetailPrice" id="fullRetailPrice" value="'.$fullRetailPrice.'"><span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span>';
 echo '<input type="hidden" name="itemNumber" id="itemNumber" value="'.$itemNumber.'">';
 ?>			
 		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
