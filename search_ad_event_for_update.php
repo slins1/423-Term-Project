@@ -152,13 +152,13 @@ function displayEvents($event_search_message, $eventResult) {
 	  echo <<<EOD
 	<p>$event_search_message</p>
   <tr>
-  	<td></td>
-  	<td><b>EVENT CODE</b></td>
-  	<td><b>NAME</b></td>
-  	<td><b>START DATE</b></td>
-  	<td><b>END DATE</b></td>
-  	<td><b>DESCRIPTION</b></td>
-  	<td><b>AD TYPE</b></td>
+  	<th></th>
+  	<th><b>EVENT CODE</b></th>
+  	<th><b>NAME</b></th>
+  	<th><b>START DATE</b></th>
+  	<th><b>END DATE</b></th>
+  	<th><b>DESCRIPTION</b></th>
+  	<th><b>AD TYPE</b></th>
   </tr>
 EOD;
 		
@@ -187,7 +187,7 @@ EOD;
 ?>
 </table>
 	<p>			
-		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
+		<button class="button" onclick="goBack()">Back</button>
 		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
 	</p>
 	</form>

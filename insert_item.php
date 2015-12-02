@@ -26,7 +26,7 @@ insertItem();
 
 function insertItem() {
 	$itemNum = $_POST['itemNum'];
-	$description = $_POST['description'];
+	$description = $_POST['itemDescription'];
 	$category = $_POST['category'];
 	$deptName = $_POST['deptName'];
 	$purchaseCost = $_POST['purchaseCost'];
@@ -40,7 +40,7 @@ function insertItem() {
 	if (!$result) {
 		$message = "Error in inserting Item: $itemNum, $description";
 	} else {
-		$message = "Data for Item: $itemNum inserted successfully";
+		$message = "Data for Item number $itemNum inserted successfully";
 	}
 
 	showItemInsertResult($message, $itemNum, $description, $category, $deptName, $purchaseCost, $retailPrice);
@@ -50,9 +50,38 @@ function showItemInsertResult($message, $itemNum, $description, $category, $dept
 
   // If the message is non-null and not an empty string print it
   // message contains the lastname and firstname
-  if ($message) {
+ if ($message) {
     if ($message != "") {
-      echo "<h2>$message</h2><br />";
+      echo <<<EOD
+      		
+			<h2 class='text-center'>$message</h2>
+			<table>
+					<tr>
+						<td>Item Number:</td>
+						<td>$itemNum</td>
+					</tr>
+					<tr>
+						<td>Department Name:</td>
+						<td>$deptName</td>
+					</tr>
+					<tr>
+						<td>Category:</td>
+						<td>$category</td>
+					</tr>
+					<tr>
+						<td>Purchase Cost:</td>
+						<td>$purchaseCost</td>
+					</tr>
+					<tr>
+						<td>Retail Price:</td>
+						<td>$retailPrice</td>
+					</tr>
+					<tr>
+						<td>Description:</td>
+						<td>$description</td>
+					</tr>
+			</table>
+EOD;
     } else {
 			echo "<p>Error</p>";
 		}

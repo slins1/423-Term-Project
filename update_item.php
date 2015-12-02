@@ -10,7 +10,7 @@
       <title>Aptaris - Advertisement Event System</title>
       
       <div class="header"><a href="index.html">
-			<img src="logo_100.jpg" alt="logo" />
+			<img src="images/logo_100.jpg" alt="logo" />
 			<h1>Advertisement Event System - Update an Item</h1></a>
 			<br/><hr/>
 		</div>
@@ -74,12 +74,38 @@ function showItemUpdateResult($message, $itemNum, $description, $category, $dept
 
   // If the message is non-null and not an empty string print it
   // message contains the lastname and firstname
-  if ($message) {
-    if ($message != "") {
-      echo "<h2>$message</h2><br />";
+if ($message != "") {
+		echo <<<EOD
+			<h2 class='text-center'>$message</h2>
+			<table>
+					<tr>
+						<td>Item Number:</td>
+						<td>$itemNum</td>
+					</tr>
+					<tr>
+						<td>Department Name:</td>
+						<td>$deptName</td>
+					</tr>
+					<tr>
+						<td>Category:</td>
+						<td>$category</td>
+					</tr>
+					<tr>
+						<td>Purchase Cost:</td>
+						<td>$purchaseCost</td>
+					</tr>
+					<tr>
+						<td>Retail Price:</td>
+						<td>$retailPrice</td>
+					</tr>
+					<tr>
+						<td>Description:</td>
+						<td>$description</td>
+					</tr>
+			</table>
+EOD;
     } else {
-			echo "<p>Error</p>";
-		}
+			echo "<h2>Error in inserting promotion</h2>";
   }
 }
 ?>
