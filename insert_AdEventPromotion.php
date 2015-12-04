@@ -54,9 +54,9 @@ EOD;
     	$amountOff = $row['AmountOff'];
     	$promoType = $row['PromoType'];
 
-    	if(($promoType == 'Percent') && ($amountOff >= 1)){
-		$amountOff = $amountOff/100;
-		//$amountOff = ltrim($amountOff, "0");
+    	if (($promoType == 'Percent') && ($amountOff >= 1)) {
+        	$amountOff =  str_replace("%", "", $amountOff);
+            $amountOff = $amountOff/100;
 	}
 
 

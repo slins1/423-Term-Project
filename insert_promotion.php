@@ -31,7 +31,8 @@ function insertPromotion() {
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
 
-	if(($promoType == 'Percent') && ($amountOff >= 1)){
+	if (($promoType == 'Percent') && ($amountOff >= 1)) {
+    	$amountOff =  str_replace("%", "", $amountOff);
 		$amountOff = $amountOff/100;
 		//$amountOff = ltrim($amountOff, "0");
 	}
