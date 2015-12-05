@@ -17,7 +17,8 @@
         <center>
     <form action='update_promotion.php' method='post' onsubmit="">
 
-    <h2>Update a Promotioncs:</h2>
+    <h2>Update a Promotion:</h2>
+
     <table border="1" cellpadding="5">
 
 <?php

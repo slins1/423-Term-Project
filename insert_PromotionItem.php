@@ -38,6 +38,7 @@ echo <<<EOD
 				<th>Department Name</th>
 				<th>Purchase Cost</th>
 				<th>Full Retail Price</th>
+				<th>Sale Price</th>
 			</tr>
 EOD;
 	if (isset($_POST['saleItems'])) {
@@ -89,6 +90,7 @@ EOD;
 	  				<td>$departmentName</td>
 	  				<td>$purchaseCost</td>
 	  				<td>$fullRetailPrice</td>
+	  				<td>$salePrice</td>
 	  			</tr>
 EOD;
 			} 

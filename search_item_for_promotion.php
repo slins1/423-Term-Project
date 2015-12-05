@@ -16,11 +16,10 @@
 </head>
 
 <body>
+
 <center>
 <form action='insert_PromotionItem.php' method='post'>
-<h2>Please check all items you would like to add to the promotion</h2>
-<h2> Click submit to confirm the addition of all items to the promotion</h2>
-<table>
+
 
 
 <?php
@@ -34,6 +33,14 @@ function searchItemsByCategory() {
 	$promoName = $_POST['promoName'];
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
+
+echo <<<EOD
+	<h2>Please check all items you would like to add to the promotion $promoName</h2>
+<h2> Click submit to confirm the addition of all items to the promotion</h2>
+<table>
+EOD;
+
+
 
 	$itemNumber = $_POST['itemNumber'];
 	$itemDescription = $_POST['itemDescription'];
