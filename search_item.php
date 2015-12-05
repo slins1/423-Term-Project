@@ -11,7 +11,7 @@
 	
 	<div class="header"><a href="index.html">
 		<img src="images/logo_100.jpg" alt="logo" />
-		<h1>Advertisement Event System - Assign Promotion to an Item</h1></a><br/><hr/>
+		<h1>Advertisement Event System - Assign Item to a Promotion</h1></a><br/><hr/>
 	</div>
 </head>
 
@@ -19,7 +19,8 @@
 	<center>  
     <form action='search_item_for_promotion.php' method='post' onsubmit="return validateCategory(this)">
         
-    <h2>Search for a Item to add the promotion to:</h2>
+    <h2>Search for a Item to add the promotion to</h2>
+    <h4>At least one field is required</h4>
     <table>
         <tr>
             <td><p><b>Item Number:</b></td>

@@ -11,7 +11,7 @@
 	
 	<div class="header"><a href="index.html">
 		<img src="images/logo_100.jpg" alt="logo" />
-		<h1>Advertisement Event System - Assign Promotion to an Item</h1></a><br/><hr/>
+		<h1>Advertisement Event System - Assign Item to a Promotion</h1></a><br/><hr/>
 	</div>
 </head>
 
@@ -42,9 +42,9 @@ function retrievePromotions() {
 	$promoType = $_POST['promoType'];
 
 
-	if(($promoType == 'Percent') && ($amountOff >= 1)){
+	if (($promoType == 'Percent') && ($amountOff >= 1)) {
+    	$amountOff =  str_replace("%", "", $amountOff);
 		$amountOff = $amountOff/100;
-		//$amountOff = ltrim($amountOff, "0");
 	}
 
 	$cond1 = "";

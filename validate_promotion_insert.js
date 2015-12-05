@@ -1,5 +1,5 @@
 function validate_promotion() {
-  
+
   var errorFlag = 0;
 
 	if (validate_promotion_name() == false) {
@@ -37,7 +37,7 @@ function validate_promotion_name() {
 
     if (!promoNameRegex.test(promoName.value)) {
         sucPromoName.innerHTML = "";
-        errPromoName.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'>Invalid special characters used! (Use '.', ',', '=' or '#')";
+        errPromoName.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'>Invalid special characters used! \n(Use '.', ',', '%', '=' or '#')";
         return false;
     }
 
@@ -60,7 +60,7 @@ function validate_promotion_description() {
 
   if (!promoDescriptionRegex.test(promoDescription.value)) {
     sucPromoDescription.innerHTML = "";
-    errPromoDescription.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> Invalid special characters used! (Use '.', ',', '=' or '#')";
+    errPromoDescription.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> Invalid special characters used!\n(Use '.', ',', '%', '=' or '#')";
     return false;
   }
 
@@ -71,6 +71,7 @@ function validate_promotion_description() {
 
 function validate_amount_off() {
   var amountOff = document.addPromotion.amountOff;
+  var amountOff = amountOff.replace("%", "");
   var amountOffRegex = /^[0-9]+([\.][0-9][0-9]?)?$/;
   var errAmountOff = document.getElementById("errorAmountOff");
   var sucAmountOff = document.getElementById("successAmountOff");

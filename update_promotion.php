@@ -32,9 +32,9 @@ function updatePromotion() {
 	$promoType = $_POST['promoType'];
 
 
-	if(($promoType == 'Percent') && ($amountOff >= 1)){
+	if (($promoType == 'Percent') && ($amountOff >= 1)) {
+    	$amountOff =  str_replace("%", "", $amountOff);
 		$amountOff = $amountOff/100;
-		//$amountOff = ltrim($amountOff, "0");
 	}
 	
 	$updateStatement = "Update Promotion SET Name = '".$promoName."', Description = '".$description."', AmountOff = '".$amountOff."', PromoType = '".$promoType."' WHERE PromoCode = '".$promoCode."'";
@@ -44,7 +44,7 @@ function updatePromotion() {
 	if(!$result) {
 		$message = "Error in updating Promotion: $promoCode, $description";
 	} else {
-		$message = "Data for Promotion: $promoName updated successfully";
+		$message = "Data for Promotion: $promoCode updated successfully";
 	}
 	recalculateSalePrice($promoCode);
 	showItemUpdateResult($message, $promoCode, $description, $promoName, $amountOff, $promoType);

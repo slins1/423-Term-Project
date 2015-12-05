@@ -78,9 +78,9 @@ echo <<<EOD
                 </tr>
                 <tr>
                     <td align="left">Type:</td>
-                    <td align="left"><div class="dropDown"><select name="eventType">
+                    <td align="left"><div class="dropDown"><select name="eventType" id="eventType">
 EOD;
-                        echo '<option selected disabled>'.$type.'</option>';
+                        echo '<option selected>'.$type.'</option>';
 echo <<<EOD
                         <option value="Planner">
                             Planner
@@ -97,7 +97,7 @@ echo <<<EOD
 EOD;
 echo '<input type="hidden" name="code" id="code" value="'.$eventCode.'">';
 ?>			
-		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
+		<button class="button" onclick="goBack()">Back</button>
 		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
 	</p>
 	</form>
