@@ -16,10 +16,25 @@
 </head>
 
 <body> 
+<?php
+require('db_connect.inc');
+connect();
+
+    $eventCode = $_POST['adEvent'];
+
+//i added a comment
+    $adEvent_search_sql = "SELECT Name FROM AdEvent WHERE EventCode = '$eventCode'";
+
+    $adEventResult = mysql_query($adEvent_search_sql);
+
+    $row = mysql_fetch_assoc($adEventResult);
+
+    $eventName = $row['Name'];
+?>
 	<center>  
     <form action='search_promotion_for_adEvent.php' method='post' onsubmit="return validateCategory(this)">
         
-    <h2>Search for a Promotion to add to the Ad Event:</h2>
+    <h2>Search for a Promotion to add to the Ad Event <?php echo "$eventName";?>:</h2>
     <h4>At least one field is required</h4>
     <table>
         <tr>
@@ -57,19 +72,7 @@
         
   
 <?php
-require('db_connect.inc');
-connect();
 
-    $eventCode = $_POST['adEvent'];
-
-//i added a comment
-    $adEvent_search_sql = "SELECT Name FROM AdEvent WHERE EventCode = '$eventCode'";
-
-    $adEventResult = mysql_query($adEvent_search_sql);
-
-    $row = mysql_fetch_assoc($adEventResult);
-
-    $eventName = $row['Name'];
 
   echo <<<EOD
     <input type="hidden" name="eventCode" value="$eventCode">
