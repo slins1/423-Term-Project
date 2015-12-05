@@ -11,15 +11,14 @@
 	
 	<div class="header"><a href="index.html">
 		<img src="images/logo_100.jpg" alt="logo" />
-		<h1>Advertisement Event System - Assign Promotion to an Ad Event</h1></a><br/><hr/>
+		<h1>Advertisement Event System - Update Promotion</h1></a><br/><hr/>
 	</div>
 </head>
 
 <body>
 <center>
-<form action='insert_AdEventPromotion.php' method='post'>
-<h2>Please check all promotions you would like to add to the Ad Event</h2>
-<h2> Click submit to confirm the addition of all promotions to the Ad Event</h2>
+<form action='update_promotion_view.php' method='post'>
+<h2>Please check the promotion you would like to update</h2>
 <table>
 
 
@@ -27,15 +26,13 @@
 require('db_connect.inc');
 connect();
 
-searchPromotions();
+searchPromotionsForUpdate();
 
-function searchPromotions() {
-	$eventCode = $_POST['eventCode'];
-	$eventName = $_POST['eventName'];
+function searchPromotionsForUpdate() {
 
 	$promoCode = $_POST['promoCode'];
-	$name = $_POST['name'];
-	$description = $_POST['description'];
+	$promotionName = $_POST['name'];
+	$promotionDescription = $_POST['description'];
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
 
@@ -54,11 +51,11 @@ function searchPromotions() {
 	if(isset($promoCode) && ($promoCode != "")){
 		$cond1 = "PromoCode = '".$promoCode."'";
 	}
-	if(isset($name) && ($name != "")){
-		$cond2 = "Name = '".$name."'";
+	if(isset($promotionName) && ($promotionName != "")){
+		$cond2 = "Name LIKE '%".$promotionName."%'";
 	}
-	if(isset($description) && ($description != "")){
-		$cond3 = "Description = '".$description."'";
+	if(isset($promotionDescription) && ($promotionDescription != "")){
+		$cond3 = "Description LIKE '%".$promotionDescription."%'";
 	}
 	if(isset($amountOff) && ($amountOff != "")){
 		$cond4 = "AmountOff = ".$amountOff."";
@@ -102,74 +99,57 @@ function searchPromotions() {
 			$whereCondition = $whereCondition.$cond5;
 		}
 	}
-	if($cond6 != ""){
-		if(strlen($whereCondition) > 1){
-			$whereCondition = $whereCondition." AND ".$cond6;
-		}
-		else{
-			$whereCondition = $whereCondition.$cond6;
-		}
-	}
 
-	$promo_search_sql = "SELECT PromoCode, Name, Description,
-	AmountOff, PromoType FROM Promotion WHERE $whereCondition";
-	
-	//Construct SQL statements
-	
-	$promoResult = mysql_query($promo_search_sql);
+	$promotion_search_sql = "SELECT * FROM Promotion WHERE $whereCondition";
+	$promotionResult = mysql_query($promotion_search_sql);
 	//Test whether the queries were successful
-	if (!$promoResult) {
-     $promo_search_message = "The retrieval of items was unsuccessful: ";
+	if (!$promotionResult) {
+     $promotion_search_message = "The retrieval of promotions was unsuccessful: ";
   }
 	
-	$number_promo_rows = mysql_num_rows($promoResult);
+	$number_promotion_rows = mysql_num_rows($promotionResult);
 	// Check if results turned out empty
-	$promo_search_message = "";
-	if ($number_promo_rows == 0) {
-	  $promo_search_message = "No items found in database";
+	$promotion_search_message = "";
+	if ($number_promotion_rows == 0) {
+	  $promotion_search_message = "No promotions found in database";
 	}
-	
+		
 	//Display the results
-  displayItemsPromotions($promo_search_message, $promoResult, $eventCode,
-  	$eventName);
+  displayPromotions($promotion_search_message, $promotionResult);
   //Free the result sets
-	mysql_free_result($promoResult);
+	mysql_free_result($promotionResult);
 }
 
-function displayItemsPromotions($promo_search_message, $promoResult, 
-	$eventCode, $eventName) {
+function displayPromotions($promotion_search_message, $promotionResult) {
 	    
 	  echo <<<EOD
-	<p>$promo_search_message</p>
-	<input type="hidden" name="eventCode" value="$eventCode">
-	<input type="hidden" name="eventName" value="$eventName">
+	<p>$promotion_search_message</p>
   <tr>
-		<th></th>
-		<th><b>Promo Code</b></th>
-		<th><b>Name</b></th>
-		<th><b>Description</b></th>
-		<th><b>Amount Off</b></th>
-		<th><b>Promotion Type</b></th>
+  	<th></th>
+  	<th><b>Promo Code</b></th>
+  	<th><b>Name</b></th>
+  	<th><b>Description</b></th>
+  	<th><b>Amount Off</b></th>
+  	<th><b>Promo Type</b></th>
   </tr>
 EOD;
 		
-		while ($row = mysql_fetch_assoc($promoResult)) {
-    		$promoCode = $row['PromoCode'];
-    		$name = $row['Name'];
-    		$description = $row['Description'];
-    		$amountOff = $row['AmountOff'];
-    		$promoType = $row['PromoType'];
+		while ($row = mysql_fetch_assoc($promotionResult)) {
+		
+		$promoCode = $row['PromoCode'];
+		$promoDescription = $row['Description'];
+		$promoName = $row['Name'];
+		$amountOff = $row['AmountOff'];
+		$promoType = $row['PromoType'];
 	
-	  echo <<<EOD
-	  	<tr>
-				<td><input type='checkbox' name='promos[]' value=$promoCode></td>
-				<td>$promoCode</td>
-      			<td>$name</td>
-				<td>$description</td>
-				<td>$amountOff</td>
-				<td>$promoType</td>			
-		</tr>
-EOD;
+	  echo '<tr>';
+				echo "<td><input type='radio' name='row[]' value='". implode(',', $row) ."'></td>";
+				echo "<td>$promoCode</td>";
+				echo "<td>$promoName</td>";
+				echo "<td>$promoDescription</td>";
+				echo "<td>$amountOff</td>";
+				echo "<td>$promoType</td>";
+			echo '</tr>';
 
 	}
 

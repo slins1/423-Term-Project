@@ -11,26 +11,28 @@
       
       <div class="header"><a href="index.html">
 			<img src="images/logo_100.jpg" alt="logo" />
-			<h1>Advertisement Event System - Insert an Ad Event</h1></a>
+			<h1>Advertisement Event System - Update an Ad Event</h1></a>
 			<br/><hr/>
 		</div>
   </head>
- <body>
-	 <center>
+  
+<body>
+	<center>
 <?php
-require('db_connect.inc');
+require ('db_connect.inc');
 connect();
-//Insert AdEvent into the database
-insertAdEvent();
+//Update ad event in the database
+updateAdEvent();
 
-function insertAdEvent() {	
+function updateAdEvent() {
 	$eventCode = $_POST['eventCode'];
-	$name = $_POST['eventName'];
+	$oldCode = $_POST['code'];
+	$name = $_POST['name'];
+	$description = $_POST['description'];
 	$startDateUnformatted = $_POST['startDate'];
 	$endDateUnformatted = $_POST['endDate'];
-	$description = $_POST['eventDescription'];
-	$type = $_POST['eventType'];
-		
+	$eventType = $_POST['eventType'];
+	
 	$temp = "";
 	$startDates	= explode("/", $startDateUnformatted); //[10], [28], [2015]
 	$startDatesReversed = array_reverse($startDates); //[2015], [28], [10]
@@ -46,28 +48,25 @@ function insertAdEvent() {
 	$endDatesReversed[2] = $temp;
 	$endDate = implode("-", $endDatesReversed);
 	
-	$insertStatement = "INSERT INTO AdEvent (EventCode, Name, StartDate, EndDate, Description, AdType) values ('$eventCode', '$name', '$startDate', '$endDate','$description','$type')";
-	
-	//Execute the query. The result will just be true or false
-	$result = mysql_query($insertStatement);
+	$updateStatement = "Update AdEvent SET EventCode = '".$eventCode."', Description = '".$description."', Name = '".$name."', StartDate = '".$startDate."', EndDate = '".$endDate."', AdType = '".$eventType."' WHERE EventCode = '".$oldCode."'";
+	// Execute the query--it will return either true or false
+	$result = mysql_query($updateStatement);
 	$message = "";
-	if (!$result)  {
-		$message = "Error in inserting ad event: $name , $description";
+	if(!$result) {
+		$message = "Error in updating Ad Event: $eventCode, $description";
 	} else {
-	  $message = "The ad event $name was inserted successfully.";
+		$message = "Data for Event Code: $name updated successfully";
 	}
-	
-	//Show result
-	showAdEventInsertResult($message, $eventCode, $name, $startDateUnformatted, $endDateUnformatted, $description, $type);
+	showItemUpdateResult($message, $eventCode, $description, $name, $startDate, $endDate, $eventType);
 }
-  
-function showAdEventInsertResult($message, $eventCode, $name, $startDate, $endDate, $description, $type) {
+
+function showItemUpdateResult($message, $eventCode, $description, $name, $startDate, $endDate, $eventType) {
+
   // If the message is non-null and not an empty string print it
   // message contains the lastname and firstname
   if ($message) {
     if ($message != "") {
       echo <<<EOD
-      		
 			<h2 class='text-center'>$message</h2>
 			<table>
 					<tr>
@@ -92,7 +91,7 @@ function showAdEventInsertResult($message, $eventCode, $name, $startDate, $endDa
 					</tr>
 					<tr>
 						<td>Type:</td>
-						<td>$type</td>
+						<td>$eventType</td>
 					</tr>
 			</table>
 EOD;
@@ -104,7 +103,7 @@ EOD;
 ?>
 <p>
 	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
-	<a href="insert_ad_event_view.html"><button name="insert"  accesskey="S" class="button">Insert another Ad Event</button></a>
+	<a href="update_ad_event_search_view.html"><button name="update"  accesskey="S" class="button">Update another ad event</button></a>
 </p>
 </center>
 </body>

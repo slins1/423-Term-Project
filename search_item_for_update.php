@@ -11,15 +11,14 @@
 	
 	<div class="header"><a href="index.html">
 		<img src="images/logo_100.jpg" alt="logo" />
-		<h1>Advertisement Event System - Assign Promotion to an Item</h1></a><br/><hr/>
+		<h1>Advertisement Event System - Update Item</h1></a><br/><hr/>
 	</div>
 </head>
 
 <body>
 <center>
-<form action='insert_PromotionItem.php' method='post'>
-<h2>Please check all items you would like to add to the promotion</h2>
-<h2> Click submit to confirm the addition of all items to the promotion</h2>
+<form action='update_item_view.php' method='post'>
+<h2>Please check the item you would like to update</h2>
 <table>
 
 
@@ -30,10 +29,6 @@ connect();
 searchItemsByCategory();
 
 function searchItemsByCategory() {
-	$promoCode = $_POST['promoCode'];
-	$promoName = $_POST['promoName'];
-	$amountOff = $_POST['amountOff'];
-	$promoType = $_POST['promoType'];
 
 	$itemNumber = $_POST['itemNumber'];
 	$itemDescription = $_POST['itemDescription'];
@@ -54,7 +49,7 @@ function searchItemsByCategory() {
 		$cond1 = "ItemNumber = '".$itemNumber."'";
 	}
 	if(isset($itemDescription) && ($itemDescription != "")){
-		$cond2 = "ItemDescription = '".$itemDescription."'";
+		$cond2 = "ItemDescription LIKE '%".$itemDescription."%'";
 	}
 	if(isset($category) && ($category != "---")){
 		$cond3 = "Category = '".$category."'";
@@ -116,42 +111,7 @@ function searchItemsByCategory() {
 	$item_search_sql = "SELECT ItemNumber, ItemDescription, Category, 
 	DepartmentName, PurchaseCost, FullRetailPrice FROM Item 
 	WHERE $whereCondition";
-	
-	//Construct SQL statements
-
-	/*
-	if($searchType == "Item Number"){
-	$item_search_sql = "SELECT ItemNumber, ItemDescription, Category, 
-	DepartmentName, PurchaseCost, FullRetailPrice FROM Item 
-	WHERE ItemNumber = '$searchData'";
-	}
-	else if($searchType == "Item Description"){
-	$item_search_sql = "SELECT ItemNumber, ItemDescription, Category, 
-	DepartmentName, PurchaseCost, FullRetailPrice FROM Item 
-	WHERE ItemDescription = '$searchData'";
-	}
-	else if($searchType == "Category"){
-	$item_search_sql = "SELECT ItemNumber, ItemDescription, Category, 
-	DepartmentName, PurchaseCost, FullRetailPrice FROM Item 
-	WHERE Category = '$searchData'";
-	}
-	else if($searchType == "Department Name"){
-	$item_search_sql = "SELECT ItemNumber, ItemDescription, Category, 
-	DepartmentName, PurchaseCost, FullRetailPrice FROM Item 
-	WHERE DepartmentName = '$searchData'";
-	}
-	else if($searchType == "Purchase Cost"){
-	$item_search_sql = "SELECT ItemNumber, ItemDescription, Category, 
-	DepartmentName, PurchaseCost, FullRetailPrice FROM Item 
-	WHERE PurchaseCost = '$searchData'";
-	}
-	else if($searchType == "Full Retail Price"){
-	$item_search_sql = "SELECT ItemNumber, ItemDescription, Category, 
-	DepartmentName, PurchaseCost, FullRetailPrice FROM Item 
-	WHERE FullRetailPrice = '$searchData'";
-	}
-*/
-	
+		
 	$itemResult = mysql_query($item_search_sql);
 	//Test whether the queries were successful
 	if (!$itemResult) {
@@ -166,29 +126,23 @@ function searchItemsByCategory() {
 	}
 	
 	//Display the results
-  displayItemsPromotions($item_search_message, $itemResult, $promoCode,
-    $promoName, $amountOff, $promoType);
+  displayItemsPromotions($item_search_message, $itemResult);
   //Free the result sets
 	mysql_free_result($itemResult);
 }
 
-function displayItemsPromotions($item_search_message, $itemResult, $promoCode,
-    $promoName, $amountOff, $promoType) {
+function displayItemsPromotions($item_search_message, $itemResult) {
 	    
 	  echo <<<EOD
 	<p>$item_search_message</p>
-	<input type="hidden" name="promoCode" value="$promoCode">
-	<input type="hidden" name="promoName" value="$promoName">
-  <input type="hidden" name="amountOff" value="$amountOff">
-  <input type="hidden" name="promoType" value="$promoType">
   <tr>
-  	<th></th>
-  	<th><b>ITEM NUMBER</b></th>
-  	<th><b>ITEM DESCRIPTION</b></th>
-  	<th><b>CATEGORY</b></th>
-  	<th><b>DEPARTMENT NAME</b></th>
-  	<th><b>PURCHASE COST</b></th>
-  	<th><b>FULL RETAIL PRICE</b></th>
+  	<td></td>
+  	<td><b>ITEM NUMBER</b></td>
+  	<td><b>ITEM DESCRIPTION</b></td>
+  	<td><b>CATEGORY</b></td>
+  	<td><b>DEPARTMENT NAME</b></td>
+  	<td><b>PURCHASE COST</b></td>
+  	<td><b>FULL RETAIL PRICE</b></td>
   </tr>
 EOD;
 		
@@ -201,17 +155,15 @@ EOD;
 		$purchaseCost = $row['PurchaseCost'];
 		$fullRetailPrice = $row['FullRetailPrice'];
 	
-	  echo <<<EOD
-	  	<tr>
-				<td><input type='checkbox' name='saleItems[]' value=$itemNumber></td>
-				<td>$itemNumber</td>
-				<td>$itemDescription</td>
-				<td>$category</td>
-				<td>$departmentName</td>
-				<td>$purchaseCost</td>
-				<td>$fullRetailPrice</td>
-			</tr>
-EOD;
+	  echo '<tr>';
+				echo "<td><input type='radio' name='row[]' value='". implode(',', $row) ."'></td>";
+				echo "<td>$itemNumber</td>";
+				echo "<td>$itemDescription</td>";
+				echo "<td>$category</td>";
+				echo "<td>$departmentName</td>";
+				echo "<td>$purchaseCost</td>";
+				echo "<td>$fullRetailPrice</td>";
+			echo '</tr>';
 
 	}
 
@@ -219,7 +171,7 @@ EOD;
 ?>
 </table>
 	<p>			
-		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
+		<button class="button" onclick="goBack()">Back</button>
 		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
 	</p>
 	</form>

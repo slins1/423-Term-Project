@@ -1,108 +1,103 @@
-<!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="jquery-ui.css">
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<script src="_script.js"></script>
-	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
-	<title>Aptaris - Advertisement Event System</title>
-	
-	<div class="header"><a href="index.html">
-		<img src="logo_100.jpg" alt="logo" />
-		<h1>Advertisement Event System - Update an Ad Event</h1></a><br/><hr/>
-	</div>
+        <link rel="stylesheet" href="jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script src="_script.js"></script>
+        <link rel="stylesheet" type="text/css" href="_main.css">
+        <link rel="images/logo_favicon.jpg" href="/favicon.ico"/>
+        <title>Aptaris - Advertisement Event System</title>
+
+        <div class="header"><a href="index.html">
+                <img src="images/logo_100.jpg" alt="logo" />
+                <h1>Advertisement Event System - Update Ad Event</h1></a><br/><hr/>
+        </div>
 </head>
-
 <body>
-<center>
-<form action='' method='post'>
-<h2></h2>
-<table>
-<tr>
-	<th></th>
-	<th>Name</th>
-	<th>Start Date</th>
-	<th>End Date</th>
-	<th>Description</th>
-	<th>Ad Type</th>
-</tr>
+        <center>
+    <form action='update_ad_event.php' method='post' onsubmit="">
+
+    <h2>Update an Ad Event:</h2>
+	<table border="1">
 <?php
-require('db_connect.inc');
-connect();
+$row = $_POST['row'];
+$implode = implode(',',$row);
+$explode = explode(',', $implode);
+$eventCode = $explode[0];
+$name = $explode[1];
+$start = $explode[2];
+$end = $explode[3];
+$description = $explode[4];
+$type = $explode[5];
 
-fetchAdEvents();
+$temp = "";
+$startDates	= explode("-", $start); //[2015], [10], [28]
+$startDatesReversed = array_reverse($startDates); //[28], [10], [2015]
+$temp = $startDatesReversed[1]; //[28], [10], [2015]  t:[10]
+$startDatesReversed[1] = $startDatesReversed[0]; //[28], [28], [2015] t:[10]
+$startDatesReversed[0] = $temp; //[28], [28], [2015]
+$startDate = implode("/", $startDatesReversed); //[10]/[28]/[2015]
 
-function fetchAdEvents() {
-	$eventCode = $_POST['EventCode'];
-	$name = $_POST['Name'];
-	$startDate = $_POST['StartDate'];
-	$endDate = $_POST['EndDate']; 
-	$description = $_POST['Description'];
-	$adType = $_POST['AdType'];
-	
-	//Construct SQL statements
-	$selectStatement = "SELECT EventCode, Name, StartDate, EndDate, Description, AdType FROM AdEvent";
-	
-	$result = mysql_query($selectStatement);
-	//Test whether the queries were successful
-	if (!$result) {
-     $message = "The retrieval of items was unsuccessful";
-  }
-	
-	$numRows = mysql_num_rows($result);
-	// Check if results turned out empty
-	$message = "";
-	if ($numRows == 0) {
-	  $message = "No items found in database";
-	}
-	
-	//Display the results
-  displayAdEvents($message, $result, $eventCode, $name, $startDate, $endDate, $description, $adType);
-  //Free the result sets
-	mysql_free_result($result);
-}
+$endDates	= explode("-", $end); //[2015], [10], [28]
+$endDatesReversed = array_reverse($endDates); //[28], [10], [2015]
+$temp = $startDatesReversed[1]; //[28], [10], [2015]  t:[10]
+$endDatesReversed[1] = $endDatesReversed[0]; //[28], [28], [2015] t:[10]
+$endDatesReversed[0] = $temp; //[28], [28], [2015]
+$endDate = implode("/", $endDatesReversed); //[10]/[28]/[2015]
 
-function displayAdEvents($message, $result, $eventCode, $name, $startDate, $endDate, $description, $adType) {
-
-	echo <<<EOD
-	<p>$message</p>
-	<input type="hidden" name="eventCode" value="$eventCode">
-  <input type="hidden" name="name" value="$name">
-  <input type="hidden" name="startDate" value="$startDate">
-  <input type="hidden" name="endDate" value="$endDate">
-  <input type="hidden" name="description" value="$description">
-  <input type="hidden" name="adType" value="$adType">
+echo <<<EOD
+		<tr>
+                    <td align="left">EventCode:</td>
 EOD;
-		
-		while ($row = mysql_fetch_assoc($result)) {
-		
-			$eventCode = $row['EventCode'];
-			$name = $row['Name'];
-			$startDate = $row['StartDate'];
-			$endDate = $row['EndDate'];
-			$description = $row['Description'];
-			$adType = $row['AdType'];
-		
-		  echo <<<EOD
-		  	<tr>
-					<td><button>Edit</button>
-					<td>$name</td>
-					<td>$startDate</td>
-					<td>$endDate</td>
-					<td>$description</td>
-					<td>$adType</td>
-				</tr>
+                    echo '<td align="left"><input type="text" name="eventCode" id="eventCode" value="'.$eventCode.'" maxlength="25" size="30"><span id="errorItemNum" class="error"></span><span id="successItemNum" class="correct"></span></td>';
+echo <<<EOD
+                </tr>
+                <tr>
+                    <td align="left">Name:</td>
 EOD;
-
-	}
-
-}
-?>
-</table>
-	<p>			
-		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
+                    echo '<td align="left"><input type="text" name="name" id="name" value="'.$name.'" maxlength="25" size="30"><span id="errorItemNum" class="error"></span> <span id="successItemNum" class="correct"></span></td>';
+echo <<<EOD
+                </tr>
+                <tr>
+                    <td align="left">Start Date:</td>
+EOD;
+                    echo '<td align="left"><input type="text" name="startDate" id="startDate" value="'.$startDate.'" maxlength="25" size="30"><span id="errorItemNum" class="error"></span> <span id="successItemNum" class="correct"></span></td>';
+echo <<<EOD
+                </tr>
+                <tr>
+                    <td align="left">End Date:</td>
+EOD;
+                    echo '<td align="left"><input type="text" name="endDate" id="endDate" value="'.$endDate.'" maxlength="25" size="30"><span id="errorItemNum" class="error"></span><span id="successItemNum" class="correct"></span></td>';
+echo <<<EOD
+                </tr>
+                <tr>
+                    <td align="left">Description:</td>
+EOD;
+                    echo '<td align="left"><input type="text" name="description" id="description" value="'.$description.'" maxlength="100" size="30"><span id="errorItemNum" class="error"></span><span id="successItemNum" class="correct"></span></td>';
+echo <<<EOD
+                </tr>
+                <tr>
+                    <td align="left">Type:</td>
+                    <td align="left"><div class="dropDown"><select name="eventType" id="eventType">
+EOD;
+                        echo '<option selected>'.$type.'</option>';
+echo <<<EOD
+                        <option value="Planner">
+                            Planner
+                        </option>
+                        <option value="Circular">
+                            Circular
+                        </option>
+                        <option value="Passout">
+                            Pass Out
+                        </option>
+                    </select></div></td>
+                </tr>
+            </table>
+EOD;
+echo '<input type="hidden" name="code" id="code" value="'.$eventCode.'">';
+?>			
+		<button class="button" onclick="goBack()">Back</button>
 		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
 	</p>
 	</form>

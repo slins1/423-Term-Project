@@ -6,11 +6,11 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+	<link rel="images/logo_favicon.jpg" href="/favicon.ico"/>        
 	<title>Aptaris - Advertisement Event System</title>
 	
 	<div class="header"><a href="index.html">
-		<img src="logo_100.jpg" alt="logo" />
+		<img src="images/logo_100.jpg" alt="logo" />
 		<h1>Advertisement Event System - Assign Promotion to an Item</h1></a><br/><hr/>
 	</div>
 </head>
@@ -19,21 +19,26 @@
 	<center>  
     <form action='search_item_for_promotion.php' method='post' onsubmit="return validateCategory(this)">
         
-    <h2>Search for a Item to add the promotion to:</h2>
+    <h2>Search for a Item to add the promotion to</h2>
+    <h4>At least one field is required</h4>
     <table>
         <tr>
             <td><p><b>Item Number:</b></td>
             <td><input type="text" name="itemNumber" id="itemNumber"
-            placeholder="Enter an Item Number"></p></td>
+            placeholder="Enter an Item Number"></p>
+            <span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td>
         </tr>
         <tr>
             <td><p><b>Item Description:</b></td>
             <td><input type="text" name="itemDescription" id="itemDescription"
-                placeholder="Enter an Item Description"></p></td>
+                placeholder="Enter an Item Description"></p>
+                <span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td>
         </tr>
         <tr>
             <td><p><b>Category:</b></td>
-            <td><select name="category" id="category">
+            <td><div class="dropDown"><select name="category" id="category">
             <option>---</option>
             <option>ACCESSORIES/FOOTWEAR</option>
             <option>BASIC APPAREL</option>
@@ -53,11 +58,11 @@
             <option>SUPPLIES</option>
             <option>TOYS</option>
             <option>WOMENS APPAREL</option>
-        </select></p></td>
+        </select></div></p></td>
     </tr>
     <tr>
         <td><p><b>Department Name</b></td>
-        <td><select name="departmentName" id="departmentName">
+        <td><div class="dropDown"><select name="departmentName" id="departmentName">
             <option>---</option>
             <option>ACCESSORIES</option>
             <option>FOOTWEAR</option>
@@ -116,17 +121,20 @@
             <option>PLUS BOTTOMS</option>
             <option>PLUS TOPS</option>
             <option>SLEEPWEAR/SCRUBS</option>
-        </select></p></td>
+        </select></div></p></td>
     </tr>
     <tr>
         <td><p><b>Purchase Cost:</b></td>
         <td><input type="text" name="purchaseCost" id="purchaseCost"
-        placeholder="Enter a Purchase Cost"></p></td>
+        placeholder="Enter a Purchase Cost"></p>
+        <span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td>
     </tr>
     <tr>
         <td><p><b>Full Retail Price:</b></td>
         <td><input type="text" name="fullRetailPrice" id="fullRetailPrice"
-        placeholder="Enter a Full Retial Price"></p></td>
+        placeholder="Enter a Full Retial Price"></p><span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td>
     </tr>
 </table>
         

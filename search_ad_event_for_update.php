@@ -11,36 +11,31 @@
 	
 	<div class="header"><a href="index.html">
 		<img src="images/logo_100.jpg" alt="logo" />
-		<h1>Advertisement Event System - Assign Promotion to an Ad Event</h1></a><br/><hr/>
+		<h1>Advertisement Event System - Update Ad Event</h1></a><br/><hr/>
 	</div>
 </head>
 
-  <center>
-  <form action='search_Promotion.php' method='post'>
-	<h2>Please select an Ad Event and click submit to confirm, or click back to go back</h2>
-	<table>
-		<tr>
-		<th></th>
-		<th><b>Event Code</b></th>
-		<th><b>Name</b></th>
-		<th><b>Start Date</b></th>
-		<th><b>End Date</b></th>
-		<th><b>Description</b></th>
-		<th><b>Ad Type</b></th>
-	</tr>
+<body>
+<center>
+<form action='update_ad_event_view.php' method='post'>
+<h2>Please check the ad event you would like to update</h2>
+<table>
+
+
 <?php
 require('db_connect.inc');
 connect();
 
-retrieveAdEvent();
+searchAdEventsByCategory();
 
-function retrieveAdEvent() {
+function searchAdEventsByCategory() {
+
 	$eventCode = $_POST['eventCode'];
-	$name = $_POST['name'];
+	$eventName = $_POST['name'];
 	$startDateUnformatted = $_POST['startDate'];
 	$endDateUnformatted = $_POST['endDate'];
 	$description = $_POST['description'];
-	$adType = $_POST['adType'];
+	$eventType = $_POST['eventType'];
 
 
 	$temp = "";
@@ -50,6 +45,8 @@ function retrieveAdEvent() {
 	$startDatesReversed[1] = $startDatesReversed[2]; //[2015], [10], [10] t:[28]
 	$startDatesReversed[2] = $temp; //[2015], [10], [28]
 	$startDate = implode("-", $startDatesReversed); //2015-10-28
+
+
 	
 	$endDates	= explode("/", $endDateUnformatted);
 	$endDatesReversed = array_reverse($endDates);
@@ -68,22 +65,22 @@ function retrieveAdEvent() {
 	$whereCondition = "";
 
 	if(isset($eventCode) && ($eventCode != "")){
-		$cond1 = "EventCode = '".$eventCode."'";
-	}
-	if(isset($name) && ($name != "")){
-		$cond2 = "Name = '".$name."'";
-	}
-	if(isset($startDate) && ($startDate != "--")){
-		$cond3 = "StartDate = '".$startDate."'";
-	}
-	if(isset($endDate) && ($endDate != "--")){
-		$cond4 = "EndDate = '".$endDate."'";
+		$cond1 = "EventCode LIKE '%".$eventCode."%'";
 	}
 	if(isset($description) && ($description != "")){
-		$cond5 = "Description = '".$description."'";
+		$cond2 = "Description LIKE '%".$description."%'";
 	}
-	if(isset($adType) && ($adType != "---")){
-		$cond6 = "AdType = '".$adType."'";
+	if(isset($eventName) && ($eventName != "")){
+		$cond3 = "Name LIKE '%".$eventName."%'";
+	}
+	if(isset($startDate) && ($startDate != "--")){
+		$cond4 = "StartDate = '".$startDate."'";
+	}
+	if(isset($endDate) && ($endDate != "--")){
+		$cond5 = "EndDate = '".$endDate."'";
+	}
+	if(isset($eventType) && ($eventType != "---")){
+		$cond6 = "AdType = '".$eventType."'";
 	}
 
 	if($cond1 != ""){
@@ -129,81 +126,71 @@ function retrieveAdEvent() {
 			$whereCondition = $whereCondition.$cond6;
 		}
 	}
-	//echo "$whereCondition";
 
-	$insertStatement = "SELECT EventCode, Name, StartDate, EndDate, 
-	Description, AdType FROM AdEvent WHERE $whereCondition";
-	//echo "$insertStatement";
-	/*
-	echo "$cond1";
-	echo "$cond2";
-	echo "$cond3";
-	echo "$cond4";
-	echo "$cond5";
-*/
-	//Construct SQL statements
-	
-	
-	//Execute the queries
-	$result = mysql_query($insertStatement);
-	$numberAdEventRows = mysql_num_rows($result);
-
+	$ad_event_search_sql = "SELECT * FROM AdEvent WHERE $whereCondition";
+	$eventResult = mysql_query($ad_event_search_sql);
 	//Test whether the queries were successful
-	if (!$result || $numberAdEventRows == 0) {
-	   $message = "The retrieval of Ad Events was unsuccessful";
+	if (!$eventResult) {
+     $event_search_message = "The retrieval of ad events was unsuccessful: ";
+  }
+	
+	$number_event_rows = mysql_num_rows($eventResult);
+	// Check if results turned out empty
+	$event_search_message = "";
+	if ($number_event_rows == 0) {
+	  $event_search_message = "No ad events found in database";
 	}
+	
 	//Display the results
-	displayItemsPromotions($message, $result);
-	
-	//Free the result sets
-	mysql_free_result($result);
-
+  displayEvents($event_search_message, $eventResult);
+  //Free the result sets
+	mysql_free_result($eventResult);
 }
 
-function displayItemsPromotions($adEventMessage, $adEventResult) {
-
-	
-
-
-	while ($row = mysql_fetch_assoc($adEventResult)) {
-    $eventCode = $row['EventCode'];
-    $name = $row['Name'];
-    $startDate = $row['StartDate'];
-    $endDate = $row['EndDate'];
-    $description = $row['Description'];
-    $AdType = $row['AdType'];
-    
-//echo '<input type="hidden" name="promoCode[]" value=$promoCode>';
-//echo '<input type="hidden" name="amountOff" value="'.$amountOff.'" >';
-//echo '<input type="hidden" name="promoType" value="'.$promoType.'" >';
-
-		echo <<<EOD
-	
-    <tr>
-			<td><input type='radio' name='adEvent' value=$eventCode></td>
-			<td>$eventCode</td>
-      		<td>$name</td>
-      		<td>$startDate</td>
-      		<td>$endDate</td>
-			<td>$description</td>
-			<td>$AdType</td>
-		</tr>
-	
+function displayEvents($event_search_message, $eventResult) {
+	    
+	  echo <<<EOD
+	<p>$event_search_message</p>
+  <tr>
+  	<th></th>
+  	<th><b>EVENT CODE</b></th>
+  	<th><b>NAME</b></th>
+  	<th><b>START DATE</b></th>
+  	<th><b>END DATE</b></th>
+  	<th><b>DESCRIPTION</b></th>
+  	<th><b>AD TYPE</b></th>
+  </tr>
 EOD;
-}
-
-
-
-
-
-}
+		
+		while ($row = mysql_fetch_assoc($eventResult)) {
+		
+		$eventCode = $row['EventCode'];
+		$name = $row['Name'];
+		$startDate = $row['StartDate'];
+		$endDate = $row['EndDate'];
+		$description = $row['Description'];
+		$type = $row['AdType'];
 	
+	  echo '<tr>';
+				echo "<td><input type='radio' name='row[]' value='". implode(',', $row) ."'></td>";
+				echo "<td>$eventCode</td>";
+				echo "<td>$name</td>";
+				echo "<td>$startDate</td>";
+				echo "<td>$endDate</td>";
+				echo "<td>$description</td>";
+				echo "<td>$type</td>";
+			echo '</tr>';
+
+	}
+
+}
 ?>
-	</table>
-	<br/>
-	<button class="button" onclick="goBack()">Back</button>
-	<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
+</table>
+	<p>			
+		<button class="button" onclick="goBack()">Back</button>
+		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
+	</p>
 	</form>
-		</center>
-  </body>
+	</center>
+</body>
 </html>

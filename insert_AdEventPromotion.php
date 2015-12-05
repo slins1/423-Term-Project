@@ -6,15 +6,16 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+	<link rel="images/logo_favicon.jpg" href="/favicon.ico"/>        
 	<title>Aptaris - Advertisement Event System</title>
 	
 	<div class="header"><a href="index.html">
-		<img src="logo_100.jpg" alt="logo" />
+		<img src="images/logo_100.jpg" alt="logo" />
 		<h1>Advertisement Event System - Assign Promotion to an Ad Event</h1></a><br/><hr/>
 	</div>
 </head>
 <center>
+<table>
 
 <?php
 require('db_connect.inc');
@@ -27,7 +28,15 @@ function insert_AdEventPromotion() {
 	$eventName = $_POST['eventName'];
 	
 echo "<h2> The Following Promotions were added to the Ad Event: $eventName </h2>";
-
+echo <<<EOD
+	<tr>
+		<th><b>Promo Code</b></th>
+		<th><b>Name</b></th>
+		<th><b>Description</b></th>
+		<th><b>Amount Off</b></th>
+		<th><b>Promotion Type</b></th>
+	</tr>
+EOD;
 	if (isset($_POST['promos'])) {
 
 	  $promoArray = $_POST['promos'];
@@ -45,6 +54,11 @@ echo "<h2> The Following Promotions were added to the Ad Event: $eventName </h2>
     	$amountOff = $row['AmountOff'];
     	$promoType = $row['PromoType'];
 
+    	if(($promoType == 'Percent') && ($amountOff >= 1)){
+		$amountOff = $amountOff/100;
+		//$amountOff = ltrim($amountOff, "0");
+	}
+
 
       $insertStatement = "INSERT INTO AdEventPromotion (EventCode, PromoCode) VALUES ('$eventCode','$promoCode')";
 			
@@ -53,29 +67,13 @@ echo "<h2> The Following Promotions were added to the Ad Event: $eventName </h2>
   			echo "<h2>Error in inserting Ad Event</h2>";
 			} else {
 	  		echo <<<EOD
-	  		<br />
-	  		<table>
 	  			<tr>
-	  				<td>Promo Code</td>
 	  				<td>$promoCode</td>
-	  			</tr>
-	  			<tr>
-	  				<td>Name</td>
 	  				<td>$name</td>
-	  			</tr>
-	  			<tr>
-	  				<td>Description</td>
 	  				<td>$description</td>
-	  			</tr>
-	  			<tr>
-	  				<td>AmountOff</td>
 	  				<td>$amountOff</td>
-	  			</tr>
-	  			<tr>
-	  				<td>Promo Type</td>
 	  				<td>$promoType</td>
 	  			</tr>
-	  		</table>
 EOD;
 			} 
 		}
@@ -85,6 +83,7 @@ EOD;
 }
 
 ?>
+</table>
 <p>
 	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
 	<a href="assign_promotion_item_view.html"><button name="insert"  accesskey="S" class="button">Assign another promotion</button></a>

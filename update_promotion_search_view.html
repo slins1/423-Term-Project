@@ -11,17 +11,37 @@
 	
 	<div class="header"><a href="index.html">
 		<img src="images/logo_100.jpg" alt="logo" />
-		<h1>Advertisement Event System - Promotion Report</h1></a><br/><hr/>
+		<h1>Advertisement Event System - Update Promotion</h1></a><br/><hr/>
 	</div>
 </head>
 
 <body>  
 	<center>
  
-	<form action='search_promotion_amountOff.php' method='post'>
+	<form action='search_promotion_for_update.php' method='post'>
 		
-		<h2>Search for a promotion:</h2>
+		<h2>Search for a promotion to add the items to:</h2>
+		<h4>At least one field is required</h4>
 		<table>
+				<tr>
+					<td><p><b>Promo Code:</b></td>
+					<td><input type="text" name="promoCode" id="promoCode"
+					placeholder="Enter a Promo Code"></p>
+					<span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td>
+				</tr>
+				<tr>
+					<td><p><b>Name:</b></td>
+					<td><input type="text" name="name" id="name"
+						placeholder= "Enter a Name"></p></td>
+				</tr>
+				<tr>
+					<td><p><b>Description:</b></td>
+					<td><input type="text" name="description" id="description" placeholder="Enter a Description"></p>
+    					<span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span>
+					</td>
+				</tr>
 				<tr>
 					<td><p><b>Amount Off:</b></td>
 					<td><input type="text" name="amountOff" id="amountOff" placeholder="Enter an Amount off"></p>
@@ -32,6 +52,7 @@
 				<tr>
 					<td><p><b>Promotion Type:</b></td>
 					<td><div class="dropDown"><select name="promoType" id="promoType">
+						<option>---</option>
                     	<option>Dollar</option>
                     	<option>Percent</option>
                 	</select></div>

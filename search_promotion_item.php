@@ -6,11 +6,11 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+	<link rel="images/logo_favicon.jpg" href="/favicon.ico"/>        
 	<title>Aptaris - Advertisement Event System</title>
 	
 	<div class="header"><a href="index.html">
-		<img src="logo_100.jpg" alt="logo" />
+		<img src="images/logo_100.jpg" alt="logo" />
 		<h1>Advertisement Event System - Assign Promotion to an Item</h1></a><br/><hr/>
 	</div>
 </head>
@@ -20,15 +20,16 @@
 	<h2>Please select a promotion and click submit to confirm, or click back to go back</h2>
 	<table>
 		<tr>
-		<td></td>
-		<td><b>PROMO CODE</b></td>
-		<td><b>NAME</b></td>
-		<td><b>DESCRIPTION</b></td>
-		<td><b>AMOUNT OFF</b></td>
-		<td><b>PROMOTION TYPE(DOLLAR/PERCENT)</b></td>
-	</tr>
+			<th></th>
+			<th>Promo Code</th>
+			<th>Promo Name</th>
+			<th>Description</th>
+			<th>Amount Off</th>
+			<th>Promo Type</th>
+		</tr>
 <?php
 require('db_connect.inc');
+
 connect();
 
 retrievePromotions();
@@ -39,6 +40,12 @@ function retrievePromotions() {
 	$description = $_POST['description'];
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
+
+
+	if(($promoType == 'Percent') && ($amountOff >= 1)){
+		$amountOff = $amountOff/100;
+		//$amountOff = ltrim($amountOff, "0");
+	}
 
 	$cond1 = "";
 	$cond2 = "";
@@ -57,7 +64,7 @@ function retrievePromotions() {
 		$cond3 = "Description = '".$description."'";
 	}
 	if(isset($amountOff) && ($amountOff != "")){
-		$cond4 = "AmountOff = '".$amountOff."'";
+		$cond4 = "AmountOff = ".$amountOff."";
 	}
 	if(isset($promoType) && ($promoType != "---")){
 		$cond5 = "PromoType = '".$promoType."'";
@@ -98,7 +105,7 @@ function retrievePromotions() {
 			$whereCondition = $whereCondition.$cond5;
 		}
 	}
-	//echo "$whereCondition";
+	
 
 	$insertStatement = "SELECT PromoCode, Name, Description,
 	AmountOff, PromoType FROM Promotion WHERE $whereCondition";
@@ -148,6 +155,7 @@ function retrievePromotions() {
 	if (!$result || $numberPromotionRows == 0) {
 	   $message = "The retrieval of promotions was unsuccessful";
 	}
+	
 	//Display the results
 	displayItemsPromotions($message, $result);
 	
@@ -168,12 +176,11 @@ function displayItemsPromotions($promoMessage, $promoResult) {
     $amountOff = $row['AmountOff'];
     $promoType = $row['PromoType'];
     
-//echo '<input type="hidden" name="promoCode[]" value=$promoCode>';
-//echo '<input type="hidden" name="amountOff" value="'.$amountOff.'" >';
-//echo '<input type="hidden" name="promoType" value="'.$promoType.'" >';
+echo '<input type="hidden" name="promoCode" value="'.$promoCode.'" >';
+echo '<input type="hidden" name="amountOff" value="'.$amountOff.'" >';
+echo '<input type="hidden" name="promoType" value="'.$promoType.'" >';
 
 		echo <<<EOD
-	
     <tr>
 			<td><input type='radio' name='promo' value=$promoCode></td>
 			<td>$promoCode</td>
@@ -195,7 +202,7 @@ EOD;
 ?>
 	</table>
 	<br/>
-	<a href="assign_promotion_item_view.html"><button class="button">Back</button></a>
+	<button class="button" onclick="goBack()">Back</button>
 	<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
 	</form>
 		</center>
