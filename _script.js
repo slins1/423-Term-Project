@@ -1,4 +1,5 @@
 $(function() {
+	$(document).tooltip();
   $(".button").button();
   $("#startDate, #endDate").datepicker();
 });

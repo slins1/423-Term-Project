@@ -160,7 +160,7 @@ EOD;
 	
 			echo "<tr>";
 			if (isDuplicatePromotion($promoCode)) {
-				echo "<td><input type='checkbox' title='Promotion is already in the ad event' disabled='true' name='promos[]' value=$promoCode></td>";
+				echo "<td title='Promotion is already in the ad event'><input type='checkbox' disabled='true' name='promos[]' value=$promoCode></td>";
 			} else {
 				echo "<td><input type='checkbox' name='promos[]' value=$promoCode></td>";
 			}
