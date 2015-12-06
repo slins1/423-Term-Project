@@ -76,7 +76,7 @@ EOD;
 }
 ?>
 <p>
-	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
+	<a href="index.html"><button name="menu" class="button">Return to Main Menu</button></a>
 	<a href="insert_promotion_view.html"><button name="insert"  accesskey="S" class="button">Insert another promotion</button></a>
 </p>
 </center>

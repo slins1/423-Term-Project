@@ -18,25 +18,21 @@
 <?php
 require('db_connect.inc');
 connect();
-$promoCode1 = $_POST['promo'];
+$promoCode1 = $_POST['promo'];  
+  $promo_search_sql ="SELECT PromoCode, Name, AmountOff, PromoType 
+  FROM Promotion WHERE PromoCode = $promoCode1";
 
+  $promoResult = mysql_query($promo_search_sql);
+  $row = mysql_fetch_assoc($promoResult);
 
-
-    
-            $promo_search_sql ="SELECT PromoCode, Name, AmountOff, PromoType 
-            FROM Promotion WHERE PromoCode = $promoCode1";
-
-            $promoResult = mysql_query($promo_search_sql);
-            $row = mysql_fetch_assoc($promoResult);
-
-            $promoCode = $row['PromoCode'];
-            $promoName = $row['Name'];
-            $amountOff = $row['AmountOff'];
-            $promoType = $row['PromoType'];
+  $promoCode = $row['PromoCode'];
+  $promoName = $row['Name'];
+  $amountOff = $row['AmountOff'];
+  $promoType = $row['PromoType'];
 ?>
 
 	<center>  
-    <form action='search_item_for_promotion.php' method='post' onsubmit="return validateCategory(this)">
+    <form action='search_item_for_promotion.php' method='post' onsubmit="">
         
     <h2>Search for a Item to add the promotions <?php echo "$promoName";?> to</h2>
     <h4>At least one field is required</h4>
@@ -177,8 +173,8 @@ EOD
 <p>			
 		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
 		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
-	</p>
-	</form>
+</p></form>
+	<p><br/><a href="index.html"><button name="menu" class="button">Return to Main Menu</button></a></p>
 	</center>
 </body>
 </html>

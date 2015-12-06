@@ -103,7 +103,7 @@ EOD;
 }
 ?>
 <p>
-	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
+	<a href="index.html"><button name="menu" class="button">Return to Main Menu</button></a>
 	<a href="insert_ad_event_view.html"><button name="insert"  accesskey="S" class="button">Insert another Ad Event</button></a>
 </p>
 </center>

@@ -201,8 +201,10 @@ EOD;
 ?>
 	</table>
 	<br/>
+	<p>
 	<button class="button" onclick="goBack()">Back</button>
 	<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
+<br/><br/><a href="index.html"><button name="menu" class="button">Return to Main Menu</button></a></p>
 	</form>
 		</center>
   </body>
