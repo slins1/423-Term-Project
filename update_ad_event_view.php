@@ -96,11 +96,12 @@ echo <<<EOD
             </table>
 EOD;
 echo '<input type="hidden" name="code" id="code" value="'.$eventCode.'">';
-?>			
+?>	
+<p>
 		<button class="button" onclick="goBack()">Back</button>
 		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
-	</p>
-	</form>
+</p></form>
+	<p><br/><a href="index.html"><button name="menu" class="button">Return to Main Menu</button></a></p>
 	</center>
 </body>
 </html>
