@@ -86,7 +86,7 @@ EOD;
 </table>
 <p>
 	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
-	<a href="assign_promotion_item_view.html"><button name="insert"  accesskey="S" class="button">Assign another promotion</button></a>
+	<a href="assign_promotion_adEvent_view.html"><button name="insert"  accesskey="S" class="button">Assign another promotion</button></a>
 </p>
 </center>
 </body>

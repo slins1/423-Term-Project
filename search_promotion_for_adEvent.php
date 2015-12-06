@@ -19,8 +19,6 @@
 <center>
 <form action='insert_AdEventPromotion.php' method='post'>
 
-
-
 <?php
 require('db_connect.inc');
 connect();
@@ -113,11 +111,9 @@ EOD;
 		}
 	}
 
-	$promo_search_sql = "SELECT PromoCode, Name, Description,
-	AmountOff, PromoType FROM Promotion WHERE $whereCondition";
+	$promo_search_sql = "SELECT PromoCode, Name, Description, AmountOff, PromoType FROM Promotion WHERE $whereCondition";
 	
 	//Construct SQL statements
-	
 	$promoResult = mysql_query($promo_search_sql);
 	//Test whether the queries were successful
 	if (!$promoResult) {
@@ -162,20 +158,35 @@ EOD;
     		$amountOff = $row['AmountOff'];
     		$promoType = $row['PromoType'];
 	
+			echo "<tr>";
+			if (isDuplicatePromotion($promoCode)) {
+				echo "<td><input type='checkbox' title='Promotion is already in the ad event' disabled='true' name='promos[]' value=$promoCode></td>";
+			} else {
+				echo "<td><input type='checkbox' name='promos[]' value=$promoCode></td>";
+			}
 	  echo <<<EOD
-	  	<tr>
-				<td><input type='checkbox' name='promos[]' value=$promoCode></td>
-				<td>$promoCode</td>
+	  			<td>$promoCode</td>
       			<td>$name</td>
 				<td>$description</td>
 				<td>$amountOff</td>
 				<td>$promoType</td>			
 		</tr>
 EOD;
-
 	}
-
 }
+
+function isDuplicatePromotion($promoCode) {
+	$eventCode = $_POST['eventCode'];
+	$checkPromotionStatement = "SELECT PromoCode FROM AdEventPromotion WHERE EventCode = '$eventCode'";
+	$promoResult = mysql_query($checkPromotionStatement);
+	while ($row = mysql_fetch_assoc($promoResult)) {
+		if ($row['PromoCode'] == $promoCode) {
+			return true;
+		}	
+	}
+	return false;
+}
+
 ?>
 </table>
 	<p>			
