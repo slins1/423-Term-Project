@@ -71,7 +71,7 @@ function validate_promotion_description() {
 
 function validate_amount_off() {
   var amountOff = document.addPromotion.amountOff;
-  var amountOff = amountOff.replace("%", "");
+  var amountOff = amountOff.value.replace("%", "");
   var amountOffRegex = /^[0-9]+([\.][0-9][0-9]?)?$/;
   var errAmountOff = document.getElementById("errorAmountOff");
   var sucAmountOff = document.getElementById("successAmountOff");
