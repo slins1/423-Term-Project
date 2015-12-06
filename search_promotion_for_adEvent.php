@@ -18,9 +18,7 @@
 <body>
 <center>
 <form action='insert_AdEventPromotion.php' method='post'>
-<h2>Please check all promotions you would like to add to the Ad Event</h2>
-<h2> Click submit to confirm the addition of all promotions to the Ad Event</h2>
-<table>
+
 
 
 <?php
@@ -32,16 +30,20 @@ searchPromotions();
 function searchPromotions() {
 	$eventCode = $_POST['eventCode'];
 	$eventName = $_POST['eventName'];
-
+echo <<<EOD
+	<h2>Please check all promotions you would like to add to the Ad Event $eventName</h2>
+<h2> Click submit to confirm the addition of all promotions to the Ad Event</h2>
+<table>
+EOD;
 	$promoCode = $_POST['promoCode'];
 	$name = $_POST['name'];
 	$description = $_POST['description'];
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
 
-	if(($promoType == 'Percent') && ($amountOff >= 1)){
+	if (($promoType == 'Percent') && ($amountOff >= 1)) {
+    	$amountOff =  str_replace("%", "", $amountOff);
 		$amountOff = $amountOff/100;
-		//$amountOff = ltrim($amountOff, "0");
 	}
 
 	$cond1 = "";

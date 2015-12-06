@@ -11,7 +11,7 @@
 	
 	<div class="header"><a href="index.html">
 		<img src="images/logo_100.jpg" alt="logo" />
-		<h1>Advertisement Event System - Assign Promotion to an Item</h1></a><br/><hr/>
+		<h1>Advertisement Event System - Assign Item to a Promotion</h1></a><br/><hr/>
 	</div>
 </head>
 <center>
@@ -38,6 +38,7 @@ echo <<<EOD
 				<th>Department Name</th>
 				<th>Purchase Cost</th>
 				<th>Full Retail Price</th>
+				<th>Sale Price</th>
 			</tr>
 EOD;
 	if (isset($_POST['saleItems'])) {
@@ -89,6 +90,7 @@ EOD;
 	  				<td>$departmentName</td>
 	  				<td>$purchaseCost</td>
 	  				<td>$fullRetailPrice</td>
+	  				<td>$salePrice</td>
 	  			</tr>
 EOD;
 			} 

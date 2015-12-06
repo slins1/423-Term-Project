@@ -11,16 +11,15 @@
 	
 	<div class="header"><a href="index.html">
 		<img src="images/logo_100.jpg" alt="logo" />
-		<h1>Advertisement Event System - Assign Promotion to an Item</h1></a><br/><hr/>
+		<h1>Advertisement Event System - Assign Item to a Promotion</h1></a><br/><hr/>
 	</div>
 </head>
 
 <body>
+
 <center>
 <form action='insert_PromotionItem.php' method='post'>
-<h2>Please check all items you would like to add to the promotion</h2>
-<h2> Click submit to confirm the addition of all items to the promotion</h2>
-<table>
+
 
 
 <?php
@@ -34,6 +33,14 @@ function searchItemsByCategory() {
 	$promoName = $_POST['promoName'];
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
+
+echo <<<EOD
+	<h2>Please check all items you would like to add to the promotion $promoName</h2>
+<h2> Click submit to confirm the addition of all items to the promotion</h2>
+<table>
+EOD;
+
+
 
 	$itemNumber = $_POST['itemNumber'];
 	$itemDescription = $_POST['itemDescription'];
