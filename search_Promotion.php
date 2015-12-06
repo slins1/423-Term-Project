@@ -32,7 +32,7 @@ connect();
     $eventName = $row['Name'];
 ?>
 	<center>  
-    <form action='search_promotion_for_adEvent.php' method='post' onsubmit="return validateCategory(this)">
+    <form action='search_promotion_for_adEvent.php' method='post' onsubmit="">
         
     <h2>Search for a Promotion to add to the Ad Event <?php echo "$eventName";?>:</h2>
     <h4>At least one field is required</h4>
