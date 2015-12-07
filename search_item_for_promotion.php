@@ -6,7 +6,7 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="images/logo_favicon.jpg" href="/favicon.ico"/>        
+	<link rel="icon" type="image/png" href="favicon.png">        
 	<title>Aptaris - Advertisement Event System</title>
 	
 	<div class="header"><a href="index.html">
@@ -14,14 +14,9 @@
 		<h1>Advertisement Event System - Assign Item to a Promotion</h1></a><br/><hr/>
 	</div>
 </head>
-
 <body>
-
 <center>
 <form action='insert_PromotionItem.php' method='post'>
-
-
-
 <?php
 require('db_connect.inc');
 connect();
@@ -39,8 +34,6 @@ echo <<<EOD
 <h2> Click submit to confirm the addition of all items to the promotion</h2>
 <table>
 EOD;
-
-
 
 	$itemNumber = $_POST['itemNumber'];
 	$itemDescription = $_POST['itemDescription'];
@@ -208,9 +201,13 @@ EOD;
 		$purchaseCost = $row['PurchaseCost'];
 		$fullRetailPrice = $row['FullRetailPrice'];
 	
+	  echo "<tr>";
+			if (isDuplicateItem($itemNumber)) {
+				echo "<td title='Item is already in the promotion'><input type='checkbox' title='Item is already in the promotion' disabled='true' name='saleItems[]' value=$itemNumber></td>";
+			} else {
+				echo "<td><input type='checkbox' name='saleItems[]' value=$itemNumber></td>";
+			}
 	  echo <<<EOD
-	  	<tr>
-				<td><input type='checkbox' name='saleItems[]' value=$itemNumber></td>
 				<td>$itemNumber</td>
 				<td>$itemDescription</td>
 				<td>$category</td>
@@ -221,15 +218,27 @@ EOD;
 EOD;
 
 	}
-
 }
+
+function isDuplicateItem($itemNumber) {
+	$promoCode = $_POST['promoCode'];
+	$checkItemStatement = "SELECT ItemNumber FROM PromotionItem WHERE PromoCode = '$promoCode'";
+	$itemResult = mysql_query($checkItemStatement);
+	while ($row = mysql_fetch_assoc($itemResult)) {
+		if ($row['ItemNumber'] == $itemNumber) {
+			return true;
+		}	
+	}
+	return false;
+}
+
 ?>
 </table>
 	<p>			
 		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
 		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
-	</p>
-	</form>
+</p></form>
+	<p><br/><a href="index.html"><button name="menu" class="button">Return to Main Menu</button></a></p>
 	</center>
 </body>
 </html>
