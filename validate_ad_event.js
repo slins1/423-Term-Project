@@ -15,12 +15,12 @@ function validate_event() {
  /* if (validate_end_date() == false) {
     document.addEvent.endDate.focus();
     errorFlag = 1;
-  }*/
+  }
 
   if (validate_description() == false) {
     document.addEvent.eventDescription.focus();
     errorFlag = 1;
-  }
+  }*/
 
   if (errorFlag == 1) {
     return false;
