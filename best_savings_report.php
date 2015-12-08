@@ -68,6 +68,7 @@ function findSavings(){
 
 		$bestPromo = "No Promotion";
 		$bestPrice = $retail;
+		$difference = 0.00;
 		$adEvent = "none";
 		while ($row = mysql_fetch_assoc($promotionItemResult)) {
 			$promoCode = $row['PromoCode'];
@@ -99,8 +100,9 @@ function findSavings(){
 		$itemPrices[$itemNumber] = $difference;
 	}
 	$topItems = limitResultsToFifty($itemPrices);
+	$sortedItems = sortItems($topItems);
 	$i = 1;
-	foreach ($topItems as $number => $comparePrice){
+	foreach ($sortedItems as $number){
 		$info = $items[$number];
 		$itemNumber = $info["ItemNumber"];
 		$retail = $info["RetailPrice"];
@@ -128,11 +130,40 @@ function limitResultsToFifty ($itemPrices){
 	}
 	return $topItems;	
 }
+
+function sortItems($itemPrices){
+
+	foreach ($itemPrices as $number => $retail){
+		$items[] = $number;
+	}
+	$i = 0;
+	while(count($items) > 0){
+		$bestItem = maxPrice($items, $itemPrices);
+		$orderedItems[$i] = $bestItem;
+		$array_to_remove = array($bestItem);
+		$items = array_diff($items, $array_to_remove);
+		$i = $i + 1;
+	}
+	return $orderedItems;
+}
+
+function maxPrice($items, $itemPrices){
+	$best = "";
+	foreach ($items as $item){
+		$retail = $itemPrices[$item];
+		if(($retail > $best) || (!($best))){
+			$best = $retail;
+			$bestItem = $item;
+		}
+	}
+	return $bestItem;
+}
+
 function displayResults($i, $itemNum, $retail, $bestPrice,  $bestPromotion){
 	$difference = $retail - $bestPrice;
 	$difference = number_format ($difference, 2, ".", ",");
 	$retail = number_format ($retail, 2, ".", ",");
-	$retail = number_format ($retail, 2, ".", ",");
+	$bestPrice = number_format ($bestPrice, 2, ".", ",");
 	echo <<<EOD
 		<tr>
 			<td>$i</td>
