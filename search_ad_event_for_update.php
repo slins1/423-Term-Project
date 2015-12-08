@@ -6,7 +6,7 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="images/logo_favicon.jpg" href="/favicon.ico"/>        
+	<link rel="icon" type="image/png" href="favicon.png">        
 	<title>Aptaris - Advertisement Event System</title>
 	
 	<div class="header"><a href="index.html">
@@ -152,13 +152,13 @@ function displayEvents($event_search_message, $eventResult) {
 	  echo <<<EOD
 	<p>$event_search_message</p>
   <tr>
-  	<td></td>
-  	<td><b>EVENT CODE</b></td>
-  	<td><b>NAME</b></td>
-  	<td><b>START DATE</b></td>
-  	<td><b>END DATE</b></td>
-  	<td><b>DESCRIPTION</b></td>
-  	<td><b>AD TYPE</b></td>
+  	<th></th>
+  	<th><b>EVENT CODE</b></th>
+  	<th><b>NAME</b></th>
+  	<th><b>START DATE</b></th>
+  	<th><b>END DATE</b></th>
+  	<th><b>DESCRIPTION</b></th>
+  	<th><b>AD TYPE</b></th>
   </tr>
 EOD;
 		
@@ -187,10 +187,10 @@ EOD;
 ?>
 </table>
 	<p>			
-		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
+		<button class="button" onclick="goBack()">Back</button>
 		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
-	</p>
-	</form>
+</p></form>
+	<p><br/><a href="index.html"><button name="menu" class="button">Return to Main Menu</button></a></p>
 	</center>
 </body>
 </html>

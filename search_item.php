@@ -6,20 +6,36 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="images/logo_favicon.jpg" href="/favicon.ico"/>        
+	<link rel="icon" type="image/png" href="favicon.png">        
 	<title>Aptaris - Advertisement Event System</title>
 	
 	<div class="header"><a href="index.html">
 		<img src="images/logo_100.jpg" alt="logo" />
-		<h1>Advertisement Event System - Assign Promotion to an Item</h1></a><br/><hr/>
+		<h1>Advertisement Event System - Assign Item to a Promotion</h1></a><br/><hr/>
 	</div>
 </head>
-
 <body> 
+<?php
+require('db_connect.inc');
+connect();
+$promoCode1 = $_POST['promo'];  
+  $promo_search_sql ="SELECT PromoCode, Name, AmountOff, PromoType 
+  FROM Promotion WHERE PromoCode = $promoCode1";
+
+  $promoResult = mysql_query($promo_search_sql);
+  $row = mysql_fetch_assoc($promoResult);
+
+  $promoCode = $row['PromoCode'];
+  $promoName = $row['Name'];
+  $amountOff = $row['AmountOff'];
+  $promoType = $row['PromoType'];
+?>
+
 	<center>  
-    <form action='search_item_for_promotion.php' method='post' onsubmit="return validateCategory(this)">
+    <form action='search_item_for_promotion.php' method='post' onsubmit="">
         
-    <h2>Search for a Item to add the promotion to:</h2>
+    <h2>Search for a Item to add the promotions <?php echo "$promoName";?> to</h2>
+    <h4>At least one field is required</h4>
     <table>
         <tr>
             <td><p><b>Item Number:</b></td>
@@ -136,32 +152,13 @@
                   <span id="successItemNum" class="correct"></span></td>
     </tr>
 </table>
-        
-  
+
 <?php
-require('db_connect.inc');
-connect();
-
-    $promoCode1 = $_POST['promo'];
 
 
-    
-            $promo_search_sql ="SELECT PromoCode, Name, AmountOff, PromoType 
-            FROM Promotion WHERE PromoCode = $promoCode1";
-
-            $promoResult = mysql_query($promo_search_sql);
-            $row = mysql_fetch_assoc($promoResult);
-
-            $promoCode = $row['PromoCode'];
-            $promoName = $row['Name'];
-            $amountOff = $row['AmountOff'];
-            $promoType = $row['PromoType'];
-
-
-        
-	//$promoCode = $_POST['promoCode'];
-	//$amountOff = $_POST['amountOff'];
-	//$promoType = $_POST['promoType'];
+    //$promoCode = $_POST['promoCode'];
+    //$amountOff = $_POST['amountOff'];
+    //$promoType = $_POST['promoType'];
 
 
 
@@ -170,14 +167,14 @@ connect();
     <input type="hidden" name="promoName" value="$promoName">
     <input type="hidden" name="amountOff" value="$amountOff">
     <input type="hidden" name="promoType" value="$promoType">
-EOD;
+EOD
 ?>
 
 <p>			
 		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
 		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
-	</p>
-	</form>
+</p></form>
+	<p><br/><a href="index.html"><button name="menu" class="button">Return to Main Menu</button></a></p>
 	</center>
 </body>
 </html>

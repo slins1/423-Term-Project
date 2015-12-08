@@ -6,7 +6,7 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="images/logo_favicon.jpg" href="/favicon.ico"/>        
+	<link rel="icon" type="image/png" href="favicon.png">        
 	<title>Aptaris - Advertisement Event System</title>
 	
 	<div class="header"><a href="index.html">
@@ -35,6 +35,12 @@ function searchPromotionsForUpdate() {
 	$promotionDescription = $_POST['description'];
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
+
+	if (($promoType == 'Percent') && ($amountOff >= 1)) {
+    	$amountOff =  str_replace("%", "", $amountOff);
+		$amountOff = $amountOff/100;
+	}
+
 	$cond1 = "";
 	$cond2 = "";
 	$cond3 = "";
@@ -52,7 +58,7 @@ function searchPromotionsForUpdate() {
 		$cond3 = "Description LIKE '%".$promotionDescription."%'";
 	}
 	if(isset($amountOff) && ($amountOff != "")){
-		$cond4 = "AmountOff = '".$amountOff."'";
+		$cond4 = "AmountOff = ".$amountOff."";
 	}
 	if(isset($promoType) && ($promoType != "---")){
 		$cond5 = "PromoType = '".$promoType."'";
@@ -119,12 +125,12 @@ function displayPromotions($promotion_search_message, $promotionResult) {
 	  echo <<<EOD
 	<p>$promotion_search_message</p>
   <tr>
-  	<td></td>
-  	<td><b>PROMO CODE</b></td>
-  	<td><b>NAME</b></td>
-  	<td><b>DESCRIPTION</b></td>
-  	<td><b>AMOUNT OFF</b></td>
-  	<td><b>PROMO TYPE</b></td>
+  	<th></th>
+  	<th><b>Promo Code</b></th>
+  	<th><b>Name</b></th>
+  	<th><b>Description</b></th>
+  	<th><b>Amount Off</b></th>
+  	<th><b>Promo Type</b></th>
   </tr>
 EOD;
 		
@@ -151,10 +157,10 @@ EOD;
 ?>
 </table>
 	<p>			
-		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
+		<button class="button" onclick="goBack()">Back</button>
 		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
-	</p>
-	</form>
+</p></form>
+	<p><br/><a href="index.html"><button name="menu" class="button">Return to Main Menu</button></a></p>
 	</center>
 </body>
 </html>

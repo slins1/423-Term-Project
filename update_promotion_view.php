@@ -5,7 +5,7 @@
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script src="_script.js"></script>
         <link rel="stylesheet" type="text/css" href="_main.css">
-        <link rel="images/logo_favicon.jpg" href="/favicon.ico"/>
+        <link rel="icon" type="image/png" href="favicon.png">
         <title>Aptaris - Advertisement Event System</title>
 
         <div class="header"><a href="index.html">
@@ -17,7 +17,8 @@
         <center>
     <form action='update_promotion.php' method='post' onsubmit="">
 
-    <h2>Update an Item:</h2>
+    <h2>Update a Promotion:</h2>
+
     <table border="1" cellpadding="5">
 
 <?php
@@ -55,7 +56,8 @@ echo <<<EOD
 				<td align="left">Promo Type:</td>
 				<td><div class="dropDown"><select name="promoType" id="promoType" maxlength="10">
 EOD;
-				echo '<option selected disabled>'.$promoType.'</option>';
+                        echo '<option selected>'.$promoType.'</option>';
+
 echo <<<EOD
 				<option>Dollar</option>
 				<option>Percent</option>
@@ -67,11 +69,12 @@ echo <<<EOD
 		</table>
 EOD;
 echo '<input type="hidden" name="promoCode" id="promoCode" value="'.$promoCode.'">';
-?>			
+?>		
+<p>	
 		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
 		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
-	</p>
-	</form>
+</p></form>
+	<p><br/><a href="index.html"><button name="menu" class="button">Return to Main Menu</button></a></p>
 	</center>
 </body>
 </html>

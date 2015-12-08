@@ -6,12 +6,12 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="images/logo_favicon.jpg" href="/favicon.ico"/>        
+	<link rel="icon" type="image/png" href="favicon.png">        
 	<title>Aptaris - Advertisement Event System</title>
 	
 	<div class="header"><a href="index.html">
 		<img src="images/logo_100.jpg" alt="logo" />
-		<h1>Advertisement Event System - Assign Promotion to an Item</h1></a><br/><hr/>
+		<h1>Advertisement Event System - Assign Item to a Promotion</h1></a><br/><hr/>
 	</div>
 </head>
 <center>
@@ -29,7 +29,18 @@ function insert_promotionItem() {
 	$promoType = $_POST['promoType'];
 
 echo "<h2>The following items were added to the promotion: $promoName</h2>";
-
+echo <<<EOD
+		<table>
+			<tr>
+				<th>Item Number</th>
+				<th>Description</th>
+				<th>Category</th>
+				<th>Department Name</th>
+				<th>Purchase Cost</th>
+				<th>Full Retail Price</th>
+				<th>Sale Price</th>
+			</tr>
+EOD;
 	if (isset($_POST['saleItems'])) {
 
 	  $itemArray = $_POST['saleItems'];
@@ -72,33 +83,15 @@ echo "<h2>The following items were added to the promotion: $promoName</h2>";
   			echo "<h2>Error in inserting Promotions</h2>";
 			} else {
 	  		echo <<<EOD
-	  		<br />
-	  		<table>
 	  			<tr>
-	  				<td>Item Number</td>
 	  				<td>$itemNumber</td>
-	  			</tr>
-	  			<tr>
-	  				<td>Item Description</td>
 	  				<td>$itemDescription</td>
-	  			</tr>
-	  			<tr>
-	  				<td>Category</td>
 	  				<td>$category</td>
-	  			</tr>
-	  			<tr>
-	  				<td>Department Name</td>
 	  				<td>$departmentName</td>
-	  			</tr>
-	  			<tr>
-	  				<td>Purchase Cost</td>
 	  				<td>$purchaseCost</td>
-	  			</tr>
-	  			<tr>
-	  				<td>Full Retail Price</td>
 	  				<td>$fullRetailPrice</td>
+	  				<td>$salePrice</td>
 	  			</tr>
-	  		</table>
 EOD;
 			} 
 		}
@@ -109,8 +102,9 @@ EOD;
 
 
 ?>
+</table>
 <p>
-	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
+	<a href="index.html"><button name="menu" class="button">Return to Main Menu</button></a>
 	<a href="assign_promotion_item_view.html"><button name="insert"  accesskey="S" class="button">Assign another promotion</button></a>
 </p>
 </center>

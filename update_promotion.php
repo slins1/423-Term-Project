@@ -6,7 +6,7 @@
 			<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
       <script src="_script.js"></script>
       <link rel="stylesheet" type="text/css" href="_main.css">
-      <link rel="images/logo_favicon.jpg" href="/favicon.ico"/>        
+      <link rel="icon" type="image/png" href="favicon.png">        
       <title>Aptaris - Advertisement Event System</title>
       
       <div class="header"><a href="index.html">
@@ -30,6 +30,12 @@ function updatePromotion() {
 	$description = $_POST['description'];
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
+
+
+	if (($promoType == 'Percent') && ($amountOff >= 1)) {
+    	$amountOff =  str_replace("%", "", $amountOff);
+		$amountOff = $amountOff/100;
+	}
 	
 	$updateStatement = "Update Promotion SET Name = '".$promoName."', Description = '".$description."', AmountOff = '".$amountOff."', PromoType = '".$promoType."' WHERE PromoCode = '".$promoCode."'";
 	// Execute the query--it will return either true or false
@@ -72,17 +78,31 @@ function showItemUpdateResult($message, $promoCode, $description, $promoName, $a
 
   // If the message is non-null and not an empty string print it
   // message contains the lastname and firstname
-  if ($message) {
-    if ($message != "") {
-      echo "<h2>$message</h2><br />";
+  if ($message != "") {
+		echo <<<EOD
+			<h2 class='text-center'>$message</h2>
+			<table>
+					<tr>
+						<td>Description:</td>
+						<td>$description</td>
+					</tr>
+					<tr>
+						<td>Amount Off:</td>
+						<td>$amountOff</td>
+					</tr>
+					<tr>
+						<td>Promo Type:</td>
+						<td>$promoType</td>
+					</tr>
+			</table>
+EOD;
     } else {
-			echo "<p>Error</p>";
-		}
+			echo "<h2>Error in inserting promotion</h2>";
   }
 }
 ?>
 <p>
-	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
+	<a href="index.html"><button name="menu" class="button">Return to Main Menu</button></a>
 	<a href="update_promotion_search_view.html"><button name="update"  accesskey="S" class="button">Update another promotion</button></a>
 </p>
 </center>
