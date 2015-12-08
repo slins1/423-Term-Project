@@ -39,12 +39,13 @@ function display_items_promotions($promoMessage, $promoResult)
                 echo '<td>';
                 echo "PROMO TYPE: $promoType";
                 echo '</td>';
-                echo "</tr>"; 
+                echo "</tr>";
   }
 echo "</table>";
 echo "</form>";
   echo <<<UPTOEND
   <p>
+  	<button class="button" onclick="goBack()">Back</button>
     <button type="submit" name="submit" value="Submit" accesskey="S">
       <u>S</u>ubmit</button>
     <button type="reset" name="reset" accesskey="R">

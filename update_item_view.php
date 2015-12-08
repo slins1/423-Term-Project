@@ -134,7 +134,8 @@ echo '<p><b>Full Retail Price:</b></p>';
 echo '<input type="text" name="fullRetailPrice" id="fullRetailPrice" value="'.$fullRetailPrice.'"><span id="errorItemNum" class="error"></span>
                   <span id="successItemNum" class="correct"></span>';
 echo '<input type="hidden" name="itemNumber" id="itemNumber" value="'.$itemNumber.'">';
-?>			
+?>
+		<button class="button" onclick="goBack()">Back</button>
 		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
 		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
 	</p>

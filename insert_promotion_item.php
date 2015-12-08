@@ -79,6 +79,7 @@ $foot = <<<EOD
 	<br/>
 	<br/>
 	<center>
+	<button class="button" onclick="goBack()">Back</button>
 	<a href="index.html"><input type="button" value="Return to Main Menu"/></a>
 </center>
 

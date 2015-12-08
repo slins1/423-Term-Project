@@ -6,16 +6,16 @@
 			<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
       <script src="_script.js"></script>
       <link rel="stylesheet" type="text/css" href="_main.css">
-      <link rel="images/logo_favicon.jpg" href="/favicon.ico"/>        
+      <link rel="images/logo_favicon.jpg" href="/favicon.ico"/>
       <title>Aptaris - Advertisement Event System</title>
-      
+
       <div class="header"><a href="index.html">
 			<img src="images/logo_100.jpg" alt="logo" />
 			<h1>Advertisement Event System - Insert an Item</h1></a>
 			<br/><hr/>
 		</div>
   </head>
-  
+
 <body>
 	<center>
 <?php
@@ -33,7 +33,7 @@ function insertItem() {
 	$retailPrice = $_POST['retailPrice'];
 
 	$insertStatement = "INSERT INTO Item (ItemNumber, ItemDescription, Category, DepartmentName, PurchaseCost, FullRetailPrice) values ( '$itemNum', '$description', '$category', '$deptName', '$purchaseCost', '$retailPrice')";
-	
+
 	// Execute the query--it will return either true or false
 	$result = mysql_query($insertStatement);
 	$message = "";
@@ -60,6 +60,7 @@ function showItemInsertResult($message, $itemNum, $description, $category, $dept
 }
 ?>
 <p>
+	<button class="button" onclick="goBack()">Back</button>
 	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
 	<a href="insert_item_view.html"><button name="insert"  accesskey="S" class="button">Insert another item</button></a>
 </p>

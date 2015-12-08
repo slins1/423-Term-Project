@@ -6,16 +6,16 @@
 			<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
       <script src="_script.js"></script>
       <link rel="stylesheet" type="text/css" href="_main.css">
-      <link rel="images/logo_favicon.jpg" href="/favicon.ico"/>        
+      <link rel="images/logo_favicon.jpg" href="/favicon.ico"/>
       <title>Aptaris - Advertisement Event System</title>
-      
+
       <div class="header"><a href="index.html">
 			<img src="images/logo_100.jpg" alt="logo" />
 			<h1>Advertisement Event System - Update an Ad Event</h1></a>
 			<br/><hr/>
 		</div>
   </head>
-  
+
 <body>
 	<center>
 <?php
@@ -32,7 +32,7 @@ function updateAdEvent() {
 	$startDate = $_POST['startDate'];
 	$endDate = $_POST['endDate'];
 	$eventType = $_POST['eventType'];
-	
+
 	$updateStatement = "Update AdEvent SET EventCode = '".$eventCode."', Description = '".$description."', Name = '".$name."', StartDate = '".$startDate."', EndDate = '".$endDate."', AdType = '".$eventType."' WHERE EventCode = '".$oldCode."'";
 	// Execute the query--it will return either true or false
 	$result = mysql_query($updateStatement);
@@ -59,6 +59,7 @@ function showItemUpdateResult($message, $eventCode, $description, $name, $startD
 }
 ?>
 <p>
+	<button class="button" onclick="goBack()">Back</button>
 	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
 	<a href="update_ad_event_search_view.html"><button name="update"  accesskey="S" class="button">Update another ad event</button></a>
 </p>

@@ -6,16 +6,16 @@
 			<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
       <script src="_script.js"></script>
       <link rel="stylesheet" type="text/css" href="_main.css">
-      <link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+      <link rel="logo_favicon.jpg" href="/favicon.ico"/>
       <title>Aptaris - Advertisement Event System</title>
-      
+
       <div class="header"><a href="index.html">
 			<img src="logo_100.jpg" alt="logo" />
 			<h1>Advertisement Event System - Update an Item</h1></a>
 			<br/><hr/>
 		</div>
   </head>
-  
+
 <body>
 	<center>
 <?php
@@ -32,7 +32,7 @@ function updateItem() {
 	$deptName = $_POST['departmentName'];
 	$purchaseCost = $_POST['purchaseCost'];
 	$retailPrice = $_POST['fullRetailPrice'];
-	
+
 	$updateStatement = "Update Item SET ItemNumber = '".$itemNum."', ItemDescription = '".$description."', Category = '".$category."', DepartmentName = '".$deptName."', PurchaseCost = '".$purchaseCost."', FullRetailPrice = '".$retailPrice."' WHERE ItemNumber = '".$itemNumber."'";
 	// Execute the query--it will return either true or false
 	$result = mysql_query($updateStatement);
@@ -84,6 +84,7 @@ function showItemUpdateResult($message, $itemNum, $description, $category, $dept
 }
 ?>
 <p>
+	<button class="button" onclick="goBack()">Back</button>
 	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
 	<a href="update_item_search_view.html"><button name="update"  accesskey="S" class="button">Update another item</button></a>
 </p>

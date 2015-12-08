@@ -6,9 +6,9 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="images/logo_favicon.jpg" href="/favicon.ico"/>        
+	<link rel="images/logo_favicon.jpg" href="/favicon.ico"/>
 	<title>Aptaris - Advertisement Event System</title>
-	
+
 	<div class="header"><a href="index.html">
 		<img src="images/logo_100.jpg" alt="logo" />
 		<h1>Advertisement Event System - Assign Promotion to an Ad Event</h1></a><br/><hr/>
@@ -25,10 +25,10 @@ connect();
 retrieveAdEvent();
 
 function retrieveAdEvent() {
-	
+
 	$startDateUnformatted = $_POST['startDate'];
 	$endDateUnformatted = $_POST['endDate'];
-	
+
 
 
 	$temp = "";
@@ -38,7 +38,7 @@ function retrieveAdEvent() {
 	$startDatesReversed[1] = $startDatesReversed[2]; //[2015], [10], [10] t:[28]
 	$startDatesReversed[2] = $temp; //[2015], [10], [28]
 	$startDate = implode("-", $startDatesReversed); //2015-10-28
-	
+
 	$endDates	= explode("/", $endDateUnformatted);
 	$endDatesReversed = array_reverse($endDates);
 	$temp = $endDatesReversed[1];
@@ -70,16 +70,16 @@ function retrieveAdEvent() {
 			$whereCondition = $whereCondition.$cond2;
 		}
 	}
-	
+
 	//echo "$whereCondition";
 
-	$searchStatement = "SELECT EventCode, Name, StartDate, EndDate, 
+	$searchStatement = "SELECT EventCode, Name, StartDate, EndDate,
 	Description, AdType FROM AdEvent WHERE $whereCondition";
 	//echo "$searchStatement";
 
 	//Construct SQL statements
-	
-	
+
+
 	//Execute the queries
 	$result = mysql_query($searchStatement);
 	$numberAdEventRows = mysql_num_rows($result);
@@ -99,11 +99,11 @@ function retrieveAdEvent() {
 
 function displayAdEvents($adEventMessage, $adEventResult) {
 
-	
+
 
 
 	while ($row = mysql_fetch_assoc($adEventResult)) {
-		
+
     $eventCode = $row['EventCode'];
     $name = $row['Name'];
     $startDate = $row['StartDate'];
@@ -113,14 +113,14 @@ function displayAdEvents($adEventMessage, $adEventResult) {
 
     echo"<h2>Promotions associated with Ad Event: $name</h2>";
 
-    $adEventPromoSearch = "SELECT ID, EventCode, PromoCode 
+    $adEventPromoSearch = "SELECT ID, EventCode, PromoCode
     FROM AdEventPromotion Where EventCode = '$eventCode'";
-    
+
 
     $adEventPromoResult = mysql_query($adEventPromoSearch);
 
     while($row2 = mysql_fetch_assoc($adEventPromoResult)){
-    	
+
     	$eventCode2 = $row2['EventCode'];
     	$id2 = $row2['ID'];
     	$promoCode2 = $row2['PromoCode'];
@@ -131,7 +131,7 @@ function displayAdEvents($adEventMessage, $adEventResult) {
     	$promoResult = mysql_query($promoSearch);
 
     	while($row3 = mysql_fetch_assoc($promoResult)){
-    		
+
     		$promoCode3 = $row3['PromoCode'];
     		$promoName3 = $row3['Name'];
     		$promoDescription3 = $row3['Description'];
@@ -168,7 +168,7 @@ EOD;
     	}
 
     }
-    
+
 //echo '<input type="hidden" name="promoCode[]" value=$promoCode>';
 //echo '<input type="hidden" name="amountOff" value="'.$amountOff.'" >';
 //echo '<input type="hidden" name="promoType" value="'.$promoType.'" >';
@@ -180,13 +180,14 @@ EOD;
 
 
 }
-	
+
 ?>
 	<br/>
 
 	<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Back To Main Menu</button>
 	</form>
 	<br/>
+		<button class="button" onclick="goBack()">Back</button>
 		<a href="report_adEvent_view.html"><button name="insert" class="button">Run Another Report</button></a>
   </center>
   </body>

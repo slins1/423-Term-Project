@@ -6,9 +6,9 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="images/logo_favicon.jpg" href="/favicon.ico"/>        
+	<link rel="images/logo_favicon.jpg" href="/favicon.ico"/>
 	<title>Aptaris - Advertisement Event System</title>
-	
+
 	<div class="header"><a href="index.html">
 		<img src="images/logo_100.jpg" alt="logo" />
 		<h1>Advertisement Event System - Promotion Report</h1></a><br/><hr/>
@@ -116,34 +116,34 @@ function retrievePromotions() {
 */
 /*
 	if($searchType == "Promotion Code"){
-		$insertStatement = "SELECT PromoCode, Name, Description, 
-		AmountOff, PromoType FROM Promotion 
+		$insertStatement = "SELECT PromoCode, Name, Description,
+		AmountOff, PromoType FROM Promotion
 		WHERE PromoCode = '$searchData'";
 	}
 	else if($searchType == "Promotion Name"){
-		$insertStatement = "SELECT PromoCode, Name, Description, 
-		AmountOff, PromoType FROM Promotion 
+		$insertStatement = "SELECT PromoCode, Name, Description,
+		AmountOff, PromoType FROM Promotion
 		WHERE Name = '$searchData'";
 	}
 	else if($searchType == "Promotion Description"){
-		$insertStatement = "SELECT PromoCode, Name, Description, 
-		AmountOff, PromoType FROM Promotion 
+		$insertStatement = "SELECT PromoCode, Name, Description,
+		AmountOff, PromoType FROM Promotion
 		WHERE Description = '$searchData'";
 	}
 	else if($searchType == "Amount Off"){
-		$insertStatement = "SELECT PromoCode, Name, Description, 
-		AmountOff, PromoType FROM Promotion 
+		$insertStatement = "SELECT PromoCode, Name, Description,
+		AmountOff, PromoType FROM Promotion
 		WHERE AmountOff = '$searchData'";
 	}
 	else if($searchType == "Promotion Type(Dollar/Percent)"){
-		$insertStatement = "SELECT PromoCode, Name, Description, 
-		AmountOff, PromoType FROM Promotion 
+		$insertStatement = "SELECT PromoCode, Name, Description,
+		AmountOff, PromoType FROM Promotion
 		WHERE PromoType = '$searchData'";
 	}
 	*/
 	//Construct SQL statements
-	
-	
+
+
 	//Execute the queries
 	$result = mysql_query($insertStatement);
 	$numberPromotionRows = mysql_num_rows($result);
@@ -154,7 +154,7 @@ function retrievePromotions() {
 	}
 	//Display the results
 	displayItemsPromotions($message, $result);
-	
+
 	//Free the result sets
 	mysql_free_result($result);
 
@@ -162,7 +162,7 @@ function retrievePromotions() {
 
 function displayItemsPromotions($promoMessage, $promoResult) {
 
-	
+
 
 
 	while ($row = mysql_fetch_assoc($promoResult)) {
@@ -171,13 +171,13 @@ function displayItemsPromotions($promoMessage, $promoResult) {
     $description = $row['Description'];
     $amountOff = $row['AmountOff'];
     $promoType = $row['PromoType'];
-    
+
 //echo '<input type="hidden" name="promoCode[]" value=$promoCode>';
 //echo '<input type="hidden" name="amountOff" value="'.$amountOff.'" >';
 //echo '<input type="hidden" name="promoType" value="'.$promoType.'" >';
 
 		echo <<<EOD
-	
+
     <tr>
 			<td>$promoCode</td>
       			<td>$name</td>
@@ -185,7 +185,7 @@ function displayItemsPromotions($promoMessage, $promoResult) {
 			<td>$amountOff</td>
 			<td>$promoType</td>
 		</tr>
-	
+
 EOD;
 }
 
@@ -194,13 +194,14 @@ EOD;
 
 
 }
-	
+
 ?>
 	</table>
 	<br/>
 	<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Back To Main Menu</button>
 	</form>
 	<br/>
+		<button class="button" onclick="goBack()">Back</button>
 		<a href="report_promotion_view.html"><button name="insert" class="button">Run Another Report</button></a>
 
 		</center>

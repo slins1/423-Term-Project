@@ -6,9 +6,9 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="images/logo_favicon.jpg" href="/favicon.ico"/>        
+	<link rel="images/logo_favicon.jpg" href="/favicon.ico"/>
 	<title>Aptaris - Advertisement Event System</title>
-	
+
 	<div class="header"><a href="index.html">
 		<img src="images/logo_100.jpg" alt="logo" />
 		<h1>Advertisement Event System - Assign Promotion to an Ad Event</h1></a><br/><hr/>
@@ -26,7 +26,7 @@ insert_AdEventPromotion();
 function insert_AdEventPromotion() {
 	$eventCode = $_POST['eventCode'];
 	$eventName = $_POST['eventName'];
-	
+
 echo "<h2> The Following Promotions were added to the Ad Event: $eventName </h2>";
 echo <<<EOD
 	<tr>
@@ -61,7 +61,7 @@ EOD;
 
 
       $insertStatement = "INSERT INTO AdEventPromotion (EventCode, PromoCode) VALUES ('$eventCode','$promoCode')";
-			
+
 			$result = mysql_query($insertStatement);
 			if (!$result) {
   			echo "<h2>Error in inserting Ad Event</h2>";
@@ -75,7 +75,7 @@ EOD;
 	  				<td>$promoType</td>
 	  			</tr>
 EOD;
-			} 
+			}
 		}
 	} else {
 		echo "<h2>No promos </h2>";
@@ -85,6 +85,7 @@ EOD;
 ?>
 </table>
 <p>
+	<button class="button" onclick="goBack()">Back</button>
 	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
 	<a href="assign_promotion_item_view.html"><button name="insert"  accesskey="S" class="button">Assign another promotion</button></a>
 </p>

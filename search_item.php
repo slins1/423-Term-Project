@@ -6,19 +6,19 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="images/logo_favicon.jpg" href="/favicon.ico"/>        
+	<link rel="images/logo_favicon.jpg" href="/favicon.ico"/>
 	<title>Aptaris - Advertisement Event System</title>
-	
+
 	<div class="header"><a href="index.html">
 		<img src="images/logo_100.jpg" alt="logo" />
 		<h1>Advertisement Event System - Assign Promotion to an Item</h1></a><br/><hr/>
 	</div>
 </head>
 
-<body> 
-	<center>  
+<body>
+	<center>
     <form action='search_item_for_promotion.php' method='post' onsubmit="return validateCategory(this)">
-        
+
     <h2>Search for a Item to add the promotion to:</h2>
     <table>
         <tr>
@@ -136,8 +136,8 @@
                   <span id="successItemNum" class="correct"></span></td>
     </tr>
 </table>
-        
-  
+
+
 <?php
 require('db_connect.inc');
 connect();
@@ -145,8 +145,8 @@ connect();
     $promoCode1 = $_POST['promo'];
 
 
-    
-            $promo_search_sql ="SELECT PromoCode, Name, AmountOff, PromoType 
+
+            $promo_search_sql ="SELECT PromoCode, Name, AmountOff, PromoType
             FROM Promotion WHERE PromoCode = $promoCode1";
 
             $promoResult = mysql_query($promo_search_sql);
@@ -158,7 +158,7 @@ connect();
             $promoType = $row['PromoType'];
 
 
-        
+
 	//$promoCode = $_POST['promoCode'];
 	//$amountOff = $_POST['amountOff'];
 	//$promoType = $_POST['promoType'];
@@ -173,7 +173,8 @@ connect();
 EOD;
 ?>
 
-<p>			
+<p>
+		<button class="button" onclick="goBack()">Back</button>
 		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
 		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
 	</p>

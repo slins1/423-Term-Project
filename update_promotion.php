@@ -6,16 +6,16 @@
 			<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
       <script src="_script.js"></script>
       <link rel="stylesheet" type="text/css" href="_main.css">
-      <link rel="images/logo_favicon.jpg" href="/favicon.ico"/>        
+      <link rel="images/logo_favicon.jpg" href="/favicon.ico"/>
       <title>Aptaris - Advertisement Event System</title>
-      
+
       <div class="header"><a href="index.html">
 			<img src="images/logo_100.jpg" alt="logo" />
 			<h1>Advertisement Event System - Update a Promotion</h1></a>
 			<br/><hr/>
 		</div>
   </head>
-  
+
 <body>
 	<center>
 <?php
@@ -36,7 +36,7 @@ function updatePromotion() {
 		$amountOff = $amountOff/100;
 		//$amountOff = ltrim($amountOff, "0");
 	}
-	
+
 	$updateStatement = "Update Promotion SET Name = '".$promoName."', Description = '".$description."', AmountOff = '".$amountOff."', PromoType = '".$promoType."' WHERE PromoCode = '".$promoCode."'";
 	// Execute the query--it will return either true or false
 	$result = mysql_query($updateStatement);
@@ -88,6 +88,7 @@ function showItemUpdateResult($message, $promoCode, $description, $promoName, $a
 }
 ?>
 <p>
+	<button class="button" onclick="goBack()">Back</button>
 	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
 	<a href="update_promotion_search_view.html"><button name="update"  accesskey="S" class="button">Update another promotion</button></a>
 </p>
