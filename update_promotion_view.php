@@ -18,7 +18,6 @@
     <form action='update_promotion.php' method='post' onsubmit="">
 
     <h2>Update a Promotion:</h2>
-
     <table border="1" cellpadding="5">
 
 <?php
@@ -71,6 +70,7 @@ EOD;
 echo '<input type="hidden" name="promoCode" id="promoCode" value="'.$promoCode.'">';
 ?>		
 <p>	
+        <button class="button" onclick="goBack()">Back</button>
 		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
 		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
 </p></form>
