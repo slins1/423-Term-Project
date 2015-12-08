@@ -69,7 +69,7 @@ connect();
 EOD;
 ?>
 <p>			
-    <button class="button" onclick="goBack()">Back</button>
+    	<button class="button" onclick="goBack()">Back</button>
 	<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
 	<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
 </p>
