@@ -31,7 +31,7 @@ function updateItem() {
 	$category = $_POST['category'];
 	$deptName = $_POST['departmentName'];
 	$purchaseCost = $_POST['purchaseCost'];
-	$retailPrice = $_POST['fullRetailPrice'];
+	$retailPrice = $_POST['retailPrice'];
 	
 	$updateStatement = "Update Item SET ItemNumber = '".$itemNum."', ItemDescription = '".$description."', Category = '".$category."', DepartmentName = '".$deptName."', PurchaseCost = '".$purchaseCost."', FullRetailPrice = '".$retailPrice."' WHERE ItemNumber = '".$itemNumber."'";
 	// Execute the query--it will return either true or false
