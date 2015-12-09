@@ -26,11 +26,10 @@ updatePromotion();
 
 function updatePromotion() {
 	$promoCode = $_POST['promoCode'];
-	$promoName = $_POST['name'];
-	$description = $_POST['description'];
+	$promoName = $_POST['promoName'];
+	$description = $_POST['promoDescription'];
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
-
 
 	if (($promoType == 'Percent') && ($amountOff >= 1)) {
     	$amountOff =  str_replace("%", "", $amountOff);

@@ -4,6 +4,7 @@
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script src="_script.js"></script>
+        <script type="text/javascript" src="validate_item_insert.js"></script>
         <link rel="stylesheet" type="text/css" href="_main.css">
         <link rel="icon" type="image/png" href="favicon.png">
         <title>Aptaris - Advertisement Event System</title>
@@ -15,7 +16,7 @@
 </head>
 <body>
         <center>
-    <form action='update_item.php' method='post' onsubmit="">    
+    <form action='update_item.php' method='post' name ="addItem" id="addItem" onsubmit="return validate_item();">    
     <table border="1">
     <tr>
     <td>Item Number:</td>
@@ -33,7 +34,7 @@ echo '<td><input type="text" name="itemNum" id="itemNum" value = "'.$itemNumber.
 echo <<<EOD
     <tr><td>Item Description:</td>
 EOD;
-echo '<td><input type="text" name="itemDescription" id="itemDescription" value = "'.$itemDescription.'" size="40"><span id="errorItemNum" class="error"></span><span id="successItemNum" class="correct"></span></td></tr>';
+echo '<td><input type="text" name="itemDescription" id="itemDescription" value = "'.$itemDescription.'" size="40"><span id="errorItemDescription" class="error"></span><span id="successItemDescription" class="correct"></span></td></tr>';
 echo <<<EOD
     <tr><td>Category:</td>
 EOD;
@@ -124,11 +125,11 @@ echo <<<EOD
         </select></div></td></tr>
 EOD;
 echo '<tr><td>Purchase Cost:</td>';
-echo '<td><input type="text" name="purchaseCost" id="purchaseCost" value="'.$purchaseCost.'" size="40"><span id="errorItemNum" class="error"></span>
-                  <span id="successItemNum" class="correct"></span></td></tr>';
+echo '<td><input type="text" name="purchaseCost" id="purchaseCost" value="'.$purchaseCost.'" size="40"><span id="errorPurchaseCost" class="error"></span>
+                  <span id="successPurchaseCost" class="correct"></span></td></tr>';
 echo '<tr><td>Full Retail Price:</td>';
-echo '<td><input type="text" name="fullRetailPrice" id="fullRetailPrice" value="'.$fullRetailPrice.'" size="40"><span id="errorItemNum" class="error"></span>
-                  <span id="successItemNum" class="correct"></span></td></tr>';
+echo '<td><input type="text" name="retailPrice" id="retailPrice" value="'.$fullRetailPrice.'" size="40"><span id="errorRetailPrice" class="error"></span>
+                  <span id="successRetailPrice" class="correct"></span></td></tr>';
 echo '<input type="hidden" name="itemNumber" id="itemNumber" value="'.$itemNumber.'"></table>';
 ?>		
 <p>	
