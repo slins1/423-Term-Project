@@ -12,11 +12,11 @@ function validate_event() {
     errorFlag = 1;
   }
 
- /* if (validate_end_date() == false) {
+  if (validate_end_date() == false) {
     document.addEvent.endDate.focus();
     errorFlag = 1;
   }
-
+/*
   if (validate_description() == false) {
     document.addEvent.eventDescription.focus();
     errorFlag = 1;
@@ -76,21 +76,38 @@ function validate_name() {
   return true;
 }
 
-/*function validate_end_date() {
-  var endDate = document.addEvent.endDate;
-  var startDate = document.addEvent.startDate;
+function validate_end_date() {
+  var endDateUnformatted = document.addEvent.endDate.value;
+  var startDateUnformatted = document.addEvent.startDate.value;
   var errEndDate = document.getElementById("errorEndDate");
   var sucEndDate = document.getElementById("successEndDate");
+	
+	var temp = "";
+	var startDates = startDateUnformatted.split("/"); //[10], [28], [2015]
+	var startDatesReversed = startDates.reverse(); //[2015], [28], [10]
+	temp = startDatesReversed[1]; //[2015], [28], [10] t:[28]
+	startDatesReversed[1] = startDatesReversed[2]; //[2015], [10], [10] t:[28]
+	startDatesReversed[2] = temp;
+	var startDate = startDatesReversed.join("-"); //2015-10-28
+	
+	var endDates = endDateUnformatted.split("/"); //[10], [28], [2015]
+	var endDatesReversed = endDates.reverse(); //[2015], [28], [10]
+	temp = endDatesReversed[1]; //[2015], [28], [10] t:[28]
+	endDatesReversed[1] = endDatesReversed[2]; //[2015], [10], [10] t:[28]
+	endDatesReversed[2] = temp;
+	var endDate = endDatesReversed.join("-"); //2015-10-28
+	
 
-  if (endDate < startDate) {
-    sucEndDate.innerHTML = "";
-    errEndDate.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> End date should be after start date!";
-    return false;
-  }
-  errEndDate.innerHTML = "";
-  sucEndDate.innerHTML = "<img class='statusImage' src='images/correct.png' alt='correct'> Complete!";
+    if (endDate < startDate) {
+        sucEndDate.innerHTML = "";
+        errEndDate.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> End date should be after start date!";
+        return false;
+    }
+    
+    errEndDate.innerHTML = "";
+    sucEndDate.innerHTML = "<img class='statusImage' src='images/correct.png' alt='correct'> Complete!";
   return true;
-}*/
+}
 
 function validate_description() {
   var description = document.addEvent.eventDescription;

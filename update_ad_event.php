@@ -27,8 +27,8 @@ updateAdEvent();
 function updateAdEvent() {
 	$eventCode = $_POST['eventCode'];
 	$oldCode = $_POST['code'];
-	$name = $_POST['name'];
-	$description = $_POST['description'];
+	$name = $_POST['eventName'];
+	$description = $_POST['eventDescription'];
 	$startDateUnformatted = $_POST['startDate'];
 	$endDateUnformatted = $_POST['endDate'];
 	$eventType = $_POST['eventType'];
