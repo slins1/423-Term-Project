@@ -12,6 +12,7 @@ $(function() {
 	});
   $(".button").button();
   $("#startDate, #endDate").datepicker();
+  $("#startDate, #endDate").datepicker("setDate", new Date());
 });
 
 function goBack() {
