@@ -30,7 +30,6 @@ function validate_event() {
   }
 
   if (validate_end_date() == false) {
-    document.addEvent.endDate.focus();
     errorFlag = 1;
   }
 
@@ -84,8 +83,31 @@ function validate_name() {
 function validate_end_date() {
   var endDateUnformatted = document.addEvent.endDate.value;
   var startDateUnformatted = document.addEvent.startDate.value;
+  var errStartDate = document.getElementById("errorStartDate");
+  var sucStartDate = document.getElementById("successStartDate");
   var errEndDate = document.getElementById("errorEndDate");
   var sucEndDate = document.getElementById("successEndDate");
+
+    if (startDateUnformatted == "") {
+        sucStartDate.innerHTML = "";
+        errStartDate.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'>Required!";
+        
+        if (endDateUnformatted == "") {
+            sucEndDate.innerHTML = "";
+            errEndDate.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'>Required!";
+        } else {
+            sucEndDate.innerHTML = "<img class='statusImage' src='images/correct.png' alt='correct'> Complete!";
+            errEndDate.innerHTML = "";
+        }
+          
+        return false;
+    }
+    
+    if (endDateUnformatted == "") {
+        sucEndDate.innerHTML = "";
+        errEndDate.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'>Required!";
+        return false;
+    }
 
 	var temp = "";
 	var startDates = startDateUnformatted.split("/"); //[10], [28], [2015]
@@ -110,6 +132,8 @@ function validate_end_date() {
     }
 
     errEndDate.innerHTML = "";
+    errStartDate.innerHTML = "";
+    sucStartDate.innerHTML = "<img class='statusImage' src='images/correct.png' alt='correct'> Complete!";
     sucEndDate.innerHTML = "<img class='statusImage' src='images/correct.png' alt='correct'> Complete!";
   return true;
 }
