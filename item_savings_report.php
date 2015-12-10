@@ -95,7 +95,7 @@ EOD;
 	<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Back To Main Menu</button>
 	</form>
 	<br/>
-		<a href="report_promotion_view.html"><button name="insert" class="button">Run Another Report</button></a>
+		<a href="item_savings_report_search_view.html"><button name="insert" class="button">Run Another Report</button></a>
 
 		</center>
   </body>
