@@ -6,11 +6,11 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+	<link rel="icon" type="image/png" href="favicon.png">        
 	<title>Aptaris - Advertisement Event System</title>
 	
 	<div class="header"><a href="index.html">
-		<img src="logo_100.jpg" alt="logo" />
+		<img src="images/logo_100.jpg" alt="logo" />
 		<h1>Advertisement Event System - Assign Promotion to an Ad Event</h1></a><br/><hr/>
 	</div>
 </head>
@@ -20,13 +20,13 @@
 	<h2>Please select an Ad Event and click submit to confirm, or click back to go back</h2>
 	<table>
 		<tr>
-		<td></td>
-		<td><b>EVENT CODE</b></td>
-		<td><b>NAME</b></td>
-		<td><b>START DATE</b></td>
-		<td><b>END DATE</b></td>
-		<td><b>DESCRIPTION</b></td>
-		<td><b>AD TYPE(PLANNER/CIRCULAR/PASSOUT)</b></td>
+		<th></th>
+		<th><b>Event Code</b></th>
+		<th><b>Name</b></th>
+		<th><b>Start Date</b></th>
+		<th><b>End Date</b></th>
+		<th><b>Description</b></th>
+		<th><b>Ad Type</b></th>
 	</tr>
 <?php
 require('db_connect.inc');
@@ -201,8 +201,10 @@ EOD;
 ?>
 	</table>
 	<br/>
-	<a href="assign_promotion_adEvent_view.html"><button class="button">Back</button></a>
+	<p>
+	<button class="button" onclick="goBack()">Back</button>
 	<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
+<br/><br/><a href="index.html"><button name="menu" class="button">Return to Main Menu</button></a></p>
 	</form>
 		</center>
   </body>

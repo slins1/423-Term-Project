@@ -6,11 +6,11 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+	<link rel="icon" type="image/png" href="favicon.png">        
 	<title>Aptaris - Advertisement Event System</title>
 	
 	<div class="header"><a href="index.html">
-		<img src="logo_100.jpg" alt="logo" />
+		<img src="images/logo_100.jpg" alt="logo" />
 		<h1>Advertisement Event System - Insert Promotion</h1></a><br/><hr/>
 	</div>
 </head>
@@ -26,10 +26,16 @@ connect();
 insertPromotion();
 
 function insertPromotion() {
-	$name = $_POST['name'];
-	$description = $_POST['description'];
+	$name = $_POST['promoName'];
+	$description = $_POST['promoDescription'];
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
+
+	if (($promoType == 'Percent') && ($amountOff >= 1)) {
+    	$amountOff =  str_replace("%", "", $amountOff);
+		$amountOff = $amountOff/100;
+		//$amountOff = ltrim($amountOff, "0");
+	}
 	
 	$insertStatement = "INSERT INTO Promotion (Name, Description, AmountOff, PromoType) values ( '$name', '$description', '$amountOff', '$promoType')";
 	//Execute the query. The result will just be true or false
@@ -70,7 +76,7 @@ EOD;
 }
 ?>
 <p>
-	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
+	<a href="index.html"><button name="menu" class="button">Return to Main Menu</button></a>
 	<a href="insert_promotion_view.html"><button name="insert"  accesskey="S" class="button">Insert another promotion</button></a>
 </p>
 </center>

@@ -45,8 +45,8 @@ function findSavings(){
 	if ($numberPromotionItemRows == 0) {
 	  $promotionItemMessage = "No items found in database";
 	}
-	$bestPromo = "No Promotions Assigned";
-	$bestPrice = $retail;
+	$bestPromo = $retail;
+	$bestPrice = "none";
 	$adEvent = "none";
 	while ($row = mysql_fetch_assoc($promotionItemResult)) {
 		$promoCode = $row['PromoCode'];
@@ -61,14 +61,14 @@ function findSavings(){
 			$numberAdEventPromotionRows = mysql_num_rows($adEventPromotionResult);
 			// Check if results turned out empty
 			$adEventPromotionMessage = "";
-			$bestPrice = $salePrice;
-			$bestPromo = $promoCode;
 			if ($numberAdEventPromotionRows == 0) {
 				$adEventPromotionMessage = "No items found in database";
 			}
 			else {
 				$result = mysql_fetch_assoc($adEventPromotionResult);
 				$eventCode = $result['EventCode'];
+				$bestPrice = $salePrice;
+				$bestPromo = $promoCode;
 				$adEvent = $eventCode;
 			}
 		}

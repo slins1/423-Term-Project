@@ -77,4 +77,4 @@ function validPrice()
 
 	alert("You must enter the full retail price in the proper format");
 	return false;
-}
+} 
