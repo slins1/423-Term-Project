@@ -1,3 +1,24 @@
+function clear_form(){
+
+  var errEventCode = document.getElementById("errorEventCode");
+  var sucEventCode = document.getElementById("successEventCode");
+  var errName = document.getElementById("errorName");
+  var sucName = document.getElementById("successName");
+  var errEndDate = document.getElementById("errorEndDate");
+  var sucEndDate = document.getElementById("successEndDate");
+  var errDescription = document.getElementById("errorDescription");
+  var sucDescription = document.getElementById("successDescription");
+
+  sucEventCode.innerHTML = "";
+  errEventCode.innerHTML = "";
+  sucName.innerHTML = "";
+  errName.innerHTML = "";
+  sucEndDate.innerHTML = "";
+  errEndDate.innerHTML = "";
+  sucDescription.innerHTML = "";
+  errDescription.innerHTML = "";
+}
+
 function validate_event() {
 
   var errorFlag = 0;
@@ -81,7 +102,7 @@ function validate_end_date() {
   var startDateUnformatted = document.addEvent.startDate.value;
   var errEndDate = document.getElementById("errorEndDate");
   var sucEndDate = document.getElementById("successEndDate");
-	
+
 	var temp = "";
 	var startDates = startDateUnformatted.split("/"); //[10], [28], [2015]
 	var startDatesReversed = startDates.reverse(); //[2015], [28], [10]
@@ -89,21 +110,21 @@ function validate_end_date() {
 	startDatesReversed[1] = startDatesReversed[2]; //[2015], [10], [10] t:[28]
 	startDatesReversed[2] = temp;
 	var startDate = startDatesReversed.join("-"); //2015-10-28
-	
+
 	var endDates = endDateUnformatted.split("/"); //[10], [28], [2015]
 	var endDatesReversed = endDates.reverse(); //[2015], [28], [10]
 	temp = endDatesReversed[1]; //[2015], [28], [10] t:[28]
 	endDatesReversed[1] = endDatesReversed[2]; //[2015], [10], [10] t:[28]
 	endDatesReversed[2] = temp;
 	var endDate = endDatesReversed.join("-"); //2015-10-28
-	
+
 
     if (endDate < startDate) {
         sucEndDate.innerHTML = "";
         errEndDate.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> End date should be after start date!";
         return false;
     }
-    
+
     errEndDate.innerHTML = "";
     sucEndDate.innerHTML = "<img class='statusImage' src='images/correct.png' alt='correct'> Complete!";
   return true;
