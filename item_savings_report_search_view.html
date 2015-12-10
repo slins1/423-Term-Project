@@ -20,14 +20,19 @@
     <form action='item_savings_report_search.php' method='post' onsubmit="">
         
     <h2>Search for an Item:</h2>
-    <p><b>Item Number:</b></p>
-        <input type="text" name="itemNumber" id="itemNumber"
-        placeholder="Enter an Item Number">
-    <p><b>Item Description:</b></p>
-        <input type="text" name="itemDescription" id="itemDescription"
-        placeholder="Enter an Item Description">
-    <p><b>Category:</b></p>
-        <select name="category" id="category">
+    <table border="1" cellpadding="5">
+    <tr>
+    <td><p><b>Item Number:</b></p></td>
+        <td><input type="text" name="itemNumber" id="itemNumber"
+        placeholder="Enter an Item Number"></td>
+    </tr>
+    <tr>
+    <td><p><b>Item Description:</b></p></td>
+        <td><input type="text" name="itemDescription" id="itemDescription"
+        placeholder="Enter an Item Description"></td>
+    </tr>
+    <td><p><b>Category:</b></p></td>
+        <td><select name="category" id="category">
             <option>---</option>
             <option>ACCESSORIES/FOOTWEAR</option>
             <option>BASIC APPAREL</option>
@@ -47,9 +52,11 @@
             <option>SUPPLIES</option>
             <option>TOYS</option>
             <option>WOMENS APPAREL</option>
-        </select>
-        <p><b>Department Name</b></p>
-        <select name="departmentName" id="departmentName">
+        </select></td>
+    </tr>
+    <tr>
+        <td><p><b>Department Name</b></p></td>
+        <td><select name="departmentName" id="departmentName">
             <option>---</option>
             <option>ACCESSORIES</option>
             <option>FOOTWEAR</option>
@@ -108,13 +115,19 @@
             <option>PLUS BOTTOMS</option>
             <option>PLUS TOPS</option>
             <option>SLEEPWEAR/SCRUBS</option>
-        </select>
-        <p><b>Purchase Cost:</b></p>
-        <input type="text" name="purchaseCost" id="purchaseCost"
-        placeholder="Enter a Purchase Cost">
-        <p><b>Full Retail Price:</b></p>
-        <input type="text" name="fullRetailPrice" id="fullRetailPrice"
-        placeholder="Enter a Full Retial Price">
+        </select></td>
+    </tr>
+    <tr>
+        <td><p><b>Purchase Cost:</b></p></td>
+        <td><input type="text" name="purchaseCost" id="purchaseCost"
+        placeholder="Enter a Purchase Cost"></td>
+    </tr>
+    <tr>
+        <td><p><b>Full Retail Price:</b></p></td>
+        <td><input type="text" name="fullRetailPrice" id="fullRetailPrice"
+        placeholder="Enter a Full Retial Price"></td>
+    </tr>
+</table>
         
 <p>			
 		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>

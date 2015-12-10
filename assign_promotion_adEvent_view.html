@@ -6,11 +6,11 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+	<link rel="icon" type="image/png" href="favicon.png">        
 	<title>Aptaris - Advertisement Event System</title>
 	
 	<div class="header"><a href="index.html">
-		<img src="logo_100.jpg" alt="logo" />
+		<img src="images/logo_100.jpg" alt="logo" />
 		<h1>Advertisement Event System - Assign Promotion to an Ad Event</h1></a><br/><hr/>
 	</div>
 </head>
@@ -20,25 +20,36 @@
  
 	<form action='search_promotion_adEvent.php' method='post'>
 		
-		<h2>Search for an Ad Event to add Promotions to:</h2>
+		<h2>Search for an Ad Event to add Promotions to</h2>
+		<h4>At least one field is required</h4>
 		<table>
 				<tr>
 					<td><p><b>Event Code:</b></td>
 					<td><input type="text" name="eventCode" id="eventCode"
-					placeholder="Enter an Event Code"></p></td>
+					placeholder="Enter an Event Code"></p>
+					<span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td>
 				</tr>
 				<tr>
 					<td><p><b>Name:</b></td>
 					<td><input type="text" name="name" id="name"
-						placeholder= "Enter a Name"></p></td>
+						placeholder= "Enter a Name"></p>
+						<span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td>
 				</tr>
 				<tr>
 					<td><p><b>Start Date:</b></td>
-					<td><input type="text" name="startDate" id="startDate" placeholder="Enter a date"></p></td>
+					<td><input type="text" name="startDate" id="startDate" placeholder="Enter a date"></p>
+    					<span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span>
+					</td>
 				</tr>
 				<tr>
 					<td><p><b>End Date:</b></td>
-					<td><input type="text" name="endDate" id="endDate" placeholder="Enter a date"></p></td>
+					<td><input type="text" name="endDate" id="endDate" placeholder="Enter a date"></p>
+    					<span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span>
+					</td>
 				</tr>
 				<tr>
 					<td><p><b>Description:</b></td>
@@ -46,21 +57,22 @@
 				</tr>
 				<tr>
 					<td><p><b>Ad Type:</b></td>
-					<td><select name="adType" id="adType">
-                    	<option>---</option>
+					<td><div class="dropDown"><select name="adType" id="adType">
+						<option>---</option>
                     	<option>Planner</option>
                     	<option>Circular</option>
                     	<option>PassOut</option>
-                	</select>
+                	</select></div>
                 	</p></td>
             	</tr>
             </table>
 
 		<p>
+    			<button class="button" onclick="goBack()">Back</button>
 			<button type="reset" name="reset" value="Reset" accesskey="R" class="button">Reset</button>
 			<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
-		</p>
-	</form>
+</p></form>
+	<p><br/><a href="index.html"><button name="menu" class="button">Return to Main Menu</button></a></p>
 </center>
 
 </body>

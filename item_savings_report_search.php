@@ -11,14 +11,14 @@
 	
 	<div class="header"><a href="index.html">
 		<img src="images/logo_100.jpg" alt="logo" />
-		<h1>Advertisement Event System - Update Item</h1></a><br/><hr/>
+		<h1>Advertisement Event System - Item Savings</h1></a><br/><hr/>
 	</div>
 </head>
 
 <body>
 <center>
 <form action='item_savings_report.php' method='post'>
-<h2>Please check the item you would like to update</h2>
+<h2>Please check the item you would like to see the greatest savings for</h2>
 <table>
 
 

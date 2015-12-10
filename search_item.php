@@ -6,28 +6,54 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
+	<link rel="icon" type="image/png" href="favicon.png">        
 	<title>Aptaris - Advertisement Event System</title>
 	
 	<div class="header"><a href="index.html">
-		<img src="logo_100.jpg" alt="logo" />
-		<h1>Advertisement Event System - Assign Promotion to an Item</h1></a><br/><hr/>
+		<img src="images/logo_100.jpg" alt="logo" />
+		<h1>Advertisement Event System - Assign Item to a Promotion</h1></a><br/><hr/>
 	</div>
 </head>
-
 <body> 
+<?php
+require('db_connect.inc');
+connect();
+$promoCode1 = $_POST['promo'];  
+  $promo_search_sql ="SELECT PromoCode, Name, AmountOff, PromoType 
+  FROM Promotion WHERE PromoCode = $promoCode1";
+
+  $promoResult = mysql_query($promo_search_sql);
+  $row = mysql_fetch_assoc($promoResult);
+
+  $promoCode = $row['PromoCode'];
+  $promoName = $row['Name'];
+  $amountOff = $row['AmountOff'];
+  $promoType = $row['PromoType'];
+?>
+
 	<center>  
-    <form action='search_item_for_promotion.php' method='post' onsubmit="return validateCategory(this)">
+    <form action='search_item_for_promotion.php' method='post' onsubmit="">
         
-    <h2>Search for a Item to add the promotion to:</h2>
-    <p><b>Item Number:</b></p>
-        <input type="text" name="itemNumber" id="itemNumber"
-        placeholder="Enter an Item Number">
-    <p><b>Item Description:</b></p>
-        <input type="text" name="itemDescription" id="itemDescription"
-        placeholder="Enter an Item Description">
-    <p><b>Category:</b></p>
-        <select name="category" id="category">
+    <h2>Search for a Item to add the promotions <?php echo "$promoName";?> to</h2>
+    <h4>At least one field is required</h4>
+    <table>
+        <tr>
+            <td><p><b>Item Number:</b></td>
+            <td><input type="text" name="itemNumber" id="itemNumber"
+            placeholder="Enter an Item Number"></p>
+            <span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td>
+        </tr>
+        <tr>
+            <td><p><b>Item Description:</b></td>
+            <td><input type="text" name="itemDescription" id="itemDescription"
+                placeholder="Enter an Item Description"></p>
+                <span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td>
+        </tr>
+        <tr>
+            <td><p><b>Category:</b></td>
+            <td><div class="dropDown"><select name="category" id="category">
             <option>---</option>
             <option>ACCESSORIES/FOOTWEAR</option>
             <option>BASIC APPAREL</option>
@@ -47,9 +73,11 @@
             <option>SUPPLIES</option>
             <option>TOYS</option>
             <option>WOMENS APPAREL</option>
-        </select>
-        <p><b>Department Name</b></p>
-        <select name="departmentName" id="departmentName">
+        </select></div></p></td>
+    </tr>
+    <tr>
+        <td><p><b>Department Name</b></td>
+        <td><div class="dropDown"><select name="departmentName" id="departmentName">
             <option>---</option>
             <option>ACCESSORIES</option>
             <option>FOOTWEAR</option>
@@ -108,45 +136,29 @@
             <option>PLUS BOTTOMS</option>
             <option>PLUS TOPS</option>
             <option>SLEEPWEAR/SCRUBS</option>
-        </select>
-        <p><b>Purchase Cost:</b></p>
-        <input type="text" name="purchaseCost" id="purchaseCost"
-        placeholder="Enter a Purchase Cost">
-        <p><b>Full Retail Price:</b></p>
-        <input type="text" name="fullRetailPrice" id="fullRetailPrice"
-        placeholder="Enter a Full Retial Price">
-        
-  
+        </select></div></p></td>
+    </tr>
+    <tr>
+        <td><p><b>Purchase Cost:</b></td>
+        <td><input type="text" name="purchaseCost" id="purchaseCost"
+        placeholder="Enter a Purchase Cost"></p>
+        <span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td>
+    </tr>
+    <tr>
+        <td><p><b>Full Retail Price:</b></td>
+        <td><input type="text" name="fullRetailPrice" id="fullRetailPrice"
+        placeholder="Enter a Full Retial Price"></p><span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span></td>
+    </tr>
+</table>
+
 <?php
-<<<<<<< HEAD
-	$promoCode = $_POST['promoCode'];
-	$amountOff = $_POST['amountOff'];
-	$promoType = $_POST['promoType'];
-=======
-require('db_connect.inc');
-connect();
-
-    $promoCode1 = $_POST['promo'];
 
 
-    
-            $promo_search_sql ="SELECT PromoCode, Name, AmountOff, PromoType 
-            FROM Promotion WHERE PromoCode = $promoCode1";
-
-            $promoResult = mysql_query($promo_search_sql);
-            $row = mysql_fetch_assoc($promoResult);
-
-            $promoCode = $row['PromoCode'];
-            $promoName = $row['Name'];
-            $amountOff = $row['AmountOff'];
-            $promoType = $row['PromoType'];
-
-
-        
-	//$promoCode = $_POST['promoCode'];
-	//$amountOff = $_POST['amountOff'];
-	//$promoType = $_POST['promoType'];
->>>>>>> refs/remotes/origin/master
+    //$promoCode = $_POST['promoCode'];
+    //$amountOff = $_POST['amountOff'];
+    //$promoType = $_POST['promoType'];
 
 
 
@@ -155,14 +167,15 @@ connect();
     <input type="hidden" name="promoName" value="$promoName">
     <input type="hidden" name="amountOff" value="$amountOff">
     <input type="hidden" name="promoType" value="$promoType">
-EOD;
+EOD
 ?>
 
-<p>			
+<p>	
+        	<button class="button" onclick="goBack()">Back</button>	
 		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
 		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
-	</p>
-	</form>
+</p></form>
+	<p><br/><a href="index.html"><button name="menu" class="button">Return to Main Menu</button></a></p>
 	</center>
 </body>
 </html>
