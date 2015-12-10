@@ -9,7 +9,10 @@ Search for an existing item by item number, category, department, or description
 			<table>
 				<tr>
 					<td>Item Number</td>
-					<td>: <input type="text" name="itemNum" id="itemNum" size="7"/></td>
+					<td>: <input type="text" name="itemNum" id="itemNum" size="7"/>
+    					<span id="errorItemNum" class="error"></span>
+                  <span id="successItemNum" class="correct"></span>
+					</td>
 				</tr>
 				<tr>
 					<td>Item Description</td>
@@ -18,7 +21,7 @@ Search for an existing item by item number, category, department, or description
 				<tr>
 					<td>Category</td>
 					<td>:
-						<select name="category" id="category">
+						<div class="dropdown"><select name="category" id="category">
 							<option>ACCESSORIES/FOOTWEAR</option>
 							<option>BASIC APPAREL</option>
 							<option>CHILDRENS APPAREL</option>
@@ -37,7 +40,7 @@ Search for an existing item by item number, category, department, or description
 							<option>SUPPLIES</option>
 							<option>TOYS</option>
 							<option>WOMENS APPAREL</option>
-						</select>
+						</select></div>
 					</td>
 				</tr>
 				<tr>
@@ -104,7 +107,11 @@ Search for an existing item by item number, category, department, or description
 						</select>
 					</td>
 				</tr> 
-<tr><td><button type="submit" id="submit">Submit</button></td><td><button id="back">Back</button></td></tr>
+				<tr>
+					<td><button id="back">Back</button></td>
+					<td><button type="submit" id="submit">Submit</button></td>
+					<td><br/><br/><a href="index.html"><button name="menu" class="button">Return to Main Menu</button></a></td>
+				</tr>
 </table>
 </form>
 </body>
