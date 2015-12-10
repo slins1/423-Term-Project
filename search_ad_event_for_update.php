@@ -6,11 +6,11 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="icon" type="image/png" href="favicon.png">        
+	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
 	<title>Aptaris - Advertisement Event System</title>
 	
 	<div class="header"><a href="index.html">
-		<img src="images/logo_100.jpg" alt="logo" />
+		<img src="logo_100.jpg" alt="logo" />
 		<h1>Advertisement Event System - Update Ad Event</h1></a><br/><hr/>
 	</div>
 </head>
@@ -32,29 +32,10 @@ function searchAdEventsByCategory() {
 
 	$eventCode = $_POST['eventCode'];
 	$eventName = $_POST['name'];
-	$startDateUnformatted = $_POST['startDate'];
-	$endDateUnformatted = $_POST['endDate'];
+	$startDate = $_POST['startDate'];
+	$endDate = $_POST['endDate'];
 	$description = $_POST['description'];
 	$eventType = $_POST['eventType'];
-
-
-	$temp = "";
-	$startDates	= explode("/", $startDateUnformatted); //[10], [28], [2015]
-	$startDatesReversed = array_reverse($startDates); //[2015], [28], [10]
-	$temp = $startDatesReversed[1]; //[2015], [28], [10] t:[28]
-	$startDatesReversed[1] = $startDatesReversed[2]; //[2015], [10], [10] t:[28]
-	$startDatesReversed[2] = $temp; //[2015], [10], [28]
-	$startDate = implode("-", $startDatesReversed); //2015-10-28
-
-
-	
-	$endDates	= explode("/", $endDateUnformatted);
-	$endDatesReversed = array_reverse($endDates);
-	$temp = $endDatesReversed[1];
-	$endDatesReversed[1] = $endDatesReversed[2];
-	$endDatesReversed[2] = $temp;
-	$endDate = implode("-", $endDatesReversed);
-
 
 	$cond1 = "";
 	$cond2 = "";
@@ -73,13 +54,13 @@ function searchAdEventsByCategory() {
 	if(isset($eventName) && ($eventName != "")){
 		$cond3 = "Name LIKE '%".$eventName."%'";
 	}
-	if(isset($startDate) && ($startDate != "--")){
+	if(isset($startDate) && ($startDate != "")){
 		$cond4 = "StartDate = '".$startDate."'";
 	}
-	if(isset($endDate) && ($endDate != "--")){
+	if(isset($endDate) && ($endDate != "")){
 		$cond5 = "EndDate = '".$endDate."'";
 	}
-	if(isset($eventType) && ($eventType != "---")){
+	if(isset($eventType) && ($eventType != "")){
 		$cond6 = "AdType = '".$eventType."'";
 	}
 
@@ -152,13 +133,13 @@ function displayEvents($event_search_message, $eventResult) {
 	  echo <<<EOD
 	<p>$event_search_message</p>
   <tr>
-  	<th></th>
-  	<th><b>EVENT CODE</b></th>
-  	<th><b>NAME</b></th>
-  	<th><b>START DATE</b></th>
-  	<th><b>END DATE</b></th>
-  	<th><b>DESCRIPTION</b></th>
-  	<th><b>AD TYPE</b></th>
+  	<td></td>
+  	<td><b>EVENT CODE</b></td>
+  	<td><b>NAME</b></td>
+  	<td><b>START DATE</b></td>
+  	<td><b>END DATE</b></td>
+  	<td><b>DESCRIPTION</b></td>
+  	<td><b>AD TYPE</b></td>
   </tr>
 EOD;
 		
@@ -187,10 +168,10 @@ EOD;
 ?>
 </table>
 	<p>			
-		<button class="button" onclick="goBack()">Back</button>
+		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
 		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
-</p></form>
-	<p><br/><a href="index.html"><button name="menu" class="button">Return to Main Menu</button></a></p>
+	</p>
+	</form>
 	</center>
 </body>
 </html>

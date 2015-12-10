@@ -4,22 +4,22 @@
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script src="_script.js"></script>
-        <script type="text/javascript" src="validate_item_insert.js"></script>
         <link rel="stylesheet" type="text/css" href="_main.css">
-        <link rel="icon" type="image/png" href="favicon.png">
+        <link rel="logo_favicon.jpg" href="/favicon.ico"/>
         <title>Aptaris - Advertisement Event System</title>
 
         <div class="header"><a href="index.html">
-                <img src="images/logo_100.jpg" alt="logo" />
+                <img src="logo_100.jpg" alt="logo" />
                 <h1>Advertisement Event System - Update Item</h1></a><br/><hr/>
         </div>
 </head>
 <body>
         <center>
-    <form action='update_item.php' method='post' name ="addItem" id="addItem" onsubmit="return validate_item();">    
-    <table border="1">
-    <tr>
-    <td>Item Number:</td>
+    <form action='update_item.php' method='post' onsubmit="">
+
+    <h2>Update an Item:</h2>
+    <p><b>Item Number:</b></p>
+
 <?php
 $row = $_POST['row'];
 $implode = implode(',',$row);
@@ -30,15 +30,15 @@ $category = $explode[2];
 $departmentName = $explode[3];
 $purchaseCost = $explode[4];
 $fullRetailPrice = $explode[5];
-echo '<td><input type="text" name="itemNum" id="itemNum" value = "'.$itemNumber.'" size="40"><span id="errorItemNum" class="error"></span><span id="successItemNum" class="correct"></span></td></tr>';
+echo '<input type="text" name="itemNum" id="itemNum" value = "'.$itemNumber.'">';
 echo <<<EOD
-    <tr><td>Item Description:</td>
+    <p><b>Item Description:</b></p>
 EOD;
-echo '<td><input type="text" name="itemDescription" id="itemDescription" value = "'.$itemDescription.'" size="40"><span id="errorItemDescription" class="error"></span><span id="successItemDescription" class="correct"></span></td></tr>';
+echo '<input type="text" name="itemDescription" id="itemDescription" value = "'.$itemDescription.'">';
 echo <<<EOD
-    <tr><td>Category:</td>
+    <p><b>Category:</b></p>
 EOD;
-echo '<td><div class="dropDown"><select name="category" id="category" selected = "'.$category.'">';
+echo '<select name="category" id="category" selected = "'.$category.'">';
 echo <<<EOD
             <option selected value="$category">$category</option>
             <option>ACCESSORIES/FOOTWEAR</option>
@@ -59,10 +59,10 @@ echo <<<EOD
             <option>SUPPLIES</option>
             <option>TOYS</option>
             <option>WOMENS APPAREL</option>
-        </select></div></td></tr>
-        <tr><td>Department Name</td>
+        </select>
+        <p><b>Department Name</b></p>
 EOD;
-echo '<td><div class="dropDown"><select name="departmentName" id="departmentName" selected="'.$departmentName.'">';
+echo '<select name="departmentName" id="departmentName" selected="'.$departmentName.'">';
 echo <<<EOD
             <option selected value="$departmentName">$departmentName</option>
             <option>ACCESSORIES</option>
@@ -122,22 +122,19 @@ echo <<<EOD
             <option>PLUS BOTTOMS</option>
             <option>PLUS TOPS</option>
             <option>SLEEPWEAR/SCRUBS</option>
-        </select></div></td></tr>
+        </select>
+<p>
 EOD;
-echo '<tr><td>Purchase Cost:</td>';
-echo '<td><input type="text" name="purchaseCost" id="purchaseCost" value="'.$purchaseCost.'" size="40"><span id="errorPurchaseCost" class="error"></span>
-                  <span id="successPurchaseCost" class="correct"></span></td></tr>';
-echo '<tr><td>Full Retail Price:</td>';
-echo '<td><input type="text" name="retailPrice" id="retailPrice" value="'.$fullRetailPrice.'" size="40"><span id="errorRetailPrice" class="error"></span>
-                  <span id="successRetailPrice" class="correct"></span></td></tr>';
-echo '<input type="hidden" name="itemNumber" id="itemNumber" value="'.$itemNumber.'"></table>';
+echo '<p><b>Purchase Cost:</b></p>';
+echo '<input type="text" name="purchaseCost" id="purchaseCost" value="'.$purchaseCost.'">';
+echo '<p><b>Full Retail Price:</b></p>';
+echo '<input type="text" name="fullRetailPrice" id="fullRetailPrice" value="'.$fullRetailPrice.'">';
+echo '<input type="hidden" name="itemNumber" id="itemNumber" value="'.$itemNumber.'">';
 ?>			
-<p>	
-        	<button class="button" onclick="goBack()">Back</button>
 		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
 		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
-</p></form>
-	<p><br/><a href="index.html"><button name="menu" class="button">Return to Main Menu</button></a></p>
+	</p>
+	</form>
 	</center>
 </body>
 </html>
