@@ -10,7 +10,7 @@
       <title>Aptaris - Advertisement Event System</title>
       
       <div class="header"><a href="index.html">
-			<img src="images/logo_100.jpg" alt="logo" />
+			<img src="logo_100.jpg" alt="logo" />
 			<h1>Advertisement Event System - Update an Item</h1></a>
 			<br/><hr/>
 		</div>
@@ -31,7 +31,7 @@ function updateItem() {
 	$category = $_POST['category'];
 	$deptName = $_POST['departmentName'];
 	$purchaseCost = $_POST['purchaseCost'];
-	$retailPrice = $_POST['retailPrice'];
+	$retailPrice = $_POST['fullRetailPrice'];
 	
 	$updateStatement = "Update Item SET ItemNumber = '".$itemNum."', ItemDescription = '".$description."', Category = '".$category."', DepartmentName = '".$deptName."', PurchaseCost = '".$purchaseCost."', FullRetailPrice = '".$retailPrice."' WHERE ItemNumber = '".$itemNumber."'";
 	// Execute the query--it will return either true or false
@@ -74,43 +74,17 @@ function showItemUpdateResult($message, $itemNum, $description, $category, $dept
 
   // If the message is non-null and not an empty string print it
   // message contains the lastname and firstname
-if ($message != "") {
-		echo <<<EOD
-			<h2 class='text-center'>$message</h2>
-			<table>
-					<tr>
-						<td>Item Number:</td>
-						<td>$itemNum</td>
-					</tr>
-					<tr>
-						<td>Department Name:</td>
-						<td>$deptName</td>
-					</tr>
-					<tr>
-						<td>Category:</td>
-						<td>$category</td>
-					</tr>
-					<tr>
-						<td>Purchase Cost:</td>
-						<td>$purchaseCost</td>
-					</tr>
-					<tr>
-						<td>Retail Price:</td>
-						<td>$retailPrice</td>
-					</tr>
-					<tr>
-						<td>Description:</td>
-						<td>$description</td>
-					</tr>
-			</table>
-EOD;
+  if ($message) {
+    if ($message != "") {
+      echo "<h2>$message</h2><br />";
     } else {
-			echo "<h2>Error in inserting promotion</h2>";
+			echo "<p>Error</p>";
+		}
   }
 }
 ?>
 <p>
-	<a href="index.html"><button name="menu" class="button">Return to Main Menu</button></a>
+	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
 	<a href="update_item_search_view.html"><button name="update"  accesskey="S" class="button">Update another item</button></a>
 </p>
 </center>

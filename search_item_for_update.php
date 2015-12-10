@@ -6,11 +6,11 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="icon" type="image/png" href="favicon.png">        
+	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
 	<title>Aptaris - Advertisement Event System</title>
 	
 	<div class="header"><a href="index.html">
-		<img src="images/logo_100.jpg" alt="logo" />
+		<img src="logo_100.jpg" alt="logo" />
 		<h1>Advertisement Event System - Update Item</h1></a><br/><hr/>
 	</div>
 </head>
@@ -171,10 +171,10 @@ EOD;
 ?>
 </table>
 	<p>			
-		<button class="button" onclick="goBack()">Back</button>
+		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
 		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
-</p></form>
-	<p><br/><a href="index.html"><button name="menu" class="button">Return to Main Menu</button></a></p>
+	</p>
+	</form>
 	</center>
 </body>
 </html>

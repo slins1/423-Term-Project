@@ -6,11 +6,11 @@
 			<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
       <script src="_script.js"></script>
       <link rel="stylesheet" type="text/css" href="_main.css">
-      <link rel="icon" type="image/png" href="favicon.png">        
+      <link rel="logo_favicon.jpg" href="/favicon.ico"/>        
       <title>Aptaris - Advertisement Event System</title>
       
       <div class="header"><a href="index.html">
-			<img src="images/logo_100.jpg" alt="logo" />
+			<img src="logo_100.jpg" alt="logo" />
 			<h1>Advertisement Event System - Update a Promotion</h1></a>
 			<br/><hr/>
 		</div>
@@ -26,15 +26,10 @@ updatePromotion();
 
 function updatePromotion() {
 	$promoCode = $_POST['promoCode'];
-	$promoName = $_POST['promoName'];
-	$description = $_POST['promoDescription'];
+	$promoName = $_POST['name'];
+	$description = $_POST['description'];
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
-
-	if (($promoType == 'Percent') && ($amountOff >= 1)) {
-    	$amountOff =  str_replace("%", "", $amountOff);
-		$amountOff = $amountOff/100;
-	}
 	
 	$updateStatement = "Update Promotion SET Name = '".$promoName."', Description = '".$description."', AmountOff = '".$amountOff."', PromoType = '".$promoType."' WHERE PromoCode = '".$promoCode."'";
 	// Execute the query--it will return either true or false
@@ -77,31 +72,17 @@ function showItemUpdateResult($message, $promoCode, $description, $promoName, $a
 
   // If the message is non-null and not an empty string print it
   // message contains the lastname and firstname
-  if ($message != "") {
-		echo <<<EOD
-			<h2 class='text-center'>$message</h2>
-			<table>
-					<tr>
-						<td>Description:</td>
-						<td>$description</td>
-					</tr>
-					<tr>
-						<td>Amount Off:</td>
-						<td>$amountOff</td>
-					</tr>
-					<tr>
-						<td>Promo Type:</td>
-						<td>$promoType</td>
-					</tr>
-			</table>
-EOD;
+  if ($message) {
+    if ($message != "") {
+      echo "<h2>$message</h2><br />";
     } else {
-			echo "<h2>Error in inserting promotion</h2>";
+			echo "<p>Error</p>";
+		}
   }
 }
 ?>
 <p>
-	<a href="index.html"><button name="menu" class="button">Return to Main Menu</button></a>
+	<a href="index.html"><button name="menu" accesskey="R" class="button">Return to Main Menu</button></a>
 	<a href="update_promotion_search_view.html"><button name="update"  accesskey="S" class="button">Update another promotion</button></a>
 </p>
 </center>

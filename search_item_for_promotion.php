@@ -6,17 +6,23 @@
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="_script.js"></script>
 	<link rel="stylesheet" type="text/css" href="_main.css">
-	<link rel="icon" type="image/png" href="favicon.png">        
+	<link rel="logo_favicon.jpg" href="/favicon.ico"/>        
 	<title>Aptaris - Advertisement Event System</title>
 	
 	<div class="header"><a href="index.html">
-		<img src="images/logo_100.jpg" alt="logo" />
-		<h1>Advertisement Event System - Assign Item to a Promotion</h1></a><br/><hr/>
+		<img src="logo_100.jpg" alt="logo" />
+		<h1>Advertisement Event System - Assign Promotion to an Item</h1></a><br/><hr/>
 	</div>
 </head>
+
 <body>
 <center>
 <form action='insert_PromotionItem.php' method='post'>
+<h2>Please check all items you would like to add to the promotion</h2>
+<h2> Click submit to confirm the addition of all items to the promotion</h2>
+<table>
+
+
 <?php
 require('db_connect.inc');
 connect();
@@ -28,12 +34,6 @@ function searchItemsByCategory() {
 	$promoName = $_POST['promoName'];
 	$amountOff = $_POST['amountOff'];
 	$promoType = $_POST['promoType'];
-
-echo <<<EOD
-	<h2>Please check all items you would like to add to the promotion $promoName</h2>
-<h2> Click submit to confirm the addition of all items to the promotion</h2>
-<table>
-EOD;
 
 	$itemNumber = $_POST['itemNumber'];
 	$itemDescription = $_POST['itemDescription'];
@@ -182,13 +182,13 @@ function displayItemsPromotions($item_search_message, $itemResult, $promoCode,
   <input type="hidden" name="amountOff" value="$amountOff">
   <input type="hidden" name="promoType" value="$promoType">
   <tr>
-  	<th></th>
-  	<th><b>ITEM NUMBER</b></th>
-  	<th><b>ITEM DESCRIPTION</b></th>
-  	<th><b>CATEGORY</b></th>
-  	<th><b>DEPARTMENT NAME</b></th>
-  	<th><b>PURCHASE COST</b></th>
-  	<th><b>FULL RETAIL PRICE</b></th>
+  	<td></td>
+  	<td><b>ITEM NUMBER</b></td>
+  	<td><b>ITEM DESCRIPTION</b></td>
+  	<td><b>CATEGORY</b></td>
+  	<td><b>DEPARTMENT NAME</b></td>
+  	<td><b>PURCHASE COST</b></td>
+  	<td><b>FULL RETAIL PRICE</b></td>
   </tr>
 EOD;
 		
@@ -201,13 +201,9 @@ EOD;
 		$purchaseCost = $row['PurchaseCost'];
 		$fullRetailPrice = $row['FullRetailPrice'];
 	
-	  echo "<tr>";
-			if (isDuplicateItem($itemNumber)) {
-				echo "<td title='Item is already in the promotion'><input type='checkbox' title='Item is already in the promotion' disabled='true' name='saleItems[]' value=$itemNumber></td>";
-			} else {
-				echo "<td><input type='checkbox' name='saleItems[]' value=$itemNumber></td>";
-			}
 	  echo <<<EOD
+	  	<tr>
+				<td><input type='checkbox' name='saleItems[]' value=$itemNumber></td>
 				<td>$itemNumber</td>
 				<td>$itemDescription</td>
 				<td>$category</td>
@@ -218,28 +214,15 @@ EOD;
 EOD;
 
 	}
-}
 
-function isDuplicateItem($itemNumber) {
-	$promoCode = $_POST['promoCode'];
-	$checkItemStatement = "SELECT ItemNumber FROM PromotionItem WHERE PromoCode = '$promoCode'";
-	$itemResult = mysql_query($checkItemStatement);
-	while ($row = mysql_fetch_assoc($itemResult)) {
-		if ($row['ItemNumber'] == $itemNumber) {
-			return true;
-		}	
-	}
-	return false;
 }
-
 ?>
 </table>
 	<p>			
-    		<button class="button" onclick="goBack()">Back</button>
 		<button type="reset" name="reset" accesskey="R" class="button">Reset</button>
 		<button type="submit" name="submit" value="Submit" accesskey="S" class="button">Submit</button>
-</p></form>
-	<p><br/><a href="index.html"><button name="menu" class="button">Return to Main Menu</button></a></p>
+	</p>
+	</form>
 	</center>
 </body>
 </html>

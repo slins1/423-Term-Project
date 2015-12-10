@@ -20,13 +20,9 @@ td {
     padding: 3px 7px 2px 7px;
 }
 
-.noBorder {
-    border: 0px;
-}
-
 th {
     font-size: 1.1em;
-    text-align: center;
+    text-align: left;
     padding-top: 5px;
     padding-bottom: 4px;
     background-color: #fb912a;
@@ -55,28 +51,8 @@ input[type="text"]:focus {
   box-shadow: 0 0 5px 1px #969696;
 }
 
-.dropDown select {
-    background: transparent;
-   width: 100%;
-   padding: 5px;
-   font-size: 16px;
-   line-height: 1;
-   border: 0;
-   border-radius: 0;
-   height: 34px;
-   -webkit-appearance: none;
-}
-
-.dropDown {
-   width: 98%;
-   height: 34px;
-   overflow: hidden;
-   background: url(images/down_arrow_select.jpg) no-repeat right #ffffff;
-   border: 1px solid #e4e4e4;
-   }
-
-/*
-	HEADER ELEMENTS
+/* 
+	HEADER ELEMENTS 
 */
 img {
 	display: block;
@@ -101,16 +77,4 @@ img {
 .center {
 	width: 30%;
 	margin: 0 auto;
-}
-
-.error{
-	color: red;
-	float:left;
-}
-.correct{
-	color: green;
-	float: left;
-}
-.statusImage{
-	float: left;
 }
