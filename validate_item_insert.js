@@ -21,6 +21,51 @@ function clear_form(){
 
 }
 
+window.onload = function() {
+  // categories is an object but you can think of it as a lookup table
+  var  categories = {
+        'ACCESSORIES/FOOTWEAR': ['ACCESSORIES', 'FOOTWEAR'],
+        'BASIC APPAREL': ['CHILDRENS BASICS', 'LADIES BASICS', 'MENS BASICS'],
+        'CHILDRENS APPAREL': ['BOYS APPAREL', 'GIRLS APPAREL', 'NEWBORN INF TODDLR'],
+        'ELECTRONICS/PREPAID': ['ELECTRONICS', 'PPD PRODUCT/SERVICE'],
+        'FOOD CONVENIENCE': ['ADULT BEVERAGE', 'BREAD', 'CANDY', 'REFRIGERATED', 'TOBACCO'],
+        'FOOD GROCERY': ['COOKIES/CRACKERS', 'GROCERY', 'PREPARED FOOD', 'READY TO DRINK BEV', 'SALTY SNACKS', 'WAREHOUSE BEVERAGES'],
+        'HEALTH/BEAUTY': ['ACUTE HEALTH CARE', 'BABY CARE', 'BATH/BODY', 'BEAUTY CARE', 'CHRONIC HEALTH CARE', 'HAIR CARE', 'ORAL CARE', 'PERSONAL CARE', 'ROUTINE HEALTH'],
+        'HOME DECOR': ['HOME DECOR'],
+        'HOUSEHOLD PRODUCTS': ['AUTOMOTIVES', 'DISP BAG/WRAP/TABLE', 'HARDWARE', 'HOUSEHOLD CLEANING', 'HOUSEHOLD PAPER', 'LAUNDRY CARE', 'PET'],
+        'HOUSEWARES': ['HOUSEWARES'],
+        'MENS APPAREL': ['MENS APPAREL'],
+        'MISCELLANEOUS': ['MISCELLANEOUS'],
+        'OFFICE/PARTY': ['PARTY/CARD SHOP', 'SCHOOL/OFFICE SUPPLY'],
+        'SEASONAL MERCHANDISE': ['LAWN AND GDN/PATIO', 'SEASONAL'],
+        'SOFT HOME': ['BATH', 'BEDDING', 'FLOORING', 'KITCHEN', 'WINDOW'],
+        'SUPPLIES': ['SUPPLIES'],
+        'TOYS': ['TOYS'],
+        'WOMENS APPAREL': ['LADIES BOTTOMS', 'LADIES TOPS', 'PLUS BOTTOMS', 'PLUS TOPS', 'SLEEPWEAR/SCRUBS']
+      },
+      // just grab references to the two drop-downs
+      category_select = document.querySelector('#category'),
+      department_select = document.querySelector('#deptName');
+
+  // populate the drop-downs
+  setOptions(category_select, Object.keys(categories));
+  setOptions(department_select, categories[category_select.value]);
+
+  // attach a change event listener to the provinces drop-down
+  category_select.addEventListener('change', function() {
+    setOptions(department_select, categories[category_select.value]);
+  });
+
+  function setOptions(dropDown, options) {
+    // clear out any existing values
+    dropDown.innerHTML = '';
+    // insert the new options into the drop-down
+    options.forEach(function(value) {
+      dropDown.innerHTML += '<option name="' + value + '">' + value + '</option>';
+    });
+  }
+};
+
 function validate_item() {
   var errorFlag = 0;
 

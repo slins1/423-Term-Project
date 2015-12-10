@@ -52,7 +52,7 @@ function validate_event() {
 function validate_event_code() {
 
   var eventCode = document.addEvent.eventCode;
-  var eventCodeRegex = /^[0-9A-Z]{11,}$/;
+  var eventCodeRegex = /^[0-9A-Za-z]{11,}$/;
   var errEventCode = document.getElementById("errorEventCode");
   var sucEventCode = document.getElementById("successEventCode");
 
