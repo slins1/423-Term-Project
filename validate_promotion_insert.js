@@ -1,3 +1,21 @@
+function clear_form(){
+
+  var errPromoName = document.getElementById("errorPromoName");
+  var sucPromoName = document.getElementById("successPromoName");
+  var errPromoDescription = document.getElementById("errorPromoDescription");
+  var sucPromoDescription = document.getElementById("successPromoDescription");
+  var errAmountOff = document.getElementById("errorAmountOff");
+  var sucAmountOff = document.getElementById("successAmountOff");
+
+  sucPromoName.innerHTML = "";
+  errPromoName.innerHTML = "";
+  sucPromoDescription.innerHTML = "";
+  errPromoDescription.innerHTML = "";
+  sucAmountOff.innerHTML = "";
+  errAmountOff.innerHTML = "";
+
+}
+
 function validate_promotion() {
 
   var errorFlag = 0;
