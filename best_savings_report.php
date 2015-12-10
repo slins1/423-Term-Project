@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,15 +82,16 @@ function findSavings(){
 				$numberAdEventPromotionRows = mysql_num_rows($adEventPromotionResult);
 				// Check if results turned out empty
 				$adEventPromotionMessage = "";
+				$bestPrice = $salePrice;
+					$bestPromo = $promoCode;
+					$difference = $retail - $bestPrice;
 				if ($numberAdEventPromotionRows == 0) {
 					$adEventPromotionMessage = "No items found in database";
 				}
 				else {
 					$result = mysql_fetch_assoc($adEventPromotionResult);
 					$eventCode = $result['EventCode'];
-					$bestPrice = $salePrice;
-					$bestPromo = $promoCode;
-					$difference = $retail - $bestPrice;
+					
 				}
 			}
 		}
@@ -120,7 +120,7 @@ function limitResultsToFifty ($itemPrices){
 		else{
 			$flag = 0;
 			foreach ($topItems as $number => $comparePrice){
-				if(($price < $comparePrice) && ($flag = 0)){
+				if(($price > $comparePrice) && ($flag == 0)){
 					unset($topItems[$number]);
 					$topItems[$itemNumber]= $price;
 					$flag = 1;
