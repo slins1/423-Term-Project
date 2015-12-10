@@ -1,3 +1,26 @@
+function clear_form(){
+
+  var errItemNum = document.getElementById("errorItemNum");
+  var sucItemNum = document.getElementById("successItemNum");
+  var errItemDescription = document.getElementById("errorItemDescription");
+  var sucItemDescription = document.getElementById("successItemDescription");
+  var errPurchaseCost = document.getElementById("errorPurchaseCost");
+  var sucPurchaseCost = document.getElementById("successPurchaseCost");
+  var errRetailPrice = document.getElementById("errorRetailPrice");
+  var sucRetailPrice = document.getElementById("successRetailPrice");
+
+  sucItemNum.innerHTML = "";
+  errItemNum.innerHTML = "";
+  sucItemDescription.innerHTML = "";
+  errItemDescription.innerHTML = "";
+  sucPurchaseCost.innerHTML = "";
+  errPurchaseCost.innerHTML = "";
+  sucRetailPrice.innerHTML = "";
+  errRetailPrice.innerHTML = "";
+
+
+}
+
 function validate_item() {
   var errorFlag = 0;
 
