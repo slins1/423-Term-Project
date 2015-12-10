@@ -63,7 +63,7 @@ echo "<h2>The following items were added to the promotion: $promoName</h2>";
       if ($promoType == "Dollar") {
         $salePrice = $fullRetailPrice - $amountOff;
       } else if ($promoType == "Percent") {
-        $salePrice = $fullRetailPrice * (1 - $amountOff);
+        $salePrice = $fullRetailPrice * $amountOff;
       }
       $insertStatement = "INSERT INTO PromotionItem (PromoCode, ItemNumber, SalePrice) VALUES ('$promoCode','$itemNumber', '$salePrice')";
 			
