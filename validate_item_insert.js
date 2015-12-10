@@ -2,8 +2,6 @@ function clear_form(){
 
   var errItemNum = document.getElementById("errorItemNum");
   var sucItemNum = document.getElementById("successItemNum");
-  var errItemDescription = document.getElementById("errorItemDescription");
-  var sucItemDescription = document.getElementById("successItemDescription");
   var errPurchaseCost = document.getElementById("errorPurchaseCost");
   var sucPurchaseCost = document.getElementById("successPurchaseCost");
   var errRetailPrice = document.getElementById("errorRetailPrice");
@@ -11,8 +9,6 @@ function clear_form(){
 
   sucItemNum.innerHTML = "";
   errItemNum.innerHTML = "";
-  sucItemDescription.innerHTML = "";
-  errItemDescription.innerHTML = "";
   sucPurchaseCost.innerHTML = "";
   errPurchaseCost.innerHTML = "";
   sucRetailPrice.innerHTML = "";
@@ -74,11 +70,6 @@ function validate_item() {
     errorFlag = 1;
   }
 
-  if (validate_item_description() == false) {
-    document.addItem.itemDescription.focus();
-    errorFlag = 1;
-  }
-
   if (validate_purchase_cost() == false) {
     document.addItem.purchaseCost.focus();
     errorFlag = 1;
@@ -117,29 +108,6 @@ function validate_item_number() {
     errItemNum.innerHTML = "";
     sucItemNum.innerHTML = "<img class='statusImage' src='images/correct.png' alt='correct'> Complete!";
 	return true;
-}
-
-function validate_item_description() {
-  var itemDescription = document.addItem.itemDescription;
-  var itemDescriptionRegex = /^[0-9A-Za-z\.\,\#\%\= ]*$/;
-  var errItemDescription = document.getElementById("errorItemDescription");
-  var sucItemDescription = document.getElementById("successItemDescription");
-
-  if (itemDescription.value === "") {
-    sucItemDescription.innerHTML = "";
-    errItemDescription.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> Required!";
-    return false;
-  }
-
-  if (!itemDescriptionRegex.test(itemDescription.value)) {
-    sucItemDescription.innerHTML = "";
-    errItemDescription.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> Invalid special characters used!\n(Use '.', ',', '%', '=' or '#')";
-    return false;
-  }
-
-  errItemDescription.innerHTML = "";
-  sucItemDescription.innerHTML = "<img class='statusImage' src='images/correct.png' alt='correct'> Complete!";
-  return true;
 }
 
 function validate_purchase_cost() {

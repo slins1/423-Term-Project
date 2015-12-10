@@ -6,8 +6,6 @@ function clear_form(){
   var sucName = document.getElementById("successName");
   var errEndDate = document.getElementById("errorEndDate");
   var sucEndDate = document.getElementById("successEndDate");
-  var errDescription = document.getElementById("errorDescription");
-  var sucDescription = document.getElementById("successDescription");
 
   sucEventCode.innerHTML = "";
   errEventCode.innerHTML = "";
@@ -15,8 +13,6 @@ function clear_form(){
   errName.innerHTML = "";
   sucEndDate.innerHTML = "";
   errEndDate.innerHTML = "";
-  sucDescription.innerHTML = "";
-  errDescription.innerHTML = "";
 }
 
 function validate_event() {
@@ -37,11 +33,6 @@ function validate_event() {
     document.addEvent.endDate.focus();
     errorFlag = 1;
   }
-/*
-  if (validate_description() == false) {
-    document.addEvent.eventDescription.focus();
-    errorFlag = 1;
-  }*/
 
   if (errorFlag == 1) {
     return false;
@@ -76,19 +67,12 @@ function validate_event_code() {
 
 function validate_name() {
   var name = document.addEvent.eventName;
-  var nameRegex = /^[0-9A-Za-z\.\,\%\#\= ]*$/;
   var errName = document.getElementById("errorName");
   var sucName = document.getElementById("successName");
 
   if (name.value === "") {
     sucName.innerHTML = "";
     errName.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> Required!";
-    return false;
-  }
-
-  if (!nameRegex.test(name.value)) {
-    sucName.innerHTML = "";
-    errName.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> Invalid special characters used!\n(Use '.', ',', '=', '%' or '#')";
     return false;
   }
 
@@ -127,28 +111,5 @@ function validate_end_date() {
 
     errEndDate.innerHTML = "";
     sucEndDate.innerHTML = "<img class='statusImage' src='images/correct.png' alt='correct'> Complete!";
-  return true;
-}
-
-function validate_description() {
-  var description = document.addEvent.eventDescription;
-  var descriptionRegex = /^[0-9]+[\.][0-9][0-9]$/;
-  var errDescription = document.getElementById("errorDescription");
-  var sucDescription = document.getElementById("successDescription");
-
-  if (description.value === "") {
-    sucDescription.innerHTML = "";
-    errDescription.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> Required!";
-    return false;
-  }
-
-  if (!descriptionRegex.test(decription.value)) {
-    sucDescription.innerHTML = "";
-    errDescription.innerHTML = "<img class='statusImage' src='images/error.png' alt='error'> Use format 'X.XX'!";
-    return false;
-  }
-
-  errDescription.innerHTML = "";
-  sucDescription.innerHTML = "<img class='statusImage' src='images/correct.png' alt='correct'> Complete!";
   return true;
 }
