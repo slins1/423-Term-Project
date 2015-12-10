@@ -74,7 +74,7 @@ EOD;
       if ($promoType == "Dollar") {
         $salePrice = $fullRetailPrice - $amountOff;
       } else if ($promoType == "Percent") {
-        $salePrice = $fullRetailPrice * $amountOff;
+        $salePrice = $fullRetailPrice * (1 - $amountOff);
       }
       $insertStatement = "INSERT INTO PromotionItem (PromoCode, ItemNumber, SalePrice) VALUES ('$promoCode','$itemNumber', '$salePrice')";
 			
