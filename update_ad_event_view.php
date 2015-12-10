@@ -41,7 +41,7 @@ $startDate = implode("/", $startDatesReversed); //[10]/[28]/[2015]
 
 $endDates	= explode("-", $end); //[2015], [10], [28]
 $endDatesReversed = array_reverse($endDates); //[28], [10], [2015]
-$temp = $startDatesReversed[1]; //[28], [10], [2015]  t:[10]
+$temp = $endDatesReversed[1]; //[28], [10], [2015]  t:[10]
 $endDatesReversed[1] = $endDatesReversed[0]; //[28], [28], [2015] t:[10]
 $endDatesReversed[0] = $temp; //[28], [28], [2015]
 $endDate = implode("/", $endDatesReversed); //[10]/[28]/[2015]
