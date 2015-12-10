@@ -46,6 +46,10 @@ function insertPromotion() {
 	} else {
 	  $message = "The Promotion $name was inserted successfully";
 	}
+	
+	if ($promoType == 'Percent') {
+	    $amountOff  *= 100;
+    }
 	showPromotionInsertResult($message, $name, $description, $amountOff, $promoType);
 }
 			   
