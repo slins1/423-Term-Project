@@ -34,7 +34,7 @@ function validate_event() {
   }
 
   if (validate_end_date() == false) {
-    document.addEvent.endDate.focus();
+    //document.addEvent.endDate.focus();
     errorFlag = 1;
   }
 /*
